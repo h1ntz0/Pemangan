@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Peminjaman Ruangan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./img/image2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="logo">Pemangan</div>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#welcome"><i class="fas fa-home"></i> Welcome</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#booking"><i class="fas fa-door-open"></i> Room</a></li>
+                <li><a href="#footer"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li>
+                    <a href="./login/login.html" target="_blank" onclick="window.open(this.href); return false;"><i
+                            class="fas fa-sign-in-alt"></i>Sign In
+                        & Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <section id="welcome">
+            <div class="welcome-text">
+                <h3>Selamat Datang di Website Pemangan</h3>
+                <p>Pemangan atau Peminjaman Ruangan adalah website online untuk memudahkan peminjaman ruangan yang ada
+                    di SMK Negeri 1 Jakarta.</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Pemangan adalah Website digital untuk mempermudah peminjaman ruangan yang ada di SMK Negeri 1 Jakarta.
+                Dengan
+                Pemangan, guru, staff dan siswa/i dapat melihat ketersediaan, memesan ruangan, dan mengelola jadwal
+                secara online dengan mudah dan cepat.</p>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking">
+            <div class="form-container">
+                <h2>Laporan Peminjaman</h2>
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="selected-room">Ruangan</label>
+                        <select id="selected-room" name="selected-room" required>
+                            <option value="" disabled selected>Pilih Ruangan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-reason">Alasan Peminjaman</label>
+                        <textarea id="booking-reason" name="booking-reason" rows="4" placeholder="Masukkan alasan peminjaman" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="start-date-time">Tanggal & Jam Mulai</label>
+                        <input type="datetime-local" id="start-date-time" name="start-date-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date-time">Tanggal & Jam Selesai</label>
+                        <input type="datetime-local" id="end-date-time" name="end-date-time" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="reset" class="reset-btn">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+
+        <footer id="footer" class="footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Website Made By:</h3>
+                    <p>Arrofi Zein XI SIJA</p>
+                    <p>Rasya Aryasatya XI SIJA</p>
+                </div>
+                <div class="footer-center">
+                    <h3>Our Instagram:</h3>
+                    <a href="https://www.instagram.com/zeinarrofi/profilecard/?igsh=a2Z2bWxlNzBvdWVt"
+                        target="_blank">Arrofi Zein</a>
+                    <a href="https://www.instagram.com/thegenocidess?igsh=MTdiaGlkYWMxNDhybQ==" target="_blank">Rasya
+                        Aryasatya</a>
+                </div>
+                <div class="footer-right">
+                    <h3>Project PKK:</h3>
+                    <p>Pak Amrul Khairullah</p>
+                </div>
+                <p class="copyright">&copy; 2024 Pemangan. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
