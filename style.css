@@ -335,14 +335,15 @@ select {
     transition: border-color 0.3s ease;
     appearance: none;
     background-color: #f8f9fa;
-    max-height: 200px; 
-    overflow-y: auto; 
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 select option {
-    max-height: 200px; 
-    overflow-y: auto; 
+    max-height: 200px;
+    overflow-y: auto;
 }
+
 select:focus {
     border-color: #007bff;
     outline: none;
@@ -362,7 +363,7 @@ select {
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 16px;
-    padding-right: 2.5rem; 
+    padding-right: 2.5rem;
 }
 
 option {
@@ -372,16 +373,16 @@ option {
 
 @media (max-width: 768px) {
     select {
-        max-height: 150px; 
-        overflow-y: auto; 
-        padding: 0.5rem; 
-        font-size: 0.9rem; 
+        max-height: 150px;
+        overflow-y: auto;
+        padding: 0.5rem;
+        font-size: 0.9rem;
     }
 
     .form-container {
-        max-width: 90%; 
-        margin: 0 auto; 
-        padding: 1rem; 
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 1rem;
     }
 }
 
