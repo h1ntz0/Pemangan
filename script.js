@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset navbar and menu styles when resizing
     window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= 700) {
             navLinks.style.display = 'flex';
             navLinks.classList.remove('active');
         } else {
