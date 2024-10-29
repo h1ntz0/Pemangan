@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Dashboard</title>
+  <link rel="icon" href="../img/image2.png">
+  <link rel="stylesheet" href="Admin.css">
+</head>
+
+<body>
+  <nav class="navbar fade-in">
+    <div class="navbar-brand">
+      <span class="pemangan">Admin</span>
+      <span class="separator">|</span>
+      <span class="dashboard">Dashboard</span>
+    </div>
+    <div class="navbar-profile">
+      <span id="username">John Doe</span>
+      <img src="../img/profile.png" alt="Profile Icon" id="profileIcon" class="profile-icon">
+    </div>
+  </nav>
+
+  <section class="welcome-section fade-in">
+    <h2 id="welcomeText" class="typing-animation"></h2>
+  </section>
+
+  <section class="order-history fade-in">
+    <h2>Peminjaman User</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Order</th>
+          <th>Status</th>
+          <th>Tanggal</th>
+          <th>Jam Awal & Akhir</th>
+        </tr>
+      </thead>
+      <tbody id="orderList">
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="back-home fade-in">
+    <div class="back-home-content">
+      <h2>Kembali ke Halaman Utama</h2>
+      <p>Tekan tombol di bawah untuk kembali ke halaman utama!</p>
+      <button id="backHomeBtn" class="btn-back-home">Kembali ke Beranda</button>
+    </div>
+  </footer>
+
+  <script src="Admin.js"></script>  
+</body>
+
+</html>
