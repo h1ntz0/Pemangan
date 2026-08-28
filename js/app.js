@@ -382,20 +382,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         matrix.forEach(row => {
             html += `
-                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                    <td class="p-3 sticky left-0 z-10 bg-white dark:bg-slate-900 shadow-[2px_0_5px_rgba(0,0,0,0.05)]">
-                        <strong class="text-brand-900 dark:text-brand-300 block leading-snug">${row.room.name}</strong>
-                        <span class="text-[10px] text-slate-500">${row.room.building}</span>
+                <tr class="hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition-colors">
+                    <td class="p-3 sticky left-0 z-10 bg-white dark:bg-slate-900 border-r border-slate-200/80 dark:border-slate-800 shadow-[3px_0_6px_rgba(0,0,0,0.03)]">
+                        <strong class="text-slate-900 dark:text-slate-100 font-bold block leading-snug text-xs">${row.room.name}</strong>
+                        <span class="text-[10px] text-slate-500 font-medium">${row.room.building}</span>
                     </td>
                     ${row.slots.map(s => {
                         if (s.isBooked && s.booking) {
                             const isPending = s.booking.status === 'pending';
-                            const cellBg = isPending ? 'bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-300' : 'bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-300';
+                            const cellBg = isPending ? 'bg-amber-100/90 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700/60' : 'bg-rose-100/90 dark:bg-rose-950/70 text-rose-800 dark:text-rose-300 border-rose-300 dark:border-rose-700/60';
                             const cellLabel = isPending ? 'Review' : 'Dipakai';
                             const titleInfo = `${s.booking.roomName}\nPemohon: ${s.booking.userName} (${s.booking.userClass})\nAgenda: ${s.booking.reason}`;
                             return `
                                 <td class="p-1.5 text-center">
-                                    <div class="py-1 px-1.5 rounded-lg text-[10px] font-bold border ${cellBg} cursor-help" title="${titleInfo}">
+                                    <div class="py-1 px-1.5 rounded-lg text-[10px] font-bold border ${cellBg} cursor-help transition-transform hover:scale-105" title="${titleInfo}">
                                         ${cellLabel}
                                     </div>
                                 </td>
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             return `
                                 <td class="p-1.5 text-center">
-                                    <div class="py-1 px-1.5 rounded-lg text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50" title="Slot kosong siap dipinjam">
+                                    <div class="py-1 px-1.5 rounded-lg text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100/60 transition-colors" title="Slot kosong siap dipinjam">
                                         Kosong
                                     </div>
                                 </td>
@@ -690,28 +690,31 @@ document.addEventListener('DOMContentLoaded', () => {
         queueListContainer.innerHTML = bookings.map(b => {
             const isApproved = b.status === 'approved';
             const isPending = b.status === 'pending';
-            const badgeBg = isApproved ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30' : isPending ? 'bg-amber-500/10 text-amber-600 border-amber-500/30' : 'bg-rose-500/10 text-rose-600 border-rose-500/30';
+            const badgeBg = isApproved ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800' : isPending ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800' : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800';
             const badgeText = isApproved ? 'Disetujui' : isPending ? 'Menunggu' : 'Ditolak';
 
             const sFmt = new Date(b.startDateTime).toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
             const eFmt = new Date(b.endDateTime).toLocaleString('id-ID', { timeStyle: 'short' });
 
             return `
-                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2 hover:border-slate-300 transition-colors">
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 space-y-2 hover:border-brand-500/40 transition-colors">
                     <div class="flex items-center justify-between">
-                        <strong class="text-xs font-bold text-slate-900 dark:text-white">${b.roomName}</strong>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-mono text-[10px] font-bold text-slate-500 bg-slate-200/70 dark:bg-slate-700 px-1.5 py-0.5 rounded">${b.id}</span>
+                            <strong class="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[140px] sm:max-w-[180px]">${b.roomName}</strong>
+                        </div>
                         <span class="px-2 py-0.5 rounded-full text-[10px] font-bold border ${badgeBg}">${badgeText}</span>
                     </div>
 
                     <div class="text-[11px] text-slate-600 dark:text-slate-400 space-y-0.5">
                         <div><strong>${b.userName}</strong> (${b.userClass || b.userRole})</div>
-                        <div class="flex items-center gap-1 text-slate-500"><i data-lucide="clock" class="w-3 h-3"></i> ${sFmt} - ${eFmt} WIB</div>
+                        <div class="flex items-center gap-1 text-slate-500"><i data-lucide="clock" class="w-3 h-3 text-brand-500"></i> ${sFmt} - ${eFmt} WIB</div>
                         <div class="text-slate-500 italic truncate">"${b.reason}"</div>
                     </div>
 
                     <div class="flex justify-end pt-1">
-                        <button class="px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-white dark:bg-slate-700 hover:bg-slate-100 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 flex items-center gap-1 transition-all" onclick="openSlipModal('${b.id}')">
-                            <i data-lucide="file-text" class="w-3 h-3"></i> Surat Izin
+                        <button class="px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 flex items-center gap-1 transition-all" onclick="openSlipModal('${b.id}')">
+                            <i data-lucide="file-text" class="w-3 h-3 text-brand-500"></i> Surat Izin
                         </button>
                     </div>
                 </div>
@@ -747,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const isApproved = b.status === 'approved';
                 const isPending = b.status === 'pending';
-                const badgeBg = isApproved ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30' : isPending ? 'bg-amber-500/10 text-amber-600 border-amber-500/30' : 'bg-rose-500/10 text-rose-600 border-rose-500/30';
+                const badgeBg = isApproved ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800' : isPending ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800' : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800';
                 const badgeText = isApproved ? 'Disetujui / Izin Terbit' : isPending ? 'Dalam Antrean Verifikasi' : 'Permohonan Ditolak';
 
                 const sFmt = new Date(b.startDateTime).toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'short' });
@@ -758,7 +761,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700">
                             <div>
                                 <span class="text-[10px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Resi Peminjaman</span>
-                                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">${b.id}</h3>
+                                <h3 class="font-mono font-bold text-base text-slate-900 dark:text-white">${b.id}</h3>
                             </div>
                             <span class="px-3 py-1 rounded-full text-[11px] font-bold border ${badgeBg}">${badgeText}</span>
                         </div>
@@ -771,9 +774,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="col-span-full"><span class="text-slate-500 block">Peralatan Tambahan:</span><span>${b.equipment && b.equipment.length > 0 ? b.equipment.join(', ') : 'Standar'}</span></div>
                         </div>
 
-                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                             <span class="font-semibold text-slate-700 dark:text-slate-300 block mb-0.5">Catatan Petugas Sarpras:</span>
-                            <p class="text-slate-500 text-[11px]">${b.feedback}</p>
+                            <p class="text-slate-600 dark:text-slate-400 text-[11px]">${b.feedback}</p>
                         </div>
 
                         <div class="flex justify-end pt-2">

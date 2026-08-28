@@ -11,6 +11,9 @@
 </head>
 
 <body>
+  <!-- Floating Toast -->
+  <div id="loginToast" class="login-toast"></div>
+
   <main>
     <div class="box">
       <div class="inner-box">
@@ -99,20 +102,28 @@
           </form>
         </div>
 
-        <!-- Carousel Area -->
         <div class="carousel">
           <div class="images-wrapper">
-            <img src="../img/logo.png" class="image img-1 show" alt="SMKN 1 Jakarta" />
-            <img src="../img/image1.png" class="image img-2" alt="Lab SIJA" />
-            <img src="../img/image3.png" class="image img-3" alt="Teater SMKN 1" />
+            <img src="../img/image1.png" class="image img-1 show" alt="Lab Komputer SMKN 1" />
+            <img src="../img/image2.png" class="image img-2" alt="Gedung Serbaguna SMKN 1" />
+            <img src="../img/image3.png" class="image img-3" alt="Auditorium Teater SMKN 1" />
           </div>
 
           <div class="text-slider">
             <div class="text-wrap">
               <div class="text-group">
-                <h2>SMK Negeri 1 Jakarta</h2>
-                <h2>Laboratorium Komputer & SIJA</h2>
-                <h2>Auditorium & Teater</h2>
+                <div>
+                  <h2>Lab Komputer Modern</h2>
+                  <p>Fasilitas jaringan mikrotik, cisco, dan cloud server berstandar industri.</p>
+                </div>
+                <div>
+                  <h2>Gedung Serbaguna</h2>
+                  <p>Kapasitas 350 orang untuk wisuda, seminar akbar, dan kegiatan kesiswaan.</p>
+                </div>
+                <div>
+                  <h2>Teater Audio Visual</h2>
+                  <p>Auditorium kedinasan dengan sound system line array dan proyektor 4K.</p>
+                </div>
               </div>
             </div>
 
@@ -127,9 +138,7 @@
     </div>
   </main>
 
-  <div id="loginToast" class="login-toast"></div>
-
-  <!-- Scripts -->
+  <script src="../data.js"></script>
   <script src="../js/store.js"></script>
   <script src="login.js"></script>
 </body>

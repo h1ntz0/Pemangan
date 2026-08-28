@@ -36,7 +36,7 @@ function moveSlider(index) {
 
   const textSlider = document.querySelector(".text-group");
   if (textSlider) {
-    textSlider.style.transform = `translateY(${-(index - 1) * 3}rem)`;
+    textSlider.style.transform = `translateY(${-(index - 1) * 3.8}rem)`;
   }
 
   bullets.forEach((bull) => bull.classList.remove("active"));
