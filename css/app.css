@@ -1,6 +1,39 @@
 /* ==========================================================================
-   PEMANGAN V3 - Custom Utilities & Print Layout
+   PEMANGAN V3 - Institutional Identity & Design System
+   Font stack: JetBrains Mono for utility badges/codes, Plus Jakarta Sans, Inter
    ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+    --brand-primary: #1d4ed8;
+    --brand-navy: #0f172a;
+    --brand-emerald: #059669;
+    --brand-amber: #d97706;
+    --card-surface-light: #ffffff;
+    --card-surface-dark: #0f172a;
+}
+
+.font-mono-code {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.02em;
+}
+
+/* Institutional Hero Badge & Elements */
+.hero-glow-blob {
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border-radius: 9999px;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.15;
+}
+
+.dark .hero-glow-blob {
+    opacity: 0.12;
+}
 
 /* Custom Smooth Scrollbar */
 ::-webkit-scrollbar {
@@ -39,7 +72,7 @@
 
 /* Bottom Safe Area for Mobile */
 .pb-safe {
-    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
 }
 
 /* Hide scrollbar for clean horizontal pill scrolling */
@@ -49,6 +82,13 @@
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+/* Timetable Matrix Sticky Left Header */
+.sticky-col-room {
+    position: sticky;
+    left: 0;
+    z-index: 20;
 }
 
 /* Print Styles for Official Surat Izin (A4 Kedinasan) */

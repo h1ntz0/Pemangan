@@ -8,10 +8,10 @@
     <meta name="description" content="Sistem Informasi Peminjaman Ruangan, Lab Komputer SIJA & RPL, dan Fasilitas Resmi SMK Negeri 1 Jakarta.">
     <link rel="icon" href="./img/image2.png">
 
-    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Standalone Engine) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,6 +23,7 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                         serif: ['Times New Roman', 'Times', 'serif']
                     },
                     colors: {
@@ -354,10 +355,10 @@
                                 <input type="date" id="timetableDateInput" class="bg-transparent focus:outline-none text-slate-800 dark:text-slate-200">
                             </div>
 
-                            <div class="flex items-center gap-3 text-[11px] font-medium bg-white dark:bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800">
-                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Kosong</span>
-                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Terpakai</span>
-                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Review</span>
+                            <div class="flex items-center gap-3 text-[11px] font-semibold bg-white dark:bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <span class="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-200 dark:ring-emerald-950"></span> Kosong</span>
+                                <span class="flex items-center gap-1.5 text-rose-700 dark:text-rose-400"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 ring-2 ring-rose-200 dark:ring-rose-950"></span> Terpakai</span>
+                                <span class="flex items-center gap-1.5 text-amber-700 dark:text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 ring-2 ring-amber-200 dark:ring-amber-950"></span> Review</span>
                             </div>
                         </div>
                     </div>

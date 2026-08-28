@@ -145,7 +145,7 @@ class SarprasAdminController {
         tbody.innerHTML = list.map(b => {
             const isApproved = b.status === 'approved';
             const isPending = b.status === 'pending';
-            const badgeBg = isApproved ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30' : isPending ? 'bg-amber-500/10 text-amber-600 border-amber-500/30' : 'bg-rose-500/10 text-rose-600 border-rose-500/30';
+            const badgeBg = isApproved ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800' : isPending ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800' : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800';
             const badgeText = isApproved ? 'Disetujui' : isPending ? 'Perlu Review' : 'Ditolak';
 
             const sFmt = new Date(b.startDateTime).toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
@@ -153,7 +153,7 @@ class SarprasAdminController {
 
             return `
                 <tr class="hover:bg-slate-50/75 dark:hover:bg-slate-800/40 transition-colors">
-                    <td class="p-3.5 font-bold text-slate-900 dark:text-white">${b.id}</td>
+                    <td class="p-3.5 font-mono text-xs font-bold text-slate-900 dark:text-white">${b.id}</td>
                     <td class="p-3.5">
                         <strong class="block text-slate-800 dark:text-slate-200">${b.userName}</strong>
                         <span class="text-[11px] text-slate-500">${b.userClass || b.userRole} • ${b.userContact || '-'}</span>
