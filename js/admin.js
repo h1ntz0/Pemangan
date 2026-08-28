@@ -7,6 +7,7 @@ class SarprasAdminController {
     constructor() {
         this.filterStatus = 'all';
         this.searchQuery = '';
+        this.filterDate = '';
         this.activeTab = 'bookings';
         this.init();
     }
@@ -50,6 +51,25 @@ class SarprasAdminController {
                 this.renderBookingsTable();
             });
         });
+
+        // Date Filter for Admin
+        const admDateFilter = document.getElementById('admDateFilter');
+        const btnAdmClearDateFilter = document.getElementById('btnAdmClearDateFilter');
+
+        if (admDateFilter) {
+            admDateFilter.addEventListener('change', (e) => {
+                this.filterDate = e.target.value;
+                this.renderBookingsTable();
+            });
+        }
+
+        if (btnAdmClearDateFilter && admDateFilter) {
+            btnAdmClearDateFilter.addEventListener('click', () => {
+                admDateFilter.value = '';
+                this.filterDate = '';
+                this.renderBookingsTable();
+            });
+        }
 
         // Search Input
         document.getElementById('admSearchInput')?.addEventListener('input', (e) => {
@@ -120,6 +140,10 @@ class SarprasAdminController {
 
         if (this.filterStatus !== 'all') {
             list = list.filter(b => b.status === this.filterStatus);
+        }
+
+        if (this.filterDate) {
+            list = list.filter(b => b.startDateTime.slice(0, 10) === this.filterDate);
         }
 
         if (this.searchQuery) {
