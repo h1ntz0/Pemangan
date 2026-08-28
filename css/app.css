@@ -1,0 +1,82 @@
+/* ==========================================================================
+   PEMANGAN V3 - Custom Utilities & Print Layout
+   ========================================================================== */
+
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.4);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.7);
+}
+
+/* Pulse Glow Animation */
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.08);
+    }
+}
+
+.pulse-glow {
+    animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Bottom Safe Area for Mobile */
+.pb-safe {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Hide scrollbar for clean horizontal pill scrolling */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Print Styles for Official Surat Izin (A4 Kedinasan) */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #slipPrintModal,
+    #slipPrintModal * {
+        visibility: visible;
+    }
+    #slipPrintModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: transparent !important;
+    }
+    .print-hide {
+        display: none !important;
+    }
+    .letter-paper {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+}
