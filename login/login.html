@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daftar & Login</title>
-  <link rel="stylesheet" href="login.css" />
+  <title>Masuk — Portal Pemangan SMKN 1 Jakarta</title>
   <link rel="icon" href="../img/image2.png" />
+  <link rel="stylesheet" href="login.css" />
 </head>
 
 <body>
@@ -15,94 +15,104 @@
     <div class="box">
       <div class="inner-box">
         <div class="forms-wrap">
-          <form action="../index.html" autocomplete="off" class="sign-in-form">
+          <!-- Sign In Form -->
+          <form action="#" autocomplete="off" class="sign-in-form" id="signInForm">
             <div class="logo">
-              <img src="../img/logo.png" alt="easyclass" />
-              <h4>Pemangan</h4>
+              <img src="../img/logo.png" alt="Pemangan SMKN 1" />
+              <h4>Pemangan SMKN 1</h4>
             </div>
+
             <div class="heading">
-              <h2>Hai Sobat Pemangan!</h2>
-              <h6>Belum Daftar Akun?</h6>
-              <a href="#" class="toggle">Daftar Disini!</a>
+              <h2>Masuk Akun</h2>
+              <h6>Belum punya akun?</h6>
+              <a href="#" class="toggle">Daftar Disini</a>
             </div>
 
             <div class="actual-form">
               <div class="input-wrap">
-                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
-                <label>Name</label>
+                <input type="text" minlength="3" class="input-field" id="loginNis" autocomplete="off" required />
+                <label for="loginNis">NIS / NIP / Username</label>
               </div>
 
               <div class="input-wrap">
-                <input type="password" minlength="4" class="input-field" autocomplete="off" required />
-                <label>Password</label>
+                <input type="password" minlength="3" class="input-field" id="loginPassword" autocomplete="off" required />
+                <label for="loginPassword">Kata Sandi</label>
               </div>
 
-              <input type="submit" value="Login" class="sign-btn"/>
+              <button type="submit" class="sign-btn">Masuk Sekarang</button>
 
-              <p class="text" id="p-login">
-                Mau pinjam ruangan yaa sob?
-                <a href="#">Sign in</a> dulu yaa sobat Pemangan!
+              <div class="demo-accounts-hint">
+                <p>Akun Demo Cepat:</p>
+                <div class="demo-pills">
+                  <button type="button" class="demo-pill" data-nis="102144" data-pass="123">Siswa (102144)</button>
+                  <button type="button" class="demo-pill" data-nis="19800101" data-pass="guru">Guru (19800101)</button>
+                  <button type="button" class="demo-pill" data-nis="admin" data-pass="admin">Admin</button>
+                </div>
+              </div>
+
+              <p class="text">
+                Kembali ke <a href="../index.html">Beranda Pemangan</a>
               </p>
             </div>
           </form>
 
-          <form action="index.html" autocomplete="off" class="sign-up-form">
+          <!-- Sign Up Form -->
+          <form action="#" autocomplete="off" class="sign-up-form" id="signUpForm">
             <div class="logo">
-              <img src="../img/image2.png" alt="easyclass" />
-              <h4>Pemangan</h4>
+              <img src="../img/logo.png" alt="Pemangan SMKN 1" />
+              <h4>Pemangan SMKN 1</h4>
             </div>
 
             <div class="heading">
-              <h2>Daftar Dengan Data Baru Sob!</h2>
-              <h6>Sudah pernah buat akun?</h6>
-              <a href="#" class="toggle">Login Sob!</a>
+              <h2>Daftar Akun</h2>
+              <h6>Sudah punya akun?</h6>
+              <a href="#" class="toggle">Masuk Disini</a>
             </div>
 
             <div class="actual-form">
               <div class="input-wrap">
-                <input type="number" minlength="4" class="input-field" autocomplete="off" required />
-                <label>NIS</label>
+                <input type="text" class="input-field" id="regName" autocomplete="off" required />
+                <label for="regName">Nama Lengkap</label>
               </div>
 
               <div class="input-wrap">
-                <input type="text" class="input-field" autocomplete="off" required />
-                <label>Nama</label>
+                <input type="text" class="input-field" id="regNis" autocomplete="off" required />
+                <label for="regNis">NIS / NIP</label>
               </div>
 
               <div class="input-wrap">
-                <input type="text" class="input-field" autocomplete="off" required />
-                <label>Kelas</label>
+                <input type="text" class="input-field" id="regClass" autocomplete="off" required />
+                <label for="regClass">Kelas / Unit (Contoh: XI SIJA)</label>
               </div>
 
               <div class="input-wrap">
-                <input type="password" minlength="4" class="input-field" autocomplete="off" required />
-                <label>Password</label>
+                <input type="password" class="input-field" id="regPassword" autocomplete="off" required />
+                <label for="regPassword">Kata Sandi</label>
               </div>
 
-              <input type="submit" value="Daftar" class="sign-btn" />
+              <button type="submit" class="sign-btn">Buat Akun Baru</button>
 
               <p class="text">
-                Masukkan data diri yang benar yaa sob!
-                <a href="#">Terimakasih</a> dan
-                <a href="#">Semangat</a>
+                Kembali ke <a href="../index.html">Beranda Pemangan</a>
               </p>
             </div>
           </form>
         </div>
 
+        <!-- Carousel Area -->
         <div class="carousel">
           <div class="images-wrapper">
-            <img src="../img/image1.png" class="image img-1 show" alt="" />
-            <img src="../img/image2.png" class="image img-2" alt="" />
-            <img src="../img/image3.png" class="image img-3" alt="" />
+            <img src="../img/logo.png" class="image img-1 show" alt="SMKN 1 Jakarta" />
+            <img src="../img/image1.png" class="image img-2" alt="Lab SIJA" />
+            <img src="../img/image3.png" class="image img-3" alt="Teater SMKN 1" />
           </div>
 
           <div class="text-slider">
             <div class="text-wrap">
               <div class="text-group">
-                <h2>Peminjaman Ruangan</h2>
                 <h2>SMK Negeri 1 Jakarta</h2>
-                <h2>Enjoy Your Day Sob!</h2>
+                <h2>Laboratorium Komputer & SIJA</h2>
+                <h2>Auditorium & Teater</h2>
               </div>
             </div>
 
@@ -117,8 +127,10 @@
     </div>
   </main>
 
-  <!-- Javascript file -->
+  <div id="loginToast" class="login-toast"></div>
 
+  <!-- Scripts -->
+  <script src="../data.js"></script>
   <script src="login.js"></script>
 </body>
 

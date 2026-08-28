@@ -1,117 +1,444 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Peminjaman Ruangan</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pemangan — Sistem Peminjaman Ruangan SMKN 1 Jakarta</title>
+    <meta name="description" content="Portal peminjaman ruangan online resmi SMK Negeri 1 Jakarta.">
     <link rel="icon" href="./img/image2.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <nav id="navbar">
-            <div class="logo">Pemangan</div>
-            <div class="burger-menu" onclick="toggleMenu()">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+    <!-- Header / Navigation Bar -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <img src="./img/logo.png" alt="Logo SMKN 1 Jakarta">
+                <div>
+                    Pemangan
+                    <span class="brand-sub">SMK Negeri 1 Jakarta</span>
+                </div>
+            </a>
+
+            <!-- Mobile & Desktop Navigation Drawer -->
+            <nav class="nav-drawer" id="navDrawer">
+                <!-- User Profile Card in Mobile Drawer -->
+                <div class="mobile-user-card" id="mobileUserCard" style="display: none;">
+                    <div class="user-avatar" id="mobileUserAvatar">A</div>
+                    <div class="mobile-user-info">
+                        <strong id="mobileUserName">Nama Pengguna</strong>
+                        <span id="mobileUserRole">Role</span>
+                    </div>
+                    <button id="mobileLogoutBtn" class="btn btn-secondary btn-sm" title="Keluar">Keluar</button>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#hero" class="nav-link active">Beranda</a></li>
+                    <li><a href="#rooms" class="nav-link">Katalog Ruangan</a></li>
+                    <li><a href="#booking" class="nav-link">Form Peminjaman</a></li>
+                    <li><a href="#schedule" class="nav-link">Jadwal Penggunaan</a></li>
+                    <li id="adminNavTab" style="display: none;"><a href="#adminPanel" class="nav-link admin-link">Panel Kelola</a></li>
+                    <li><a href="#about" class="nav-link">Tentang</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle-btn" title="Ganti Tema" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <!-- Desktop User Badge -->
+                <div id="desktopUserNavSlot" class="desktop-user-slot">
+                    <a href="./login/login.html" class="btn btn-primary btn-sm">
+                        Masuk / Daftar
+                    </a>
+                </div>
+
+                <!-- Hamburger Button for Mobile & Tablet -->
+                <button class="burger-menu" id="burgerToggle" aria-label="Buka Menu Navigasi" type="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#welcome"><i class="fas fa-home"></i> Welcome</a></li>
-                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="#booking"><i class="fas fa-door-open"></i> Room</a></li>
-                <li><a href="#footer"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li>
-                    <a href="./login/login.html" target="_blank" onclick="window.open(this.href); return false;"><i
-                            class="fas fa-sign-in-alt"></i>Sign In
-                        & Sign Up</a>
-                </li>
-            </ul>
-        </nav>
+        </div>
     </header>
 
-
     <main>
-        <section id="welcome">
-            <div class="welcome-text">
-                <h3>Selamat Datang di Website Pemangan</h3>
-                <p>Pemangan atau Peminjaman Ruangan adalah website online untuk memudahkan peminjaman ruangan yang ada
-                    di SMK Negeri 1 Jakarta.</p>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="section-badge">
+                            Portal Layanan SMKN 1 Jakarta
+                        </div>
+                        <h1>Sistem Peminjaman Ruangan & Laboratorium</h1>
+                        <p>Layanan reservasi daring terpusat untuk laboratorium SIJA, RPL, kelas teori, aula, dan auditorium SMK Negeri 1 Jakarta secara terstruktur dan transparan.</p>
+                        
+                        <div class="hero-cta-group">
+                            <a href="#booking" class="btn btn-primary">
+                                Ajukan Peminjaman
+                            </a>
+                            <a href="#rooms" class="btn btn-secondary">
+                                Lihat Katalog Ruangan
+                            </a>
+                        </div>
+
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <h4 id="statTotalRooms">11</h4>
+                                <span>Ruang & Lab</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4 id="statTotalBookings">150+</h4>
+                                <span>Peminjaman Terdata</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Sistem</h4>
+                                <span>Validasi Real-time</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="hero-card-title">
+                                <h3>Cari Ketersediaan Ruangan</h3>
+                                <p>Filter cepat fasilitas sekolah</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="quickSearch">Kata Kunci Ruangan / Fasilitas</label>
+                            <input type="text" id="quickSearch" class="form-control" placeholder="Contoh: Lab SIJA, Teater, Proyektor...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="quickCategory">Kategori Ruangan</label>
+                            <select id="quickCategory" class="form-control">
+                                <option value="ALL">Semua Kategori</option>
+                                <option value="Laboratorium">Laboratorium Komputer</option>
+                                <option value="Teori & Kelas">Ruang Kelas (Gedung Baru)</option>
+                                <option value="Reguler">Ruang Kelas (Gedung Lama)</option>
+                                <option value="Auditorium">Auditorium / Teater</option>
+                                <option value="Aula Serbaguna">Aula Serbaguna (GSG)</option>
+                                <option value="Meeting Room">Ruang Rapat & Guru</option>
+                            </select>
+                        </div>
+
+                        <button id="btnQuickFilter" class="btn btn-primary" style="width: 100%;">
+                            Filter Ruangan
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Pemangan adalah Website digital untuk mempermudah peminjaman ruangan yang ada di SMK Negeri 1 Jakarta.
-                Dengan
-                Pemangan, guru, staff dan siswa/i dapat melihat ketersediaan, memesan ruangan, dan mengelola jadwal
-                secara online dengan mudah dan cepat.</p>
+        <!-- Room Directory Section -->
+        <section id="rooms">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">Daftar Fasilitas</div>
+                    <h2 class="section-title">Katalog Ruangan SMKN 1</h2>
+                    <p class="section-desc">Pilih ruangan yang sesuai dengan kebutuhan pembelajaran, ujian kompetensi, workshop, atau kegiatan kedinasan.</p>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="search-input-wrapper">
+                        <input type="text" id="roomSearchInput" placeholder="Cari nama ruangan, gedung, atau fasilitas...">
+                    </div>
+
+                    <div class="filter-pills" id="categoryPills">
+                        <button class="filter-pill active" data-category="ALL">Semua</button>
+                        <button class="filter-pill" data-category="Laboratorium">Lab Komputer</button>
+                        <button class="filter-pill" data-category="Teori & Kelas">Gedung Baru</button>
+                        <button class="filter-pill" data-category="Reguler">Gedung Lama</button>
+                        <button class="filter-pill" data-category="Auditorium">Teater</button>
+                        <button class="filter-pill" data-category="Aula Serbaguna">GSG</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Room Cards Container -->
+                <div class="room-grid" id="roomsContainer">
+                    <!-- Javascript will render room cards here -->
+                </div>
+            </div>
         </section>
 
-        <!-- Booking Section -->
+        <!-- Booking Form & Interactive Schedule Section -->
         <section id="booking">
-            <div class="form-container">
-                <h2>Laporan Peminjaman</h2>
-                <form id="booking-form">
-                    <div class="form-group">
-                        <label for="selected-room">Ruangan</label>
-                        <select id="selected-room" name="selected-room" required>
-                            <option value="" disabled selected>Pilih Ruangan</option>
-                        </select>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">Formulir Online</div>
+                    <h2 class="section-title">Pengajuan Peminjaman Ruangan</h2>
+                    <p class="section-desc">Sistem memverifikasi ketersediaan jadwal secara otomatis sebelum diteruskan ke bagian Sarpras.</p>
+                </div>
+
+                <div class="booking-layout">
+                    <!-- Form Container -->
+                    <div class="form-card">
+                        <form id="booking-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="booking-name">Nama Pemohon</label>
+                                    <input type="text" id="booking-name" class="form-control" placeholder="Nama Lengkap" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="booking-role">Kategori Pemohon</label>
+                                    <select id="booking-role" class="form-control" required>
+                                        <option value="siswa">Siswa / Siswi</option>
+                                        <option value="guru">Guru</option>
+                                        <option value="admin">Staf Tata Usaha / Sarpras</option>
+                                        <option value="organisasi">Pengurus OSIS / Ekskul</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="booking-class">Kelas / Unit Kerja</label>
+                                    <input type="text" id="booking-class" class="form-control" placeholder="Contoh: XI SIJA / Mapel PKK" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="booking-contact">Nomor WhatsApp Aktif</label>
+                                    <input type="tel" id="booking-contact" class="form-control" placeholder="08xxxxxxxxxx" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="selected-room">Pilih Ruangan</label>
+                                <select id="selected-room" class="form-control" required>
+                                    <option value="" disabled selected>-- Pilih Ruangan Target --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="booking-reason">Keperluan / Agenda</label>
+                                <textarea id="booking-reason" class="form-control" placeholder="Tuliskan tujuan kegiatan secara jelas..." required></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="start-date-time">Waktu Mulai</label>
+                                    <input type="datetime-local" id="start-date-time" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="end-date-time">Waktu Selesai</label>
+                                    <input type="datetime-local" id="end-date-time" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" style="flex: 2;">
+                                    Kirim Pengajuan
+                                </button>
+                                <button type="reset" class="btn btn-secondary" style="flex: 1;">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="booking-reason">Alasan Peminjaman</label>
-                        <textarea id="booking-reason" name="booking-reason" rows="4"
-                            placeholder="Masukkan alasan peminjaman" required></textarea>
+
+                    <!-- Active Schedule & Live Queue -->
+                    <div class="schedule-card" id="schedule">
+                        <div class="schedule-header">
+                            <div>
+                                <h3 style="font-size: 1.1rem; font-weight: 600;">Jadwal Penggunaan Ruangan</h3>
+                                <p style="font-size: 0.825rem; color: var(--color-text-muted);">Daftar peminjaman yang telah terdaftar</p>
+                            </div>
+                            <span class="status-pill approved" id="scheduleCountBadge">0 Terdata</span>
+                        </div>
+
+                        <div class="schedule-list" id="scheduleListContainer">
+                            <!-- Javascript renders list of active bookings -->
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="start-date-time">Tanggal & Jam Mulai</label>
-                        <input type="datetime-local" id="start-date-time" name="start-date-time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="end-date-time">Tanggal & Jam Selesai</label>
-                        <input type="datetime-local" id="end-date-time" name="end-date-time" required>
-                    </div>
-                    <div class="form-buttons">
-                        <button type="submit" class="submit-btn">Submit</button>
-                        <button type="reset" class="reset-btn">Hapus</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </section>
 
+        <!-- Admin & Approval Management Portal (Role-Protected) -->
+        <section id="adminPanel">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">Manajemen Sarpras</div>
+                    <h2 class="section-title">Persetujuan & Kelola Peminjaman</h2>
+                    <p class="section-desc">Hak akses Guru & Tim Sarpras untuk meninjau status, menyetujui jadwal, atau mencetak surat izin resmi.</p>
+                </div>
 
-        <footer id="footer" class="footer">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <h3>Website Made By:</h3>
-                    <p>Arrofi Zein XI SIJA</p>
-                    <p>Rasya Aryasatya XI SIJA</p>
+                <div class="admin-header-box">
+                    <div>
+                        <h3 style="font-size: 1.1rem; font-weight: 600;" id="adminRoleDisplay">Akses Kelola: Sarpras SMKN 1</h3>
+                        <p style="font-size: 0.85rem; color: var(--color-text-muted);">Kelola permohonan masuk</p>
+                    </div>
+                    <div class="admin-filter-actions">
+                        <button class="btn btn-primary btn-sm" id="btnFilterAllBookings">Semua Pengajuan</button>
+                        <button class="btn btn-secondary btn-sm" id="btnFilterPendingBookings">Perlu Review</button>
+                    </div>
                 </div>
-                <div class="footer-center">
-                    <h3>Contact:</h3>
-                    <a href="https://www.instagram.com/zeinarrofi/profilecard/?igsh=a2Z2bWxlNzBvdWVt" target="_blank">
-                        <i class="fab fa-instagram"></i> Pemangan | Zein
-                    </a>
-                    <a href="https://wa.me/+6287783926736" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Pemangan | Rasya
-                    </a>
+
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>No. Tiket</th>
+                                <th>Pemohon</th>
+                                <th>Ruangan</th>
+                                <th>Waktu</th>
+                                <th>Status</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody">
+                            <!-- Javascript renders admin rows / cards -->
+                        </tbody>
+                    </table>
                 </div>
-                <div class="footer-right">
-                    <h3>Project PKK:</h3>
-                    <p>Pak Amrul Khairullah</p>
-                </div>
-                <p class="copyright">&copy; 2024 Pemangan. All Rights Reserved.</p>
             </div>
-        </footer>
+        </section>
 
+        <!-- About Us Section -->
+        <section id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div>
+                        <div class="section-badge">Informasi Sistem</div>
+                        <h2 class="section-title">Layanan Digital SMKN 1 Jakarta</h2>
+                        <p class="section-desc">Pemangan dibangun untuk meningkatkan transparansi pemakaian ruang belajar dan fasilitas penunjang di lingkungan SMK Negeri 1 Jakarta.</p>
+
+                        <div class="about-features">
+                            <div class="feature-box">
+                                <h4>Pengajuan Terpusat</h4>
+                                <p>Seluruh proses reservasi tercatat dalam satu basis data sekolah.</p>
+                            </div>
+                            <div class="feature-box">
+                                <h4>Pencegahan Bentrok</h4>
+                                <p>Validasi otomatis pada jam dan tanggal yang sama.</p>
+                            </div>
+                            <div class="feature-box">
+                                <h4>Cetak Surat Izin</h4>
+                                <p>Format resmi sesuai standar persuratan kedinasan sekolah.</p>
+                            </div>
+                            <div class="feature-box">
+                                <h4>Akses Fleksibel</h4>
+                                <p>Dapat diakses optimal dari peramban ponsel maupun desktop.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="about-card-visual">
+                            <div class="school-tag">Project PKK SIJA</div>
+                            <h3>SMK Negeri 1 Jakarta</h3>
+                            <p>Dikembangkan oleh tim siswa kompetensi keahlian Sistem Informatika, Jaringan & Aplikasi (SIJA) sebagai wujud penerapan pembelajaran berbasis proyek.</p>
+                            
+                            <div style="background: rgba(255,255,255,0.08); padding: 1.15rem; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.15);">
+                                <h5 style="margin-bottom: 0.35rem; color: #93c5fd;">Pengembang:</h5>
+                                <p style="font-size: 0.85rem; margin: 0; color: #e2e8f0;">Arrofi Zein & Rasya Aryasatya (XI SIJA)<br>Pembimbing: Pak Amrul Khairullah, S.Kom</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Footer -->
+    <footer class="site-footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand-logo" style="margin-bottom: 0.85rem;">
+                        <img src="./img/logo.png" alt="Pemangan">
+                        <span>Pemangan</span>
+                    </div>
+                    <p>Sistem Informasi Manajemen Peminjaman Ruangan SMK Negeri 1 Jakarta.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Pengembang</h4>
+                    <ul class="footer-links">
+                        <li>Arrofi Zein (XI SIJA)</li>
+                        <li>Rasya Aryasatya (XI SIJA)</li>
+                        <li>SMKN 1 Jakarta</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Pembimbing</h4>
+                    <ul class="footer-links">
+                        <li>Pak Amrul Khairullah, S.Kom</li>
+                        <li>Guru Produktif SIJA</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Navigasi</h4>
+                    <ul class="footer-links">
+                        <li><a href="#rooms">Katalog Ruangan</a></li>
+                        <li><a href="#booking">Form Peminjaman</a></li>
+                        <li><a href="#schedule">Jadwal Aktif</a></li>
+                        <li><a href="./login/login.html">Masuk Akun</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2024 - 2026 Pemangan SMKN 1 Jakarta.</div>
+                <div>Jl. Budi Utomo No.7, Jakarta Pusat.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Room Detail Modal -->
+    <div class="modal-backdrop" id="roomDetailModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalRoomTitle">Detail Ruangan</h3>
+                <button class="modal-close" id="modalCloseBtn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body" id="modalRoomBody">
+                <!-- Javascript will inject modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Printable Surat Peminjaman Modal -->
+    <div class="modal-backdrop" id="slipModal">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Surat Izin Peminjaman Ruangan</h3>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <button class="btn btn-primary btn-sm" id="btnPrintSlip">Cetak / Unduh PDF</button>
+                    <button class="modal-close" id="slipCloseBtn" aria-label="Tutup">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="printableSlip" class="letter-box">
+                    <!-- Javascript injects formal letter slip -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 
