@@ -1,765 +1,845 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemangan — Sistem Informasi Peminjaman Ruangan & Lab SMKN 1 Jakarta</title>
-    <meta name="description" content="Portal peminjaman ruangan dan laboratorium resmi SMK Negeri 1 Jakarta. Terstruktur, transparan, dan bebas bentrok jadwal.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pemangan — Portal Peminjaman Ruangan & Lab SMKN 1 Jakarta</title>
+    <meta name="description" content="Sistem Informasi Peminjaman Ruangan, Lab Komputer SIJA & RPL, dan Fasilitas Resmi SMK Negeri 1 Jakarta.">
     <link rel="icon" href="./img/image2.png">
-    
+
     <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Design System Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS (Standalone Engine) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        serif: ['Times New Roman', 'Times', 'serif']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#0f172a'
+                        },
+                        dark: {
+                            surface: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/app.css">
 </head>
 
-<body>
-    <!-- Top Institutional Banner -->
-    <div class="gov-topbar">
-        <div class="container gov-topbar-inner">
-            <div class="gov-meta">
-                <span class="gov-flag-icon">🇮🇩</span>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200 pb-safe">
+
+    <!-- Top Institutional Gov Banner -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span>🇮🇩</span>
                 <span>Pemerintah Provinsi DKI Jakarta • Dinas Pendidikan • <strong>SMK Negeri 1 Jakarta</strong></span>
             </div>
-            <div class="gov-links">
-                <span>Jl. Budi Utomo No.7, Sawah Besar, Jakarta Pusat</span>
-                <span class="divider">•</span>
-                <a href="#sopSection" class="gov-link"><i class="fas fa-file-shield"></i> SOP Fasilitas</a>
+            <div class="text-slate-400 text-[11px] hidden md:block">
+                Jl. Budi Utomo No.7, Sawah Besar, Jakarta Pusat • Telp: (021) 3813630
             </div>
         </div>
     </div>
 
-    <!-- Header / Navigation Bar -->
-    <header id="navbar" class="main-header">
-        <div class="container nav-container">
-            <a href="#hero" class="brand-logo">
-                <img src="./img/logo.png" alt="Logo SMKN 1 Jakarta" class="brand-crest">
-                <div class="brand-text">
-                    <span class="brand-title">Pemangan</span>
-                    <span class="brand-sub">Sistem Sarpras SMKN 1 Jakarta</span>
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group" onclick="switchView('portal')">
+                <img src="./img/logo.png" alt="Logo SMKN 1" class="w-9 h-9 object-contain group-hover:scale-105 transition-transform">
+                <div class="flex flex-col">
+                    <span class="font-heading font-extrabold text-lg text-brand-900 dark:text-brand-400 tracking-tight leading-none">Pemangan</span>
+                    <span class="text-[10px] font-medium text-slate-500 dark:text-slate-400">Sarpras SMKN 1 Jakarta</span>
                 </div>
             </a>
 
-            <!-- Navigation Drawer (Desktop & Mobile) -->
-            <nav class="nav-drawer" id="navDrawer">
-                <!-- Mobile Drawer Profile Card -->
-                <div class="mobile-user-card" id="mobileUserCard" style="display: none;">
-                    <div class="user-avatar" id="mobileUserAvatar">A</div>
-                    <div class="mobile-user-info">
-                        <strong id="mobileUserName">Pengguna</strong>
-                        <span id="mobileUserRole">Peran</span>
-                    </div>
-                    <button id="mobileLogoutBtn" class="btn btn-sm btn-secondary" title="Keluar">Keluar</button>
-                </div>
-
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#hero" class="nav-link active"><i class="fas fa-house"></i> Beranda</a></li>
-                    <li><a href="#rooms" class="nav-link"><i class="fas fa-door-open"></i> Katalog Ruangan</a></li>
-                    <li><a href="#timetable" class="nav-link"><i class="fas fa-calendar-week"></i> Jadwal Visual</a></li>
-                    <li><a href="#booking" class="nav-link"><i class="fas fa-file-pen"></i> Form Reservasi</a></li>
-                    <li><a href="#tracking" class="nav-link"><i class="fas fa-magnifying-glass"></i> Lacak Status</a></li>
-                    <li id="adminNavTab" style="display: none;"><a href="#adminPanel" class="nav-link admin-nav-link"><i class="fas fa-sliders"></i> Panel Sarpras</a></li>
-                    <li><a href="#about" class="nav-link"><i class="fas fa-circle-info"></i> Informasi</a></li>
-                </ul>
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center gap-1">
+                <a href="#hero" class="nav-item px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" onclick="switchView('portal')">Beranda</a>
+                <a href="#rooms" class="nav-item px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" onclick="switchView('portal')">Katalog Ruangan</a>
+                <a href="#timetable" class="nav-item px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" onclick="switchView('portal')">Jadwal Visual</a>
+                <a href="#booking" class="nav-item px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" onclick="switchView('portal')">Form Reservasi</a>
+                <a href="#tracking" class="nav-item px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" onclick="switchView('portal')">Lacak Tiket</a>
+                
+                <!-- Admin Suite Trigger (Visible when Guru/Admin) -->
+                <button id="navAdminSuiteBtn" class="hidden px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 hover:bg-amber-100 dark:hover:bg-amber-900/50 border border-amber-200 dark:border-amber-800/60 transition-all flex items-center gap-1.5" onclick="switchView('admin')">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i> Panel Sarpras
+                </button>
             </nav>
 
-            <!-- Navbar Actions -->
-            <div class="nav-actions">
-                <button id="themeToggle" class="theme-toggle-btn" title="Ganti Mode Gelap/Terang" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
+            <!-- Header Actions -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Theme Toggle -->
+                <button id="themeToggleBtn" class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all" title="Mode Gelap/Terang" aria-label="Toggle Theme">
+                    <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
                 </button>
 
-                <!-- Desktop User Badge / Login Trigger -->
-                <div id="desktopUserNavSlot" class="desktop-user-slot">
-                    <a href="./login/login.html" class="btn btn-primary btn-sm">
-                        <i class="fas fa-arrow-right-to-bracket"></i> Masuk / Daftar
+                <!-- User Session Slot -->
+                <div id="userNavSlot" class="flex items-center">
+                    <!-- Javascript injects user avatar chip or login button -->
+                    <a href="./login/login.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-brand-600 hover:bg-brand-700 text-white shadow-sm transition-all">
+                        <i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span>Masuk</span>
                     </a>
                 </div>
 
-                <!-- Hamburger Button Mobile -->
-                <button class="burger-menu" id="burgerToggle" aria-label="Menu Navigasi" type="button">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <!-- Mobile Drawer Toggle -->
+                <button id="mobileMenuBtn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300" aria-label="Open Mobile Menu">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-content">
-                        <div class="badge-pill badge-primary">
-                            <span class="pulse-dot"></span> Layanan Digital SMKN 1 Jakarta
-                        </div>
-                        <h1 class="hero-title">Sistem Peminjaman Ruangan & Lab Terpadu</h1>
-                        <p class="hero-desc">
-                            Platform reservasi resmi laboratorium komputer SIJA, RPL, studio broadcasting, aula serbaguna, teater, dan ruang kelas teori di SMK Negeri 1 Jakarta secara transparan dan bebas bentrok jadwal.
-                        </p>
+    <!-- Mobile Drawer Modal -->
+    <div id="mobileDrawer" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex justify-end transition-opacity">
+        <div class="w-4/5 max-w-sm bg-white dark:bg-slate-900 h-full p-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-4">
+                    <div class="flex items-center gap-2">
+                        <img src="./img/logo.png" alt="Logo" class="w-7 h-7">
+                        <span class="font-heading font-bold text-base text-brand-900 dark:text-brand-400">Pemangan SMKN 1</span>
+                    </div>
+                    <button id="closeDrawerBtn" class="p-1 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile User Card -->
+                <div id="drawerUserCard" class="mb-4 p-3 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center gap-3 hidden">
+                    <div id="drawerAvatar" class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-sm">U</div>
+                    <div class="flex-1 min-w-0">
+                        <h4 id="drawerUserName" class="text-xs font-bold truncate">Pengguna</h4>
+                        <p id="drawerUserRole" class="text-[11px] text-slate-500 dark:text-slate-400">Siswa</p>
+                    </div>
+                    <button id="drawerLogoutBtn" class="p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg" title="Keluar">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Navigation List -->
+                <nav class="space-y-1">
+                    <a href="#hero" class="drawer-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeMobileDrawer(); switchView('portal')">
+                        <i data-lucide="home" class="w-4 h-4 text-brand-500"></i> Beranda Utama
+                    </a>
+                    <a href="#rooms" class="drawer-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeMobileDrawer(); switchView('portal')">
+                        <i data-lucide="door-open" class="w-4 h-4 text-brand-500"></i> Katalog Ruangan
+                    </a>
+                    <a href="#timetable" class="drawer-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeMobileDrawer(); switchView('portal')">
+                        <i data-lucide="calendar" class="w-4 h-4 text-brand-500"></i> Jadwal Visual Per-Jam
+                    </a>
+                    <a href="#booking" class="drawer-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeMobileDrawer(); switchView('portal')">
+                        <i data-lucide="file-plus" class="w-4 h-4 text-brand-500"></i> Buat Reservasi Ruangan
+                    </a>
+                    <a href="#tracking" class="drawer-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeMobileDrawer(); switchView('portal')">
+                        <i data-lucide="search" class="w-4 h-4 text-brand-500"></i> Lacak Status Tiket
+                    </a>
+                    <a href="#sopSection" class="drawer-nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeMobileDrawer(); switchView('portal')">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-brand-500"></i> SOP & Tata Tertib
+                    </a>
+                    
+                    <!-- Admin Suite Mobile -->
+                    <button id="drawerAdminBtn" class="w-full mt-2 hidden flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800" onclick="closeMobileDrawer(); switchView('admin')">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-amber-600"></i> Panel Sarpras & Guru
+                    </button>
+                </nav>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 text-center">
+                SMK Negeri 1 Jakarta • SIJA V3
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER (SPA Router) -->
+    <main class="flex-1">
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: PORTAL PUBLIK & SISWA (#view-portal) -->
+        <!-- ========================================== -->
+        <div id="view-portal" class="space-y-12 sm:space-y-16">
+
+            <!-- Hero Section -->
+            <section id="hero" class="relative pt-6 pb-12 sm:pt-12 sm:pb-20 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         
-                        <div class="hero-cta-group">
-                            <a href="#booking" class="btn btn-primary btn-lg">
-                                <i class="fas fa-calendar-plus"></i> Buat Pengajuan Ruangan
-                            </a>
-                            <a href="#timetable" class="btn btn-secondary btn-lg">
-                                <i class="fas fa-calendar-days"></i> Cek Jadwal Visual
-                            </a>
-                        </div>
+                        <!-- Left Hero Column -->
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                                <span class="w-2 h-2 rounded-full bg-brand-500 pulse-glow"></span>
+                                Layanan Resmi Sarpras SMKN 1 Jakarta
+                            </div>
 
-                        <!-- Live Metrics -->
-                        <div class="hero-metrics-grid">
-                            <div class="metric-card">
-                                <div class="metric-icon"><i class="fas fa-building-columns"></i></div>
-                                <div>
-                                    <h4 id="statTotalRooms">13</h4>
-                                    <span>Ruang & Lab Aktif</span>
+                            <h1 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight leading-tight">
+                                Peminjaman Ruang & Lab Terpadu Bebas Bentrok
+                            </h1>
+
+                            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                                Reservasi laboratorium komputer SIJA & RPL, teater audio visual, aula serbaguna GSG, dan ruang kelas berpendingin udara dengan verifikasi anti-bentrok instan dan surat izin ber-QR Code.
+                            </p>
+
+                            <!-- CTA Buttons -->
+                            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+                                <a href="#booking" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-500/25 transition-all">
+                                    <i data-lucide="calendar-plus" class="w-4 h-4"></i> Ajukan Peminjaman
+                                </a>
+                                <a href="#timetable" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-sm transition-all">
+                                    <i data-lucide="calendar-days" class="w-4 h-4"></i> Cek Jadwal Visual
+                                </a>
+                            </div>
+
+                            <!-- Live Metric Counters -->
+                            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                                    <h4 class="font-heading font-bold text-xl sm:text-2xl text-brand-600 dark:text-brand-400" id="statHeroRooms">13</h4>
+                                    <p class="text-[11px] font-medium text-slate-500">Ruang & Lab</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                                    <h4 class="font-heading font-bold text-xl sm:text-2xl text-emerald-600 dark:text-emerald-400" id="statHeroBookings">150+</h4>
+                                    <p class="text-[11px] font-medium text-slate-500">Peminjaman</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                                    <h4 class="font-heading font-bold text-xl sm:text-2xl text-amber-600 dark:text-amber-400">100%</h4>
+                                    <p class="text-[11px] font-medium text-slate-500">Anti Bentrok</p>
                                 </div>
                             </div>
-                            <div class="metric-card">
-                                <div class="metric-icon"><i class="fas fa-ticket"></i></div>
-                                <div>
-                                    <h4 id="statTotalBookings">150+</h4>
-                                    <span>Peminjaman Terdata</span>
-                                </div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-icon"><i class="fas fa-shield-halved"></i></div>
-                                <div>
-                                    <h4>100%</h4>
-                                    <span>Anti-Bentrok Valid</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Search & Status Tracker Hero Card -->
-                    <div class="hero-interactive-card">
-                        <div class="card-glass-header">
-                            <div class="tab-pill-group">
-                                <button class="tab-pill active" id="tabQuickSearch">Cari Ruangan</button>
-                                <button class="tab-pill" id="tabQuickTrack">Lacak No. Tiket</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Panel 1: Quick Search -->
-                        <div id="quickSearchPanel" class="interactive-panel active">
-                            <div class="form-group">
-                                <label class="form-label" for="quickSearchInput">Kata Kunci Ruangan / Fasilitas</label>
-                                <div class="input-with-icon">
-                                    <i class="fas fa-magnifying-glass"></i>
-                                    <input type="text" id="quickSearchInput" class="form-control" placeholder="Contoh: Lab SIJA, Teater, Smart TV, AC...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="quickCategorySelect">Kategori Fasilitas</label>
-                                <select id="quickCategorySelect" class="form-control">
-                                    <option value="ALL">Semua Kategori Fasilitas</option>
-                                    <option value="Laboratorium">Laboratorium Komputer & Jaringan</option>
-                                    <option value="Auditorium">Auditorium / Teater Audio Visual</option>
-                                    <option value="Aula Serbaguna">Aula Serbaguna (GSG)</option>
-                                    <option value="Meeting Room">Ruang Rapat & Guru</option>
-                                    <option value="Teori & Kelas">Gedung Baru (Lantai 2)</option>
-                                    <option value="Reguler">Gedung Lama (Lantai 1)</option>
-                                </select>
-                            </div>
-
-                            <button id="btnQuickSearchSubmit" class="btn btn-primary" style="width: 100%;">
-                                <i class="fas fa-filter"></i> Tampilkan Katalog Ruangan
-                            </button>
                         </div>
 
-                        <!-- Panel 2: Quick Track Ticket -->
-                        <div id="quickTrackPanel" class="interactive-panel">
-                            <div class="form-group">
-                                <label class="form-label" for="heroTrackCode">Masukkan Nomor Tiket Peminjaman</label>
-                                <div class="input-with-icon">
-                                    <i class="fas fa-receipt"></i>
-                                    <input type="text" id="heroTrackCode" class="form-control" placeholder="Contoh: BK-2026-001">
-                                </div>
-                            </div>
-                            <button id="btnHeroTrackSubmit" class="btn btn-primary" style="width: 100%;">
-                                <i class="fas fa-magnifying-glass"></i> Cek Status Peminjaman
-                            </button>
-                            <div id="heroTrackResult" class="tracking-result-box" style="display: none;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Room Directory Section -->
-        <section id="rooms" class="section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <div class="badge-pill badge-outline">Katalog Fasilitas</div>
-                    <h2 class="section-title">Katalog Ruangan & Laboratorium SMKN 1</h2>
-                    <p class="section-desc">Pilih ruangan yang sesuai dengan kebutuhan pembelajaran praktik kejuruan, simulasi ujian, workshop industri, seminar, atau kegiatan kesiswaan.</p>
-                </div>
-
-                <!-- Filter Controls -->
-                <div class="filter-controls-bar">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="roomSearchInput" placeholder="Cari nama ruangan, gedung, PIC guru, atau fasilitas...">
-                    </div>
-
-                    <div class="filter-pills-scroll" id="categoryPills">
-                        <button class="filter-pill active" data-category="ALL"><i class="fas fa-border-all"></i> Semua</button>
-                        <button class="filter-pill" data-category="Laboratorium"><i class="fas fa-desktop"></i> Lab Komputer</button>
-                        <button class="filter-pill" data-category="Auditorium"><i class="fas fa-film"></i> Teater</button>
-                        <button class="filter-pill" data-category="Aula Serbaguna"><i class="fas fa-volleyball"></i> GSG</button>
-                        <button class="filter-pill" data-category="Teori & Kelas"><i class="fas fa-chalkboard-user"></i> Gedung Baru</button>
-                        <button class="filter-pill" data-category="Reguler"><i class="fas fa-school"></i> Gedung Lama</button>
-                        <button class="filter-pill" data-category="Meeting Room"><i class="fas fa-handshake"></i> Ruang Rapat</button>
-                    </div>
-                </div>
-
-                <!-- Dynamic Room Grid -->
-                <div class="room-grid" id="roomsContainer">
-                    <!-- Javascript will render cards here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Visual Timetable Matrix (Schedule Timeline) -->
-        <section id="timetable" class="section-padding section-alt-bg">
-            <div class="container">
-                <div class="section-header">
-                    <div class="badge-pill badge-outline">Jadwal Visual Real-Time</div>
-                    <h2 class="section-title">Matriks Penggunaan Ruangan Per-Jam</h2>
-                    <p class="section-desc">Pantau ketersediaan slot jam KBM & kegiatan di setiap ruangan secara visual dari pukul 07:00 hingga 17:00 WIB.</p>
-                </div>
-
-                <div class="timetable-card">
-                    <div class="timetable-toolbar">
-                        <div class="timetable-date-selector">
-                            <label for="timetableDate"><i class="fas fa-calendar-day"></i> Pilih Tanggal:</label>
-                            <input type="date" id="timetableDate" class="form-control form-control-sm">
-                        </div>
-                        <div class="timetable-legend">
-                            <span class="legend-item"><span class="legend-dot available"></span> Tersedia</span>
-                            <span class="legend-item"><span class="legend-dot booked"></span> Sedang Digunakan</span>
-                            <span class="legend-item"><span class="legend-dot pending"></span> Menunggu Review</span>
-                        </div>
-                    </div>
-
-                    <div class="timetable-table-wrapper">
-                        <table class="timetable-table" id="timetableGrid">
-                            <!-- Javascript injects hourly schedule matrix -->
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Multi-Step Booking Wizard & Active List Section -->
-        <section id="booking" class="section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <div class="badge-pill badge-outline">Formulir Reservasi Resmi</div>
-                    <h2 class="section-title">Pengajuan Peminjaman Ruangan</h2>
-                    <p class="section-desc">Ikuti 4 langkah mudah untuk mengajukan permohonan peminjaman fasilitas dengan verifikasi anti-bentrok otomatis.</p>
-                </div>
-
-                <div class="booking-wizard-layout">
-                    <!-- 4-Step Reservation Form Card -->
-                    <div class="wizard-card">
-                        <!-- Step Progress Indicator -->
-                        <div class="wizard-stepper">
-                            <div class="step-item active" data-step="1">
-                                <div class="step-circle">1</div>
-                                <span class="step-label">Ruangan & Alat</span>
-                            </div>
-                            <div class="step-line"></div>
-                            <div class="step-item" data-step="2">
-                                <div class="step-circle">2</div>
-                                <span class="step-label">Waktu & Jam</span>
-                            </div>
-                            <div class="step-line"></div>
-                            <div class="step-item" data-step="3">
-                                <div class="step-circle">3</div>
-                                <span class="step-label">Identitas</span>
-                            </div>
-                            <div class="step-line"></div>
-                            <div class="step-item" data-step="4">
-                                <div class="step-circle">4</div>
-                                <span class="step-label">Konfirmasi</span>
-                            </div>
-                        </div>
-
-                        <form id="wizardBookingForm">
-                            <!-- STEP 1: Pilih Ruangan & Fasilitas Tambahan -->
-                            <div class="wizard-pane active" id="wizardStep1">
-                                <h3 class="pane-title"><i class="fas fa-door-open"></i> Langkah 1: Pilih Ruangan & Fasilitas</h3>
-                                
-                                <div class="form-group">
-                                    <label class="form-label" for="wizardRoomSelect">Pilih Ruangan Sasaran <span class="required">*</span></label>
-                                    <select id="wizardRoomSelect" class="form-control" required>
-                                        <option value="" disabled selected>-- Pilih Ruangan / Laboratorium --</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">Peralatan Tambahan yang Dibutuhkan (Opsional):</label>
-                                    <div class="equipment-checkbox-grid" id="equipmentCheckboxes">
-                                        <!-- Javascript injects equipment options -->
-                                    </div>
-                                </div>
-
-                                <div class="wizard-actions">
-                                    <span></span>
-                                    <button type="button" class="btn btn-primary" id="btnNextStep1">
-                                        Lanjut ke Jadwal <i class="fas fa-arrow-right"></i>
+                        <!-- Right Column: Interactive Quick Card -->
+                        <div class="lg:col-span-5">
+                            <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none space-y-4">
+                                <div class="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-800">
+                                    <button id="tabHeroSearch" class="flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-slate-900 text-brand-600 dark:text-brand-400 shadow-sm transition-all" onclick="setHeroTab('search')">
+                                        Cari Ruangan
+                                    </button>
+                                    <button id="tabHeroTrack" class="flex-1 py-2 text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-all" onclick="setHeroTab('track')">
+                                        Lacak Resi Tiket
                                     </button>
                                 </div>
-                            </div>
 
-                            <!-- STEP 2: Waktu & Tanggal -->
-                            <div class="wizard-pane" id="wizardStep2">
-                                <h3 class="pane-title"><i class="fas fa-clock"></i> Langkah 2: Tentukan Waktu & Durasi</h3>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label" for="wizardStartDateTime">Waktu Mulai <span class="required">*</span></label>
-                                        <input type="datetime-local" id="wizardStartDateTime" class="form-control" required>
+                                <!-- Tab Search Content -->
+                                <div id="panelHeroSearch" class="space-y-3">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Cari Berdasarkan Nama / Fasilitas</label>
+                                        <div class="relative">
+                                            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                            <input type="text" id="heroSearchInput" placeholder="Contoh: Lab SIJA, Teater, AC..." class="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="wizardEndDateTime">Waktu Selesai <span class="required">*</span></label>
-                                        <input type="datetime-local" id="wizardEndDateTime" class="form-control" required>
-                                    </div>
-                                </div>
 
-                                <!-- Live Conflict Check Feedback -->
-                                <div id="liveConflictBanner" class="conflict-banner available" style="display: none;">
-                                    <i class="fas fa-circle-check"></i> <span>Jadwal tersedia dan bebas dari bentrok kegiatan lain.</span>
-                                </div>
-
-                                <div class="wizard-actions">
-                                    <button type="button" class="btn btn-secondary" id="btnPrevStep2">
-                                        <i class="fas fa-arrow-left"></i> Kembali
-                                    </button>
-                                    <button type="button" class="btn btn-primary" id="btnNextStep2">
-                                        Lanjut ke Data Pemohon <i class="fas fa-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- STEP 3: Identitas & Guru Pendamping -->
-                            <div class="wizard-pane" id="wizardStep3">
-                                <h3 class="pane-title"><i class="fas fa-user-pen"></i> Langkah 3: Identitas Pemohon & Guru Pendamping</h3>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label" for="wizardUserName">Nama Pemohon <span class="required">*</span></label>
-                                        <input type="text" id="wizardUserName" class="form-control" placeholder="Nama Lengkap Siswa / Guru" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="wizardUserRole">Kategori Pemohon <span class="required">*</span></label>
-                                        <select id="wizardUserRole" class="form-control" required>
-                                            <option value="siswa">Siswa / Siswi</option>
-                                            <option value="guru">Guru Produktif / Pengajar</option>
-                                            <option value="admin">Staf Sarana & Prasarana</option>
-                                            <option value="organisasi">Pengurus OSIS / MPK / Ekskul</option>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Kategori Fasilitas</label>
+                                        <select id="heroCategorySelect" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                            <option value="ALL">Semua Fasilitas SMKN 1</option>
+                                            <option value="Laboratorium">Laboratorium Komputer & SIJA</option>
+                                            <option value="Auditorium">Teater Audio Visual</option>
+                                            <option value="Aula Serbaguna">Aula GSG</option>
+                                            <option value="Teori & Kelas">Gedung Baru (Lt 2)</option>
+                                            <option value="Reguler">Gedung Lama (Lt 1)</option>
+                                            <option value="Meeting Room">Ruang Rapat & Studio</option>
                                         </select>
                                     </div>
+
+                                    <button id="btnHeroSearchExecute" class="w-full py-2.5 rounded-xl font-semibold text-sm bg-brand-600 hover:bg-brand-700 text-white transition-all flex items-center justify-center gap-2">
+                                        <i data-lucide="filter" class="w-4 h-4"></i> Tampilkan Hasil Katalog
+                                    </button>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label class="form-label" for="wizardUserClass">Kelas / Jurusan / Unit <span class="required">*</span></label>
-                                        <input type="text" id="wizardUserClass" class="form-control" placeholder="Contoh: XI SIJA 1 / Guru SIJA" required>
+                                <!-- Tab Track Content -->
+                                <div id="panelHeroTrack" class="space-y-3 hidden">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nomor Tiket Peminjaman</label>
+                                        <div class="relative">
+                                            <i data-lucide="ticket" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                            <input type="text" id="heroTrackCode" placeholder="Contoh: BK-2026-001" class="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="wizardUserContact">Nomor WhatsApp Aktif <span class="required">*</span></label>
-                                        <input type="tel" id="wizardUserContact" class="form-control" placeholder="081234567890" required>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label class="form-label" for="wizardSupervisor">Guru Pendamping / Penanggung Jawab <span class="required">*</span></label>
-                                    <input type="text" id="wizardSupervisor" class="form-control" placeholder="Contoh: Pak Amrul Khairullah, S.Kom" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label" for="wizardReason">Keperluan / Agenda Peminjaman <span class="required">*</span></label>
-                                    <textarea id="wizardReason" class="form-control" rows="3" placeholder="Tuliskan tujuan kegiatan secara jelas dan terperinci..." required></textarea>
-                                </div>
-
-                                <div class="wizard-actions">
-                                    <button type="button" class="btn btn-secondary" id="btnPrevStep3">
-                                        <i class="fas fa-arrow-left"></i> Kembali
+                                    <button id="btnHeroTrackExecute" class="w-full py-2.5 rounded-xl font-semibold text-sm bg-brand-600 hover:bg-brand-700 text-white transition-all flex items-center justify-center gap-2">
+                                        <i data-lucide="search" class="w-4 h-4"></i> Cek Status Permohonan
                                     </button>
-                                    <button type="button" class="btn btn-primary" id="btnNextStep3">
-                                        Review & Konfirmasi <i class="fas fa-arrow-right"></i>
-                                    </button>
+
+                                    <div id="heroTrackResultBox" class="text-xs p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hidden"></div>
                                 </div>
                             </div>
-
-                            <!-- STEP 4: Review & Konfirmasi Final -->
-                            <div class="wizard-pane" id="wizardStep4">
-                                <h3 class="pane-title"><i class="fas fa-clipboard-check"></i> Langkah 4: Review & Konfirmasi Permohonan</h3>
-
-                                <div class="review-summary-card" id="reviewSummaryBox">
-                                    <!-- Javascript injects structured summary -->
-                                </div>
-
-                                <div class="form-group agreement-checkbox">
-                                    <label>
-                                        <input type="checkbox" id="wizardAgreeTerms" required>
-                                        Saya menyetujui <a href="#sopSection">SOP & Tata Tertib Fasilitas SMKN 1 Jakarta</a> dan bertanggung jawab penuh atas kebersihan dan keselamatan sarana yang dipinjam.
-                                    </label>
-                                </div>
-
-                                <div class="wizard-actions">
-                                    <button type="button" class="btn btn-secondary" id="btnPrevStep4">
-                                        <i class="fas fa-arrow-left"></i> Edit Data
-                                    </button>
-                                    <button type="submit" class="btn btn-success btn-lg" id="btnFinalSubmit">
-                                        <i class="fas fa-paper-plane"></i> Kirim Pengajuan Resmi
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Right Column: Active Schedule Queue Card -->
-                    <div class="active-queue-card" id="schedule">
-                        <div class="queue-header">
-                            <div>
-                                <h3 class="queue-title"><i class="fas fa-list-check"></i> Antrean Jadwal Terdaftar</h3>
-                                <p class="queue-sub">Peminjaman aktif di seluruh fasilitas sekolah</p>
-                            </div>
-                            <span class="status-pill approved" id="scheduleCountBadge">0 Terdata</span>
                         </div>
 
-                        <div class="schedule-list" id="scheduleListContainer">
-                            <!-- Javascript renders list -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Room Catalog Section -->
+            <section id="rooms" class="scroll-mt-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="text-center max-w-2xl mx-auto space-y-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">Direktori Fasilitas</span>
+                        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 dark:text-white">Katalog Ruangan & Laboratorium</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Pilih fasilitas yang sesuai untuk kegiatan KBM, praktikum, bimbingan lomba, atau seminar.</p>
+                    </div>
+
+                    <!-- Category Pills & Search -->
+                    <div class="space-y-4">
+                        <div class="max-w-md mx-auto">
+                            <div class="relative">
+                                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                <input type="text" id="catalogSearchInput" placeholder="Cari nama ruangan, PIC, atau fasilitas..." class="w-full pl-9 pr-4 py-2 text-sm rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                        </div>
+
+                        <!-- Horizontal Scroll Pills -->
+                        <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-1" id="categoryPillList">
+                            <button class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-brand-600 text-white shadow-sm transition-all" data-cat="ALL">Semua (13)</button>
+                            <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 transition-all" data-cat="Laboratorium">Lab Komputer</button>
+                            <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 transition-all" data-cat="Auditorium">Teater</button>
+                            <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 transition-all" data-cat="Aula Serbaguna">Aula GSG</button>
+                            <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 transition-all" data-cat="Teori & Kelas">Gedung Baru</button>
+                            <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 transition-all" data-cat="Reguler">Gedung Lama</button>
+                            <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 transition-all" data-cat="Meeting Room">Ruang Rapat</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Instant Ticket Tracking Full Section -->
-        <section id="tracking" class="section-padding section-alt-bg">
-            <div class="container">
-                <div class="section-header">
-                    <div class="badge-pill badge-outline">Layanan Mandiri</div>
-                    <h2 class="section-title">Lacak Status Surat Izin & Reservasi</h2>
-                    <p class="section-desc">Cek progres persetujuan permohonan Anda tanpa perlu masuk ke akun.</p>
-                </div>
-
-                <div class="tracking-search-bar">
-                    <div class="search-input-wrapper">
-                        <i class="fas fa-receipt"></i>
-                        <input type="text" id="directTrackCode" placeholder="Masukkan ID Tiket (Contoh: BK-2026-001)">
+                    <!-- Room Cards Grid -->
+                    <div id="roomCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Javascript injects room cards -->
                     </div>
-                    <button class="btn btn-primary" id="btnDirectTrack"><i class="fas fa-magnifying-glass"></i> Lacak Sekarang</button>
                 </div>
+            </section>
 
-                <div id="directTrackResultContainer" class="direct-track-container" style="display: none;">
-                    <!-- Javascript injects ticket receipt card -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Admin & Sarpras Management Command Center (Role-Protected) -->
-        <section id="adminPanel" class="section-padding" style="display: none;">
-            <div class="container">
-                <div class="admin-dashboard-box">
-                    <div class="admin-top-bar">
+            <!-- Visual Timetable Section (Hourly Matrix) -->
+            <section id="timetable" class="scroll-mt-20 py-8 bg-slate-100 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
-                            <div class="badge-pill badge-primary">Panel Kelola Sarpras</div>
-                            <h2 class="admin-main-title" id="adminRoleDisplay">Akses Kelola Sarpras & Guru</h2>
-                            <p class="admin-main-sub">Kelola persetujuan reservasi, tinjau peminjaman, dan ekspor data laporan sekolah.</p>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">Visual Timeline</span>
+                            <h2 class="font-heading font-extrabold text-xl sm:text-2xl text-slate-900 dark:text-white mt-1">Jadwal Penggunaan Ruangan Per-Jam</h2>
+                            <p class="text-xs text-slate-500">Pantau ketersediaan slot 07:00 s.d. 17:00 WIB.</p>
                         </div>
-                        <div class="admin-quick-actions">
-                            <button class="btn btn-secondary btn-sm" id="btnExportCSV"><i class="fas fa-file-csv"></i> Unduh CSV</button>
-                            <button class="btn btn-secondary btn-sm" id="btnResetData"><i class="fas fa-rotate-left"></i> Reset Demo</button>
-                        </div>
-                    </div>
 
-                    <!-- Admin KPI Metrics Cards -->
-                    <div class="admin-metrics-grid">
-                        <div class="admin-metric-card">
-                            <div class="kpi-icon total"><i class="fas fa-folder-open"></i></div>
-                            <div>
-                                <span class="kpi-label">Total Permohonan</span>
-                                <h3 class="kpi-value" id="kpiTotal">0</h3>
+                        <!-- Date Picker & Legend -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-medium">
+                                <i data-lucide="calendar" class="w-4 h-4 text-brand-600"></i>
+                                <input type="date" id="timetableDateInput" class="bg-transparent focus:outline-none text-slate-800 dark:text-slate-200">
                             </div>
-                        </div>
-                        <div class="admin-metric-card">
-                            <div class="kpi-icon pending"><i class="fas fa-hourglass-half"></i></div>
-                            <div>
-                                <span class="kpi-label">Perlu Ditinjau</span>
-                                <h3 class="kpi-value" id="kpiPending">0</h3>
-                            </div>
-                        </div>
-                        <div class="admin-metric-card">
-                            <div class="kpi-icon approved"><i class="fas fa-circle-check"></i></div>
-                            <div>
-                                <span class="kpi-label">Telah Disetujui</span>
-                                <h3 class="kpi-value" id="kpiApproved">0</h3>
-                            </div>
-                        </div>
-                        <div class="admin-metric-card">
-                            <div class="kpi-icon star"><i class="fas fa-fire"></i></div>
-                            <div>
-                                <span class="kpi-label">Ruang Terfavorit</span>
-                                <h3 class="kpi-value" style="font-size: 0.95rem;" id="kpiTopRoom">-</h3>
+
+                            <div class="flex items-center gap-3 text-[11px] font-medium bg-white dark:bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Kosong</span>
+                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Terpakai</span>
+                                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Review</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Admin Table Header Filters -->
-                    <div class="admin-table-toolbar">
-                        <div class="admin-filter-btns">
-                            <button class="btn btn-primary btn-sm" id="btnFilterAllBookings">Semua Permohonan</button>
-                            <button class="btn btn-secondary btn-sm" id="btnFilterPendingBookings">Perlu Review</button>
-                            <button class="btn btn-secondary btn-sm" id="btnFilterApprovedBookings">Disetujui</button>
-                        </div>
-                        <div class="admin-search-wrap">
-                            <input type="text" id="adminSearchInput" class="form-control form-control-sm" placeholder="Filter nama / no tiket / ruangan...">
-                        </div>
-                    </div>
-
-                    <!-- Admin Table -->
-                    <div class="admin-table-container">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>No. Tiket</th>
-                                    <th>Pemohon & Kelas</th>
-                                    <th>Ruangan & Fasilitas</th>
-                                    <th>Waktu Penggunaan</th>
-                                    <th>Status</th>
-                                    <th>Tindakan Verifikasi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminTableBody">
-                                <!-- Javascript renders admin rows -->
-                            </tbody>
+                    <!-- Horizontal Scrollable Matrix Table with Sticky Left -->
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+                        <table class="w-full text-left text-xs border-collapse min-w-[760px]" id="timetableTable">
+                            <!-- Javascript injects table -->
                         </table>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- SOP & Tata Tertib Penggunaan Fasilitas (Educational Guidelines) -->
-        <section id="sopSection" class="section-padding section-alt-bg">
-            <div class="container">
-                <div class="section-header">
-                    <div class="badge-pill badge-outline">Standar Operasional Prosedur</div>
-                    <h2 class="section-title">Tata Tertib Penggunaan Sarana & Lab</h2>
-                    <p class="section-desc">Pedoman kedisiplinan dan tanggung jawab demi pemeliharaan aset pembelajaran di SMKN 1 Jakarta.</p>
-                </div>
-
-                <div class="sop-grid">
-                    <div class="sop-card">
-                        <div class="sop-step-number">01</div>
-                        <h4 class="sop-card-title">Prosedur Pengajuan</h4>
-                        <p class="sop-card-desc">Pengajuan dilakukan minimal H-1 sebelum kegiatan melalui portal Pemangan dengan melampirkan identitas guru pendamping.</p>
-                    </div>
-                    <div class="sop-card">
-                        <div class="sop-step-number">02</div>
-                        <h4 class="sop-card-title">Pengambilan Kunci & Izin</h4>
-                        <p class="sop-card-desc">Tunjukkan Surat Izin resmi (digital / cetak) kepada petugas piket Sarpras untuk serah terima kunci dan logbook ruangan.</p>
-                    </div>
-                    <div class="sop-card">
-                        <div class="sop-step-number">03</div>
-                        <h4 class="sop-card-title">Kedisiplinan di Dalam Ruangan</h4>
-                        <p class="sop-card-desc">Dilarang membawa makanan/minuman berlebih ke lab komputer. Wajib menjaga kerapian kabel patch cord, mouse, dan keyboard.</p>
-                    </div>
-                    <div class="sop-card">
-                        <div class="sop-step-number">04</div>
-                        <h4 class="sop-card-title">Pengembalian & Kebersihan</h4>
-                        <p class="sop-card-desc">Wajib mematikan AC, lampu, dan proyektor sebelum meninggalkan ruangan serta mengunci kembali pintu lab/ruangan.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Us & Developer Section -->
-        <section id="about" class="section-padding">
-            <div class="container">
-                <div class="about-grid">
-                    <div>
-                        <div class="badge-pill badge-primary">Informasi Pengembang</div>
-                        <h2 class="section-title">Proyek Kreatif & Kewirausahaan (PKK)</h2>
-                        <p class="section-desc">
-                            Pemangan dikembangkan oleh siswa kompetensi keahlian Sistem Informatika, Jaringan & Aplikasi (SIJA) SMK Negeri 1 Jakarta sebagai solusi digitalisasi inventarisasi dan reservasi sarana sekolah yang efektif dan bebas bentrok.
-                        </p>
-
-                        <div class="about-features-grid">
-                            <div class="about-feature-item">
-                                <i class="fas fa-bolt"></i>
-                                <div>
-                                    <h4>Validasi Instan Real-time</h4>
-                                    <p>Mencegah peminjaman ganda pada ruangan dan slot jam yang sama.</p>
-                                </div>
-                            </div>
-                            <div class="about-feature-item">
-                                <i class="fas fa-qrcode"></i>
-                                <div>
-                                    <h4>QR Code Verifikasi Resmi</h4>
-                                    <p>Memastikan keaslian surat izin peminjaman sarana sekolah.</p>
-                                </div>
-                            </div>
-                            <div class="about-feature-item">
-                                <i class="fas fa-mobile-screen"></i>
-                                <div>
-                                    <h4>Responsif & Ringan</h4>
-                                    <p>Dapat diakses cepat melalui smartphone maupun desktop guru dan siswa.</p>
-                                </div>
-                            </div>
-                            <div class="about-feature-item">
-                                <i class="fas fa-file-pdf"></i>
-                                <div>
-                                    <h4>Standar Persuratan Dinas</h4>
-                                    <p>Format surat izin lengkap dengan KOP Dinas Pendidikan DKI Jakarta.</p>
-                                </div>
-                            </div>
-                        </div>
+            <!-- 4-Step Interactive Booking Wizard & Active Queue Section -->
+            <section id="booking" class="scroll-mt-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="text-center max-w-2xl mx-auto space-y-1">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">Layanan Peminjaman</span>
+                        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 dark:text-white">Formulir Pengajuan Ruangan 2.0</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Verifikasi anti-bentrok jadwal otomatis dalam 4 langkah mudah.</p>
                     </div>
 
-                    <div>
-                        <div class="developer-profile-card">
-                            <div class="school-pill">SMK Negeri 1 Jakarta</div>
-                            <h3 class="dev-card-title">Bidang Keahlian SIJA</h3>
-                            <p class="dev-card-desc">Penerapan Project Based Learning (PBL) dalam pengembangan web application modern berbasis standar industri.</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        
+                        <!-- Left 4-Step Wizard Card -->
+                        <div class="lg:col-span-7 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg space-y-6">
                             
-                            <div class="dev-team-box">
-                                <h5 class="team-heading"><i class="fas fa-code"></i> Tim Pengembang:</h5>
-                                <ul class="team-list">
-                                    <li><strong>Arrofi Zein</strong> — XI SIJA 1</li>
-                                    <li><strong>Rasya Aryasatya</strong> — XI SIJA 1</li>
-                                </ul>
-                                <div class="supervisor-line">
-                                    <i class="fas fa-chalkboard-user"></i>
-                                    <span>Guru Pembimbing: <strong>Pak Amrul Khairullah, S.Kom</strong></span>
+                            <!-- Stepper Indicator -->
+                            <div class="flex items-center justify-between relative" id="wizardStepperHeader">
+                                <div class="flex flex-col items-center gap-1 z-10 step-node active" data-step="1">
+                                    <div class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold text-xs flex items-center justify-center shadow-md">1</div>
+                                    <span class="text-[11px] font-semibold text-brand-600 dark:text-brand-400">Ruangan</span>
+                                </div>
+                                <div class="flex-1 h-0.5 bg-slate-200 dark:bg-slate-700 -mx-2 -mt-4"></div>
+                                <div class="flex flex-col items-center gap-1 z-10 step-node" data-step="2">
+                                    <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex items-center justify-center">2</div>
+                                    <span class="text-[11px] font-semibold text-slate-500">Waktu</span>
+                                </div>
+                                <div class="flex-1 h-0.5 bg-slate-200 dark:bg-slate-700 -mx-2 -mt-4"></div>
+                                <div class="flex flex-col items-center gap-1 z-10 step-node" data-step="3">
+                                    <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex items-center justify-center">3</div>
+                                    <span class="text-[11px] font-semibold text-slate-500">Identitas</span>
+                                </div>
+                                <div class="flex-1 h-0.5 bg-slate-200 dark:bg-slate-700 -mx-2 -mt-4"></div>
+                                <div class="flex flex-col items-center gap-1 z-10 step-node" data-step="4">
+                                    <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex items-center justify-center">4</div>
+                                    <span class="text-[11px] font-semibold text-slate-500">Konfirmasi</span>
                                 </div>
                             </div>
+
+                            <form id="wizardBookingForm">
+                                <!-- Step 1: Ruangan & Alat -->
+                                <div id="wizardStepPane1" class="wizard-pane space-y-4">
+                                    <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="door-open" class="w-4 h-4 text-brand-600"></i> Langkah 1: Pilih Ruangan & Fasilitas
+                                    </h3>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Pilih Ruangan Sasaran <span class="text-rose-500">*</span></label>
+                                        <select id="wzRoomSelect" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                            <option value="" disabled selected>-- Pilih Ruangan / Lab --</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Peralatan Tambahan yang Dibutuhkan:</label>
+                                        <div id="wzEquipmentList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                            <!-- Javascript injects checkboxes -->
+                                        </div>
+                                    </div>
+
+                                    <div class="flex justify-end pt-4">
+                                        <button type="button" id="btnWzNext1" class="px-5 py-2.5 rounded-xl font-semibold text-xs bg-brand-600 hover:bg-brand-700 text-white flex items-center gap-1.5 shadow-sm transition-all">
+                                            Lanjut ke Jadwal <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: Jadwal & Anti-Bentrok -->
+                                <div id="wizardStepPane2" class="wizard-pane space-y-4 hidden">
+                                    <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="clock" class="w-4 h-4 text-brand-600"></i> Langkah 2: Tentukan Waktu & Validasi Bentrok
+                                    </h3>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Waktu Mulai <span class="text-rose-500">*</span></label>
+                                            <input type="datetime-local" id="wzStartTime" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Waktu Selesai <span class="text-rose-500">*</span></label>
+                                            <input type="datetime-local" id="wzEndTime" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Live Conflict Banner -->
+                                    <div id="wzConflictBanner" class="p-3 rounded-xl text-xs flex items-center gap-2 hidden"></div>
+
+                                    <div class="flex justify-between pt-4">
+                                        <button type="button" id="btnWzPrev2" class="px-4 py-2.5 rounded-xl font-semibold text-xs bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 flex items-center gap-1.5 transition-all">
+                                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Kembali
+                                        </button>
+                                        <button type="button" id="btnWzNext2" class="px-5 py-2.5 rounded-xl font-semibold text-xs bg-brand-600 hover:bg-brand-700 text-white flex items-center gap-1.5 shadow-sm transition-all">
+                                            Lanjut ke Identitas <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3: Identitas Pemohon -->
+                                <div id="wizardStepPane3" class="wizard-pane space-y-4 hidden">
+                                    <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="user-check" class="w-4 h-4 text-brand-600"></i> Langkah 3: Identitas & Guru Pendamping
+                                    </h3>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nama Pemohon <span class="text-rose-500">*</span></label>
+                                            <input type="text" id="wzUserName" placeholder="Nama Lengkap Siswa/Guru" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Kategori Pemohon <span class="text-rose-500">*</span></label>
+                                            <select id="wzUserRole" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                                <option value="siswa">Siswa / Siswi</option>
+                                                <option value="guru">Guru Produktif / Pengajar</option>
+                                                <option value="admin">Staf Sarpras</option>
+                                                <option value="organisasi">Pengurus OSIS / MPK / Ekskul</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Kelas / Unit Kerja <span class="text-rose-500">*</span></label>
+                                            <input type="text" id="wzUserClass" placeholder="Contoh: XI SIJA 1 / Guru SIJA" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">WhatsApp Aktif <span class="text-rose-500">*</span></label>
+                                            <input type="tel" id="wzUserContact" placeholder="081234567890" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Guru Pendamping / Penanggung Jawab <span class="text-rose-500">*</span></label>
+                                        <input type="text" id="wzSupervisor" placeholder="Contoh: Pak Amrul Khairullah, S.Kom" class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Keperluan / Agenda Penggunaan <span class="text-rose-500">*</span></label>
+                                        <textarea id="wzReason" rows="2" placeholder="Tuliskan tujuan peminjaman secara rinci..." class="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" required></textarea>
+                                    </div>
+
+                                    <div class="flex justify-between pt-4">
+                                        <button type="button" id="btnWzPrev3" class="px-4 py-2.5 rounded-xl font-semibold text-xs bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 flex items-center gap-1.5 transition-all">
+                                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Kembali
+                                        </button>
+                                        <button type="button" id="btnWzNext3" class="px-5 py-2.5 rounded-xl font-semibold text-xs bg-brand-600 hover:bg-brand-700 text-white flex items-center gap-1.5 shadow-sm transition-all">
+                                            Review Permohonan <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4: Konfirmasi & Kirim -->
+                                <div id="wizardStepPane4" class="wizard-pane space-y-4 hidden">
+                                    <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i> Langkah 4: Rangkuman & Persetujuan SOP
+                                    </h3>
+
+                                    <div id="wzSummaryCard" class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2 text-xs">
+                                        <!-- Javascript injects summary -->
+                                    </div>
+
+                                    <div class="flex items-start gap-2 pt-2">
+                                        <input type="checkbox" id="wzAgreeTerms" class="mt-0.5 rounded text-brand-600 focus:ring-brand-500" required>
+                                        <label for="wzAgreeTerms" class="text-xs text-slate-600 dark:text-slate-400">
+                                            Saya menyetujui <a href="#sopSection" class="text-brand-600 underline font-semibold">SOP & Tata Tertib Fasilitas SMKN 1 Jakarta</a> dan bertanggung jawab penuh atas kebersihan serta keselamatan sarana.
+                                        </label>
+                                    </div>
+
+                                    <div class="flex justify-between pt-4">
+                                        <button type="button" id="btnWzPrev4" class="px-4 py-2.5 rounded-xl font-semibold text-xs bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 flex items-center gap-1.5 transition-all">
+                                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Edit
+                                        </button>
+                                        <button type="submit" id="btnWzSubmit" class="px-6 py-2.5 rounded-xl font-semibold text-xs bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-md shadow-emerald-600/25 transition-all">
+                                            <i data-lucide="send" class="w-3.5 h-3.5"></i> Kirim Permohonan Resmi
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Right Column: Active Booking Queue -->
+                        <div class="lg:col-span-5 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+                                <div>
+                                    <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white">Antrean Peminjaman</h3>
+                                    <p class="text-[11px] text-slate-500">Jadwal yang sedang aktif & disetujui</p>
+                                </div>
+                                <span id="queueBadgeCount" class="px-2 py-0.5 text-xs font-bold rounded-full bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-800">0 Terdata</span>
+                            </div>
+
+                            <div id="queueListContainer" class="space-y-3 max-h-[460px] overflow-y-auto pr-1">
+                                <!-- Javascript injects active bookings list -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lacak Resi Tiket Mandiri Section -->
+            <section id="tracking" class="scroll-mt-20 py-10 bg-slate-100 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="text-center space-y-1">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">Layanan Mandiri</span>
+                        <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Lacak Resi & Surat Izin Peminjaman</h2>
+                        <p class="text-xs text-slate-500">Ketik nomor tiket tanpa perlu masuk ke akun.</p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-2 max-w-xl mx-auto">
+                        <div class="relative flex-1">
+                            <i data-lucide="ticket" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" id="directTrackInput" placeholder="Masukkan ID Tiket (Contoh: BK-2026-001)" class="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                        <button id="btnDirectTrackExecute" class="px-5 py-2.5 rounded-xl font-semibold text-xs bg-brand-600 hover:bg-brand-700 text-white flex items-center justify-center gap-1.5 shadow-sm transition-all">
+                            <i data-lucide="search" class="w-4 h-4"></i> Lacak Sekarang
+                        </button>
+                    </div>
+
+                    <div id="directTrackResultCard" class="max-w-xl mx-auto hidden">
+                        <!-- Javascript injects receipt card -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOP & Tata Tertib Section -->
+            <section id="sopSection" class="scroll-mt-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="text-center max-w-2xl mx-auto space-y-1">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">Pedoman Sarpras</span>
+                        <h2 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">Tata Tertib & SOP Penggunaan Fasilitas</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="font-heading font-extrabold text-2xl text-brand-600/30 dark:text-brand-400/30">01</div>
+                            <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Pengajuan Minimal H-1</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Pengajuan peminjaman dilakukan secara online melalui portal Pemangan minimal 1 hari sebelum kegiatan KBM/lomba.</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="font-heading font-extrabold text-2xl text-brand-600/30 dark:text-brand-400/30">02</div>
+                            <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Surat Izin Resmi</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Tunjukkan Surat Izin resmi (digital/cetak) kepada petugas piket Sarpras saat serah terima kunci dan logbook ruangan.</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="font-heading font-extrabold text-2xl text-brand-600/30 dark:text-brand-400/30">03</div>
+                            <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Kebersihan & Ketertiban</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Dilarang membawa makanan ke dalam lab komputer SIJA/RPL. Seluruh sampah wajib dibuang pada tempatnya.</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="font-heading font-extrabold text-2xl text-brand-600/30 dark:text-brand-400/30">04</div>
+                            <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white">Pengembalian & Listrik</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Wajib mematikan AC, lampu, proyektor, merapikan kabel, serta mengunci kembali pintu sebelum diserahterimakan ke Sarpras.</p>
                         </div>
                     </div>
                 </div>
+            </section>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: DEDICATED SARPRAS ADMIN SUITE (#view-admin) -->
+        <!-- ========================================== -->
+        <div id="view-admin" class="hidden py-6 space-y-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                
+                <!-- Admin Header & Switch Bar -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Mode Manajemen Sarpras
+                        </div>
+                        <h1 class="font-heading font-extrabold text-2xl text-slate-900 dark:text-white mt-1" id="adminHeaderTitle">Command Center Sarpras & Guru</h1>
+                        <p class="text-xs text-slate-500" id="adminHeaderSub">Kelola verifikasi permohonan, status ketersediaan ruang, dan ekspor laporan.</p>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center gap-1.5 transition-all" onclick="switchView('portal')">
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Portal Publik
+                        </button>
+                        <button id="btnAdminExportCSV" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white flex items-center gap-1.5 shadow-sm transition-all">
+                            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Ekspor CSV
+                        </button>
+                        <button id="btnAdminResetDemo" class="px-3 py-2 rounded-xl text-xs font-medium text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-rose-200 dark:border-rose-800/60 transition-all" title="Reset Demo Data">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Admin KPI Cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold">
+                            <i data-lucide="folder" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-medium text-slate-500">Total Pengajuan</p>
+                            <h3 class="font-heading font-extrabold text-xl text-slate-900 dark:text-white" id="admKpiTotal">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold">
+                            <i data-lucide="hourglass" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-medium text-slate-500">Perlu Review</p>
+                            <h3 class="font-heading font-extrabold text-xl text-amber-600 dark:text-amber-400" id="admKpiPending">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-medium text-slate-500">Disetujui</p>
+                            <h3 class="font-heading font-extrabold text-xl text-emerald-600 dark:text-emerald-400" id="admKpiApproved">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold">
+                            <i data-lucide="flame" class="w-5 h-5"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-[11px] font-medium text-slate-500">Ruangan Terfavorit</p>
+                            <h3 class="font-heading font-bold text-xs truncate text-slate-900 dark:text-white" id="admKpiTopRoom">-</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Sub-Navigation Tabs -->
+                <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+                    <button class="adm-tab-btn active px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-sm" data-tab="bookings">
+                        Antrean Verifikasi Permohonan
+                    </button>
+                    <button class="adm-tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-tab="rooms">
+                        Kelola Status Ruangan
+                    </button>
+                </div>
+
+                <!-- Tab 1: Antrean Verifikasi Permohonan -->
+                <div id="admTabPaneBookings" class="space-y-4">
+                    <!-- Filters & Search Toolbar -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white dark:bg-slate-900 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
+                            <button class="adm-filter-pill active px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900" data-filter="all">Semua</button>
+                            <button class="adm-filter-pill px-3 py-1.5 rounded-lg text-xs font-medium text-amber-600 bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800" data-filter="pending">Perlu Review</button>
+                            <button class="adm-filter-pill px-3 py-1.5 rounded-lg text-xs font-medium text-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800" data-filter="approved">Disetujui</button>
+                            <button class="adm-filter-pill px-3 py-1.5 rounded-lg text-xs font-medium text-rose-600 bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800" data-filter="rejected">Ditolak</button>
+                        </div>
+
+                        <div class="relative w-full sm:w-64">
+                            <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" id="admSearchInput" placeholder="Cari nama, tiket, ruang..." class="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                    </div>
+
+                    <!-- Admin Table / Card Container -->
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse" id="admBookingsTable">
+                                <thead class="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 font-semibold border-b border-slate-200 dark:border-slate-800">
+                                    <tr>
+                                        <th class="p-3.5">No. Tiket</th>
+                                        <th class="p-3.5">Pemohon</th>
+                                        <th class="p-3.5">Ruangan</th>
+                                        <th class="p-3.5">Waktu</th>
+                                        <th class="p-3.5">Status</th>
+                                        <th class="p-3.5 text-right">Tindakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admBookingsTableBody" class="divide-y divide-slate-100 dark:divide-slate-800">
+                                    <!-- Javascript renders rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Kelola Status Ruangan -->
+                <div id="admTabPaneRooms" class="space-y-4 hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="admRoomsGrid">
+                        <!-- Javascript renders room toggle cards -->
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </div>
+
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col brand-col">
-                    <div class="brand-logo footer-logo">
-                        <img src="./img/logo.png" alt="Logo SMKN 1 Jakarta">
-                        <div>
-                            <span class="brand-title">Pemangan</span>
-                            <span class="brand-sub">SMK Negeri 1 Jakarta</span>
-                        </div>
-                    </div>
-                    <p class="footer-text">Sistem Informasi Peminjaman Ruangan & Laboratorium Berstandar Pendidikan Vokasi.</p>
-                    <div class="footer-address">
-                        <i class="fas fa-location-dot"></i> Jl. Budi Utomo No.7, Pasar Baru, Sawah Besar, Jakarta Pusat 10710
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Kategori Fasilitas</h4>
-                    <ul class="footer-links">
-                        <li><a href="#rooms">Lab Komputer & Cloud SIJA</a></li>
-                        <li><a href="#rooms">Lab RPL & Software Database</a></li>
-                        <li><a href="#rooms">Ruang Teater Audio Visual</a></li>
-                        <li><a href="#rooms">Gedung Serbaguna (GSG)</a></li>
-                        <li><a href="#rooms">Kelas Teori Gedung Baru</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Navigasi Cepat</h4>
-                    <ul class="footer-links">
-                        <li><a href="#hero">Beranda Utama</a></li>
-                        <li><a href="#timetable">Jadwal Visual</a></li>
-                        <li><a href="#booking">Formulir Reservasi</a></li>
-                        <li><a href="#tracking">Lacak Tiket Surat</a></li>
-                        <li><a href="./login/login.html">Portal Masuk Akun</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Pengembang & Pembimbing</h4>
-                    <ul class="footer-links">
-                        <li>Arrofi Zein (XI SIJA 1)</li>
-                        <li>Rasya Aryasatya (XI SIJA 1)</li>
-                        <li>Pak Amrul Khairullah, S.Kom</li>
-                        <li>SMK Negeri 1 Jakarta</li>
-                    </ul>
-                </div>
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <img src="./img/logo.png" alt="Logo" class="w-5 h-5">
+                <span>&copy; 2024 - 2026 Pemangan SMKN 1 Jakarta • Bidang Keahlian SIJA</span>
             </div>
-
-            <div class="footer-bottom">
-                <div>&copy; 2024 - 2026 Pemangan SMKN 1 Jakarta. Hak Cipta Dilindungi Undang-Undang.</div>
-                <div>Dikembangkan dengan standar arsitektur SIJA.</div>
+            <div>
+                Pengembang: <strong>Arrofi Zein & Rasya Aryasatya</strong> (XI SIJA 1) • Pembimbing: <strong>Pak Amrul Khairullah, S.Kom</strong>
             </div>
         </div>
     </footer>
 
+    <!-- Mobile Floating Navigation Bar (Thumb-Friendly) -->
+    <nav class="sm:hidden fixed bottom-3 left-3 right-3 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border border-slate-200 dark:border-slate-800 rounded-full shadow-2xl px-4 py-2 flex items-center justify-around">
+        <a href="#hero" class="flex flex-col items-center gap-0.5 text-slate-600 dark:text-slate-400 hover:text-brand-600" onclick="switchView('portal')">
+            <i data-lucide="home" class="w-4 h-4"></i>
+            <span class="text-[10px] font-medium">Beranda</span>
+        </a>
+        <a href="#rooms" class="flex flex-col items-center gap-0.5 text-slate-600 dark:text-slate-400 hover:text-brand-600" onclick="switchView('portal')">
+            <i data-lucide="door-open" class="w-4 h-4"></i>
+            <span class="text-[10px] font-medium">Katalog</span>
+        </a>
+        <a href="#booking" class="flex flex-col items-center justify-center w-10 h-10 rounded-full bg-brand-600 text-white shadow-lg -mt-5" onclick="switchView('portal')">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+        </a>
+        <a href="#timetable" class="flex flex-col items-center gap-0.5 text-slate-600 dark:text-slate-400 hover:text-brand-600" onclick="switchView('portal')">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <span class="text-[10px] font-medium">Jadwal</span>
+        </a>
+        <a href="#tracking" class="flex flex-col items-center gap-0.5 text-slate-600 dark:text-slate-400 hover:text-brand-600" onclick="switchView('portal')">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span class="text-[10px] font-medium">Lacak</span>
+        </a>
+    </nav>
+
     <!-- Room Detail Modal -->
-    <div class="modal-backdrop" id="roomDetailModal">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalRoomTitle">Detail Fasilitas Ruangan</h3>
-                <button class="modal-close" id="modalCloseBtn" aria-label="Tutup">&times;</button>
+    <div id="roomDetailModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
+                <h3 class="font-heading font-bold text-base text-slate-900 dark:text-white" id="modalRoomTitle">Detail Ruangan</h3>
+                <button id="closeDetailModalBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
             </div>
-            <div class="modal-body" id="modalRoomBody">
-                <!-- Javascript will inject modal content -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Official Printable Surat Peminjaman Modal 2.0 with QR Code -->
-    <div class="modal-backdrop" id="slipModal">
-        <div class="modal-box modal-lg">
-            <div class="modal-header">
-                <h3 class="modal-title"><i class="fas fa-file-contract"></i> Surat Izin Peminjaman Ruangan</h3>
-                <div class="modal-header-actions">
-                    <button class="btn btn-primary btn-sm" id="btnPrintSlip"><i class="fas fa-print"></i> Cetak / Simpan PDF</button>
-                    <button class="modal-close" id="slipCloseBtn" aria-label="Tutup">&times;</button>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div id="printableSlip" class="letter-box">
-                    <!-- Javascript injects formal letter slip -->
-                </div>
+            <div id="modalRoomBody" class="p-5 overflow-y-auto space-y-4 text-xs">
+                <!-- Javascript injects content -->
             </div>
         </div>
     </div>
 
-    <!-- Mobile Floating Action Quick Navigation -->
-    <div class="mobile-floating-bar" id="mobileFloatingBar">
-        <a href="#rooms" class="mobile-float-item"><i class="fas fa-door-open"></i> Katalog</a>
-        <a href="#timetable" class="mobile-float-item"><i class="fas fa-calendar-week"></i> Jadwal</a>
-        <a href="#booking" class="mobile-float-item primary"><i class="fas fa-calendar-plus"></i> Pinjam</a>
-        <a href="#tracking" class="mobile-float-item"><i class="fas fa-magnifying-glass"></i> Lacak</a>
+    <!-- Official Printable Surat Izin Modal 2.0 (with QR Code) -->
+    <div id="slipPrintModal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+        <div class="bg-white text-slate-900 w-full max-w-2xl rounded-2xl shadow-2xl border border-slate-300 my-auto overflow-hidden">
+            <div class="print-hide flex items-center justify-between p-3.5 bg-slate-100 border-b border-slate-200">
+                <span class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                    <i data-lucide="file-check" class="w-4 h-4 text-brand-600"></i> Surat Izin Peminjaman Ruangan
+                </span>
+                <div class="flex items-center gap-2">
+                    <button id="btnPrintExecute" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white flex items-center gap-1">
+                        <i data-lucide="printer" class="w-3.5 h-3.5"></i> Cetak / Simpan PDF
+                    </button>
+                    <button id="closeSlipModalBtn" class="p-1 text-slate-500 hover:text-slate-800">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="printableSlipContainer" class="p-6 sm:p-8 letter-paper font-serif text-[13px] leading-relaxed text-slate-950 bg-white">
+                <!-- Javascript injects formal letter slip -->
+            </div>
+        </div>
     </div>
 
-    <!-- Toast Notification Container -->
-    <div class="toast-container" id="toastContainer"></div>
+    <!-- Toast Container -->
+    <div id="toastRoot" class="fixed bottom-16 sm:bottom-6 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <!-- Scripts -->
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 
 </html>
