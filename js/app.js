@@ -354,19 +354,100 @@ document.addEventListener('DOMContentLoaded', () => {
         renderRoomCatalog();
     });
 
-    // 8. Visual Timetable Matrix
+    // 8. Visual Timetable Matrix with Enhanced Date Controls
     const timetableDateInput = document.getElementById('timetableDateInput');
+    const timetableDateBadge = document.getElementById('timetableDateBadge');
     const timetableTable = document.getElementById('timetableTable');
-    const todayISO = new Date().toISOString().slice(0, 10);
+    const btnDateToday = document.getElementById('btnDateToday');
+    const btnDateTomorrow = document.getElementById('btnDateTomorrow');
+    const btnDateNext2 = document.getElementById('btnDateNext2');
+    const btnDatePrevDay = document.getElementById('btnDatePrevDay');
+    const btnDateNextDay = document.getElementById('btnDateNextDay');
+
+    function getTodayKey() {
+        return new Date().toISOString().slice(0, 10);
+    }
+
+    function formatDateKey(dateObj) {
+        const y = dateObj.getFullYear();
+        const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const d = String(dateObj.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
+    function setTimetableDate(dateStr) {
+        if (!timetableDateInput) return;
+        timetableDateInput.value = dateStr;
+
+        // Update badge description
+        const todayStr = getTodayKey();
+        const curDate = new Date(dateStr);
+        const todayDate = new Date(todayStr);
+        const diffDays = Math.round((curDate - todayDate) / (1000 * 60 * 60 * 24));
+
+        if (timetableDateBadge) {
+            const formattedLong = curDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' });
+            if (diffDays === 0) {
+                timetableDateBadge.textContent = `Hari Ini (${formattedLong})`;
+            } else if (diffDays === 1) {
+                timetableDateBadge.textContent = `Besok (${formattedLong})`;
+            } else if (diffDays === 2) {
+                timetableDateBadge.textContent = `Lusa (${formattedLong})`;
+            } else {
+                timetableDateBadge.textContent = formattedLong;
+            }
+        }
+
+        // Update Quick Preset buttons active state
+        document.querySelectorAll('.date-quick-btn').forEach(btn => {
+            const offset = parseInt(btn.dataset.offset, 10);
+            const target = new Date();
+            target.setDate(target.getDate() + offset);
+            if (formatDateKey(target) === dateStr) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        renderTimetable();
+    }
 
     if (timetableDateInput) {
-        timetableDateInput.value = todayISO;
-        timetableDateInput.addEventListener('change', renderTimetable);
+        timetableDateInput.value = getTodayKey();
+        timetableDateInput.addEventListener('change', (e) => setTimetableDate(e.target.value));
+    }
+
+    // Quick presets
+    document.querySelectorAll('.date-quick-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const offset = parseInt(btn.dataset.offset, 10);
+            const d = new Date();
+            d.setDate(d.getDate() + offset);
+            setTimetableDate(formatDateKey(d));
+        });
+    });
+
+    // Prev / Next day step buttons
+    if (btnDatePrevDay && timetableDateInput) {
+        btnDatePrevDay.addEventListener('click', () => {
+            const cur = new Date(timetableDateInput.value || getTodayKey());
+            cur.setDate(cur.getDate() - 1);
+            setTimetableDate(formatDateKey(cur));
+        });
+    }
+
+    if (btnDateNextDay && timetableDateInput) {
+        btnDateNextDay.addEventListener('click', () => {
+            const cur = new Date(timetableDateInput.value || getTodayKey());
+            cur.setDate(cur.getDate() + 1);
+            setTimetableDate(formatDateKey(cur));
+        });
     }
 
     function renderTimetable() {
         if (!timetableTable) return;
-        const selectedDate = timetableDateInput ? timetableDateInput.value : todayISO;
+        const selectedDate = timetableDateInput ? timetableDateInput.value : getTodayKey();
         const matrix = window.Store.getHourlyMatrix(selectedDate);
         const hours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
@@ -465,6 +546,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (window.lucide) window.lucide.createIcons();
     }
+
+    // Wizard Step 2 Quick Slot Presets
+    document.querySelectorAll('.wz-quick-slot').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.wz-quick-slot').forEach(b => {
+                b.className = 'wz-quick-slot px-2.5 py-1 text-xs rounded-lg font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-brand-500 transition-colors';
+            });
+            btn.className = 'wz-quick-slot active px-2.5 py-1 text-xs rounded-lg font-bold bg-brand-600 text-white border border-brand-600 shadow-sm transition-colors';
+
+            const startHour = btn.dataset.start;
+            const endHour = btn.dataset.end;
+
+            // Pick date from existing input or tomorrow
+            let baseDate = getTodayKey();
+            if (wzStartTime && wzStartTime.value) {
+                baseDate = wzStartTime.value.slice(0, 10);
+            } else {
+                const tmr = new Date();
+                tmr.setDate(tmr.getDate() + 1);
+                baseDate = formatDateKey(tmr);
+            }
+
+            if (wzStartTime) wzStartTime.value = `${baseDate}T${startHour}`;
+            if (wzEndTime) wzEndTime.value = `${baseDate}T${endHour}`;
+            checkLiveConflict();
+        });
+    });
 
     // Step 1 -> 2
     document.getElementById('btnWzNext1')?.addEventListener('click', () => {

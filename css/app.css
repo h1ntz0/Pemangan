@@ -91,6 +91,69 @@
     z-index: 20;
 }
 
+/* Institutional Date Controller & Segmented Presets */
+.date-quick-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 0.625rem;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.date-quick-btn.active {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(29, 78, 216, 0.3);
+}
+
+.date-quick-btn:not(.active) {
+    color: #64748b;
+    background-color: transparent;
+}
+
+.dark .date-quick-btn:not(.active) {
+    color: #94a3b8;
+}
+
+.date-quick-btn:not(.active):hover {
+    color: #0f172a;
+    background-color: rgba(241, 245, 249, 0.8);
+}
+
+.dark .date-quick-btn:not(.active):hover {
+    color: #f8fafc;
+    background-color: rgba(30, 41, 59, 0.6);
+}
+
+/* Modern Native Date Input Styling */
+input[type="date"],
+input[type="datetime-local"] {
+    position: relative;
+    font-family: 'JetBrains Mono', 'Inter', monospace;
+    font-size: 0.82rem;
+    letter-spacing: -0.01em;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+    filter: invert(0.2);
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator,
+.dark input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.85);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
 /* Print Styles for Official Surat Izin (A4 Kedinasan) */
 @media print {
     body * {
