@@ -1,159 +1,350 @@
-// Data Ruangan SMK Negeri 1 Jakarta
+/**
+ * DATASET & STORAGE ENGINE — PEMANGAN SMKN 1 JAKARTA
+ * Sistem Informasi Peminjaman Ruangan & Laboratorium
+ * Standard: Minimalist Enterprise & High-Fidelity Education Architecture
+ */
+
+// 1. Katalog Ruangan Terpadu SMKN 1 Jakarta
 const ROOMS_DATA = [
-    {
-        id: "r-22",
-        name: "Ruang 22 - Gedung Baru",
-        building: "Gedung Baru",
-        floor: "Lantai 2",
-        capacity: 36,
-        type: "Teori & Kelas",
-        facilities: ["Proyektor LCD Epson", "AC 2 Unit (2 PK)", "Whiteboard Kaca", "WiFi Dedicated 100Mbps", "Sound Speaker Aktif", "Stopkontak Tiap Meja"],
-        image: "./img/image1.png",
-        pic: "Pak Sukirman, S.Pd",
-        status: "available",
-        description: "Ruang kelas modern dengan pencahayaan alami optimal, meja lipat standar ergonomis, cocok untuk KBM interaktif dan simulasi ujian."
-    },
-    {
-        id: "r-23",
-        name: "Ruang 23 - Gedung Baru",
-        building: "Gedung Baru",
-        floor: "Lantai 2",
-        capacity: 36,
-        type: "Teori & Kelas",
-        facilities: ["Proyektor LCD", "AC 2 Unit", "Whiteboard", "WiFi SMKN1 100Mbps", "Terminal Daya Listrik"],
-        image: "./img/image2.png",
-        pic: "Ibu Nurhayati, M.Pd",
-        status: "available",
-        description: "Ruang kelas teori jurusan SIJA & TKJ dilengkapi instalasi kelistrikan aman untuk laptop siswa."
-    },
-    {
-        id: "r-24",
-        name: "Ruang 24 - Gedung Baru",
-        building: "Gedung Baru",
-        floor: "Lantai 2",
-        capacity: 40,
-        type: "Teori & Kelas",
-        facilities: ["Interactive Smart TV 65\"", "AC 2 Unit", "Whiteboard Glass", "WiFi 100Mbps", "Microphone Wireless"],
-        image: "./img/image3.png",
-        pic: "Pak Budi Hartono, S.Kom",
-        status: "available",
-        description: "Ruang kelas multimedia interaktif dengan layar sentuh smart display untuk workshop & presentasi digital."
-    },
-    {
-        id: "r-25",
-        name: "Ruang 25 - Gedung Baru",
-        building: "Gedung Baru",
-        floor: "Lantai 2",
-        capacity: 36,
-        type: "Teori & Kelas",
-        facilities: ["Proyektor LCD", "AC 2 Unit", "Whiteboard", "LAN Socket RJ-45", "Kamera Meeting 1080p"],
-        image: "./img/image1.png",
-        pic: "Pak Dedi Prasetyo, S.T",
-        status: "available",
-        description: "Ruang kelas siap hybrid learning dengan jaringan kabel Ethernet berkecepatan tinggi di tiap sisi ruangan."
-    },
-    {
-        id: "r-15",
-        name: "Ruang 15 - Gedung Lama",
-        building: "Gedung Lama",
-        floor: "Lantai 1",
-        capacity: 32,
-        type: "Reguler",
-        facilities: ["Kipas Angin Dinding 4 Unit", "Whiteboard Besar", "WiFi Kampus", "Mimbar Pembicara"],
-        image: "./img/image2.png",
-        pic: "Ibu Sri Wahyuni, S.Pd",
-        status: "available",
-        description: "Ruang kelas sejuk dekat taman utama sekolah, ideal untuk kegiatan pendalaman materi atau ekstra kurikuler akademik."
-    },
-    {
-        id: "r-16",
-        name: "Ruang 16 - Gedung Lama",
-        building: "Gedung Lama",
-        floor: "Lantai 1",
-        capacity: 32,
-        type: "Reguler",
-        facilities: ["Proyektor Portabel", "Whiteboard", "Kipas Angin Dinding", "WiFi Kampus"],
-        image: "./img/image3.png",
-        pic: "Pak Hendra Gunawan, S.Pd",
-        status: "available",
-        description: "Ruang rapat organisasi kesiswaan (OSIS/MPK) dan kegiatan musyawarah perwakilan kelas."
-    },
     {
         id: "r-401",
         name: "Ruang 401 - Lab Komputer SIJA",
-        building: "Lantai 4",
-        floor: "Lantai 4",
+        building: "Gedung Teori & Praktik (Lantai 4)",
+        category: "Laboratorium",
         capacity: 36,
-        type: "Laboratorium",
-        facilities: ["36 Unit PC Intel i7 / 16GB RAM", "Cisco Router & Mikrotik Rack", "AC Split 3 Unit", "Gigabit Managed Switch", "CCTV 24/7", "Proyektor Full HD"],
+        type: "Lab Cloud & Jaringan",
+        facilities: [
+            "36 Unit PC Intel Core i7 / 16GB RAM / SSD",
+            "Cisco Router & Mikrotik CCR Rack Mounted",
+            "AC Split 3 Unit (1.5 PK Tiap Sisi)",
+            "Gigabit Managed Switch 48-Port",
+            "Dedicated Internet Fiber Optic 200 Mbps",
+            "Proyektor Full HD & Smart Screen Wall",
+            "CCTV Surveillance 24/7"
+        ],
         image: "./img/image1.png",
         pic: "Pak Amrul Khairullah, S.Kom",
+        nipPic: "198001012005011002",
         status: "available",
-        description: "Laboratorium Jaringan, Sistem Komputer, dan Cloud SIJA untuk praktikum mikrotik, cisco networking, dan server cloud."
+        operationalHours: "07:00 - 17:00 WIB",
+        description: "Laboratorium utama kompetensi keahlian SIJA untuk simulasi sistem komputer, cloud computing, arsitektur server Linux, dan praktikum mikrotik / cisco networking."
     },
     {
         id: "r-403",
         name: "Ruang 403 - Lab Rekayasa Perangkat Lunak",
-        building: "Lantai 4",
-        floor: "Lantai 4",
+        building: "Gedung Teori & Praktik (Lantai 4)",
+        category: "Laboratorium",
         capacity: 36,
-        type: "Laboratorium",
-        facilities: ["36 Unit PC High-End Dual Screen", "AC 3 Unit", "High Speed Optical Fiber", "Server Lokal Docker & Git", "Smartboard 75\""],
+        type: "Lab Software & Database",
+        facilities: [
+            "36 Unit PC High-End Dual Screen Workstation",
+            "Server On-Premise Docker & Local Gitlab",
+            "AC Split 3 Unit",
+            "Interactive Smartboard 75\"",
+            "Koneksi LAN Kabel Cat6 Tiap Meja",
+            "Sound Monitor & Audio Speaker"
+        ],
         image: "./img/image2.png",
         pic: "Pak Rian Firmansyah, M.Kom",
+        nipPic: "198506122010011005",
         status: "available",
-        description: "Lab pengembangan aplikasi software web, mobile Android/iOS, database SQL, dan uji sertifikasi BNSP."
+        operationalHours: "07:00 - 17:00 WIB",
+        description: "Lab pengembangan aplikasi software web, mobile Android/iOS, database SQL, machine learning, dan tempat uji kompetensi sertifikasi BNSP bidang programmer."
+    },
+    {
+        id: "r-405",
+        name: "Ruang 405 - Lab Cyber Security & Fiber Optic",
+        building: "Gedung Teori & Praktik (Lantai 4)",
+        category: "Laboratorium",
+        capacity: 32,
+        type: "Lab Cyber & Infrastruktur",
+        facilities: [
+            "32 Workstation Linux Security Hardened",
+            "Fusion Splicer & OTDR Kit Fiber Optic",
+            "AC 2 Unit",
+            "Isolated Sandbox Network VLAN",
+            "Smart Projector Epson Laser"
+        ],
+        image: "./img/image3.png",
+        pic: "Ibu Nurhayati, M.Pd",
+        nipPic: "197803152002122001",
+        status: "available",
+        operationalHours: "07:30 - 16:30 WIB",
+        description: "Laboratorium khusus simulasi keamanan siber, analisis paket jaringan, dan praktik terminasi kabel fiber optic transmisi data cepat."
     },
     {
         id: "r-teater",
-        name: "Ruang 1 - Teater Audio Visual",
-        building: "Gedung Utama",
-        floor: "Lantai 3",
+        name: "Ruang 1 - Teater Audio Visual (Auditorium)",
+        building: "Gedung Utama (Lantai 3)",
+        category: "Auditorium",
         capacity: 120,
-        type: "Auditorium",
-        facilities: ["Panggung Teater Akustik", "Sound System 5000 Watt", "Dual Screen Laser Projector", "Kursi Teater Bertingkat", "Full AC Central", "Lighting Panggung DMX"],
+        type: "Auditorium Megah",
+        facilities: [
+            "Panggung Teater Akustik & Podium Resmi",
+            "Sound System Line Array 5000 Watt",
+            "Dual Laser Projector 6000 Lumens",
+            "Kursi Bioskop Teater Bertingkat",
+            "Central AC System & Lighting DMX Kontrol",
+            "Wireless Microphone 4 Set & Clip-on",
+            "Live Streaming Control Switcher"
+        ],
         image: "./img/image3.png",
         pic: "Ibu Dra. Endang Lestari",
+        nipPic: "196908201994032003",
         status: "available",
-        description: "Auditorium teater megah SMKN 1 Jakarta untuk seminar industri, pemutaran film edukasi, workshop tamu dinas, dan wisuda angkatan."
-    },
-    {
-        id: "r-guru",
-        name: "Ruang Guru & Konferensi Staff",
-        building: "Gedung Lama",
-        floor: "Lantai 1",
-        capacity: 45,
-        type: "Meeting Room",
-        facilities: ["Meja Konferensi U-Shape", "Smart TV 70\" Video Conf", "AC Central", "Dispenser & Coffee Corner", "Sistem Mic Konferensi"],
-        image: "./img/image1.png",
-        pic: "Koordinator Tata Usaha",
-        status: "available",
-        description: "Ruang rapat kedinasan, koordinasi bapak/ibu guru pengajar, dan musyawarah komite orang tua murid."
+        operationalHours: "07:00 - 18:00 WIB",
+        description: "Auditorium teater kedinasan SMKN 1 Jakarta untuk seminar industri, workshop pakar dinas, pemutaran video edukasi, wisuda angkatan, dan presentasi karya besar PKK."
     },
     {
         id: "r-serbaguna",
-        name: "Ruang 2 - Gedung Serbaguna (GSG)",
-        building: "Gedung Serbaguna",
-        floor: "Lantai 1",
+        name: "Ruang 2 - Gedung Serbaguna (Aula GSG)",
+        building: "Gedung Serbaguna (Lantai 1)",
+        category: "Aula Serbaguna",
         capacity: 350,
-        type: "Aula Serbaguna",
-        facilities: ["Panggung Utama 12x6 Meter", "Lapangan Futsal/Basket Indoor", "Sound System Lapangan", "Area Display Pameran", "Kapasitas Listrik 25.000 VA"],
+        type: "Aula Utama",
+        facilities: [
+            "Panggung Utama Dimensi 14 x 8 Meter",
+            "Kapasitas Daya Listrik PLN 33.000 VA",
+            "Lapangan Olahraga Futsal / Basket / Bulutangkis",
+            "Sound System Lapangan Out-door 8000 Watt",
+            "Area Display Stan Pameran Kewirausahaan",
+            "Ruang Ganti & Toilet Bersih Terpisah"
+        ],
         image: "./img/image2.png",
-        pic: "Pak Amrul Khairullah / Waka Sarpras",
+        pic: "Waka Bidang Sarana & Prasarana",
+        nipPic: "197504042000031004",
         status: "available",
-        description: "Aula raksasa untuk peringatan hari besar, expo pameran produk PKK & kewirausahaan, serta kegiatan olahraga indoor."
+        operationalHours: "06:30 - 18:00 WIB",
+        description: "Aula serbaguna indoor untuk peringatan hari besar nasional/agama, pameran expo karya produk PKK SIJA/RPL, rapat pleno komite orang tua, dan perhelatan akbar sekolah."
+    },
+    {
+        id: "r-guru",
+        name: "Ruang Guru & Konferensi Pimpinan",
+        building: "Gedung Utama (Lantai 1)",
+        category: "Meeting Room",
+        capacity: 45,
+        type: "Ruang Rapat Eksekutif",
+        facilities: [
+            "Meja Rapat Konferensi U-Shape Kayu Jati",
+            "Smart TV 75\" 4K dengan Kamera Video Conf Polycom",
+            "AC Central & Coffee Break Station",
+            "Mikrofon Meja Konferensi Gooseneck",
+            "High Speed WiFi 150 Mbps"
+        ],
+        image: "./img/image1.png",
+        pic: "Koordinator Tata Usaha & Sarpras",
+        nipPic: "198205102008011012",
+        status: "available",
+        operationalHours: "07:00 - 17:00 WIB",
+        description: "Ruang rapat kedinasan, musyawarah dewan guru pengajar, koordinasi pimpinan sekolah, dan briefing pengawas Dinas Pendidikan."
+    },
+    {
+        id: "r-podcast",
+        name: "Studio Podcast & Broadcasting SMKN 1",
+        building: "Gedung Utama (Lantai 3)",
+        category: "Laboratorium",
+        capacity: 15,
+        type: "Studio Rekaman",
+        facilities: [
+            "Dinding Peredam Suara Akustik Rockwool 100%",
+            "4 Mic Shure SM7B & Audio Interface Rodecaster Pro",
+            "3 Unit Kamera Sony Cinema Mirrorless 4K",
+            "Lighting Softbox Godox Studio",
+            "Green Screen Wall & Teleprompter",
+            "AC Inverter Ultra Quiet"
+        ],
+        image: "./img/image2.png",
+        pic: "Pak Budi Hartono, S.Kom",
+        nipPic: "198809142014021003",
+        status: "available",
+        operationalHours: "08:00 - 16:30 WIB",
+        description: "Studio siaran podcast edukasi, pembuatan video konten pembelajaran guru, media branding sekolah, dan pelatihan public speaking kesiswaan."
+    },
+    {
+        id: "r-22",
+        name: "Ruang 22 - Gedung Baru",
+        building: "Gedung Baru (Lantai 2)",
+        category: "Teori & Kelas",
+        capacity: 36,
+        type: "Kelas Teori Modern",
+        facilities: [
+            "Proyektor Epson 3600 Lumens",
+            "AC Split 2 Unit (2 PK)",
+            "Whiteboard Kaca Lebar",
+            "Stopkontak Listrik Mandiri Tiap Meja",
+            "WiFi SMKN 1 Dedicated 100 Mbps",
+            "Sound Speaker Dinding Aktif"
+        ],
+        image: "./img/image1.png",
+        pic: "Pak Sukirman, S.Pd",
+        nipPic: "197702112003121002",
+        status: "available",
+        operationalHours: "07:00 - 16:30 WIB",
+        description: "Ruang kelas teori jurusan teknologi modern dengan pencahayaan alami optimal, meja lipat standar ergonomis, cocok untuk KBM interaktif dan simulasi ujian."
+    },
+    {
+        id: "r-23",
+        name: "Ruang 23 - Gedung Baru",
+        building: "Gedung Baru (Lantai 2)",
+        category: "Teori & Kelas",
+        capacity: 36,
+        type: "Kelas Teori Modern",
+        facilities: [
+            "Proyektor LCD",
+            "AC Split 2 Unit",
+            "Whiteboard",
+            "WiFi SMKN 1 100 Mbps",
+            "Terminal Stopkontak Daya Listrik Laptop"
+        ],
+        image: "./img/image2.png",
+        pic: "Ibu Nurhayati, M.Pd",
+        nipPic: "197803152002122001",
+        status: "available",
+        operationalHours: "07:00 - 16:30 WIB",
+        description: "Ruang kelas teori jurusan SIJA & TKJ dilengkapi instalasi kelistrikan aman untuk pengoperasian laptop siswa secara simultan."
+    },
+    {
+        id: "r-24",
+        name: "Ruang 24 - Gedung Baru (Smart Class)",
+        building: "Gedung Baru (Lantai 2)",
+        category: "Teori & Kelas",
+        capacity: 40,
+        type: "Smart Classroom",
+        facilities: [
+            "Interactive Smart TV 65\" Touchscreen",
+            "AC Split 2 Unit",
+            "Whiteboard Glass Frameless",
+            "WiFi 100 Mbps",
+            "Wireless Microphone & Speaker",
+            "Kamera Portabel Hybrid Meeting"
+        ],
+        image: "./img/image3.png",
+        pic: "Pak Budi Hartono, S.Kom",
+        nipPic: "198809142014021003",
+        status: "available",
+        operationalHours: "07:00 - 16:30 WIB",
+        description: "Ruang kelas multimedia interaktif dengan layar sentuh smart display untuk workshop, presentasi digital kesiswaan, dan diskusi kelompok."
+    },
+    {
+        id: "r-25",
+        name: "Ruang 25 - Gedung Baru (Hybrid Class)",
+        building: "Gedung Baru (Lantai 2)",
+        category: "Teori & Kelas",
+        capacity: 36,
+        type: "Kelas Hybrid",
+        facilities: [
+            "Proyektor LCD Full HD",
+            "AC Split 2 Unit",
+            "Whiteboard",
+            "LAN Socket RJ-45 Tiap Meja",
+            "Kamera Meeting 1080p",
+            "Sound Speaker Surround"
+        ],
+        image: "./img/image1.png",
+        pic: "Pak Dedi Prasetyo, S.T",
+        nipPic: "198407222009021004",
+        status: "available",
+        operationalHours: "07:00 - 16:30 WIB",
+        description: "Ruang kelas siap hybrid learning dengan jaringan kabel Ethernet berkecepatan tinggi di tiap sisi ruangan untuk simulasi ujian online."
+    },
+    {
+        id: "r-15",
+        name: "Ruang 15 - Gedung Lama",
+        building: "Gedung Lama (Lantai 1)",
+        category: "Reguler",
+        capacity: 32,
+        type: "Kelas Reguler Sejuk",
+        facilities: [
+            "Kipas Angin Dinding 4 Unit",
+            "Whiteboard Besar",
+            "WiFi Kampus SMKN 1",
+            "Mimbar Pembicara Kayu Jati"
+        ],
+        image: "./img/image2.png",
+        pic: "Ibu Sri Wahyuni, S.Pd",
+        nipPic: "197304191998022001",
+        status: "available",
+        operationalHours: "07:00 - 16:00 WIB",
+        description: "Ruang kelas asri dekat taman utama sekolah, ideal untuk kegiatan pendalaman materi pelajaran normatif adaptif atau ekskul akademik."
+    },
+    {
+        id: "r-16",
+        name: "Ruang 16 - Gedung Lama (Organisasi Kesiswaan)",
+        building: "Gedung Lama (Lantai 1)",
+        category: "Reguler",
+        capacity: 32,
+        type: "Ruang Organisasi",
+        facilities: [
+            "Proyektor Portabel",
+            "Whiteboard",
+            "Kipas Angin Dinding 4 Unit",
+            "WiFi Kampus",
+            "Papan Informasi Kesiswaan"
+        ],
+        image: "./img/image3.png",
+        pic: "Pak Hendra Gunawan, S.Pd",
+        nipPic: "198111052006041008",
+        status: "available",
+        operationalHours: "07:00 - 17:30 WIB",
+        description: "Ruang sekretariat bersama & rapat organisasi kesiswaan (OSIS/MPK/Pramuka/PMR/Rohanis) dan musyawarah perwakilan kelas."
     }
 ];
 
-// Akun Pengguna SMKN 1 Jakarta
-const INITIAL_USERS = [
-    { nis: "102144", name: "Arrofi Zein", class: "XI SIJA", role: "siswa", password: "123", email: "zein@sija.smkn1jkt.sch.id" },
-    { nis: "102145", name: "Rasya Aryasatya", class: "XI SIJA", role: "siswa", password: "123", email: "rasya@sija.smkn1jkt.sch.id" },
-    { nis: "19800101", name: "Pak Amrul Khairullah, S.Kom", class: "Guru Produktif SIJA", role: "guru", password: "guru", email: "amrul@smkn1jakarta.sch.id" },
-    { nis: "admin", name: "Staf Sarpras & Tata Usaha", class: "Unit Pengelola Sarana", role: "admin", password: "admin", email: "sarpras@smkn1jakarta.sch.id" }
+// 2. Katalog Opsi Peralatan Tambahan (Equipment Add-ons)
+const EQUIPMENT_OPTIONS = [
+    { id: "eq-mic", name: "Mikrofon Wireless Extra (2 Unit)", category: "Audio" },
+    { id: "eq-sound", name: "Portable Sound System + Bluetooth", category: "Audio" },
+    { id: "eq-projector", name: "Laser Pointer Presenter + Kabel HDMI 10m", category: "Display" },
+    { id: "eq-switch", name: "Gigabit Switch 16-Port & Kabel Patch Cord", category: "Jaringan" },
+    { id: "eq-chairs", name: "Kursi Tambahan Lipat (20 Unit)", category: "Furnitur" },
+    { id: "eq-streaming", name: "Kit Web Camera 1080p & Tripod", category: "Multimedia" }
 ];
 
-// Data Awal Peminjaman
+// 3. Akun Pengguna Terdaftar (RBAC System)
+const INITIAL_USERS = [
+    {
+        nis: "102144",
+        name: "Arrofi Zein",
+        class: "XI SIJA 1",
+        role: "siswa",
+        password: "123",
+        email: "arrofi.zein@sija.smkn1jkt.sch.id",
+        avatar: "AZ",
+        phone: "081299887766"
+    },
+    {
+        nis: "102145",
+        name: "Rasya Aryasatya",
+        class: "XI SIJA 1",
+        role: "siswa",
+        password: "123",
+        email: "rasya.aryasatya@sija.smkn1jkt.sch.id",
+        avatar: "RA",
+        phone: "087783926736"
+    },
+    {
+        nis: "19800101",
+        name: "Pak Amrul Khairullah, S.Kom",
+        class: "Guru Produktif SIJA",
+        role: "guru",
+        password: "guru",
+        email: "amrul.khairullah@smkn1jakarta.sch.id",
+        avatar: "AK",
+        phone: "081311223344"
+    },
+    {
+        nis: "admin",
+        name: "Staf Sarana & Prasarana SMKN 1",
+        class: "Unit Sarpras & Tata Usaha",
+        role: "admin",
+        password: "admin",
+        email: "sarpras@smkn1jakarta.sch.id",
+        avatar: "SP",
+        phone: "0213813630"
+    }
+];
+
+// 4. Data Peminjaman Awal
 const INITIAL_BOOKINGS = [
     {
         id: "BK-2026-001",
@@ -161,8 +352,10 @@ const INITIAL_BOOKINGS = [
         roomName: "Ruang 401 - Lab Komputer SIJA",
         userName: "Rasya Aryasatya",
         userRole: "siswa",
-        userClass: "XI SIJA",
+        userClass: "XI SIJA 1",
         userContact: "087783926736",
+        supervisorName: "Pak Amrul Khairullah, S.Kom",
+        equipment: ["Mikrofon Wireless Extra (2 Unit)", "Gigabit Switch 16-Port & Kabel Patch Cord"],
         reason: "Simulasi Uji Kompetensi Jaringan Cloud & Server Linux SIJA",
         startDateTime: "2026-08-29T08:00",
         endDateTime: "2026-08-29T12:00",
@@ -170,41 +363,45 @@ const INITIAL_BOOKINGS = [
         createdAt: "2026-08-28T09:30:00",
         approvedBy: "Pak Amrul Khairullah, S.Kom",
         approvalDate: "2026-08-28T10:00:00",
-        feedback: "Disetujui. Harap memastikan kabel patch cord dan switch lab dalam keadaan rapi sebelum ditinggalkan."
+        feedback: "Disetujui. Pastikan kabel patch cord dan switch lab dalam keadaan rapi dan matikan AC setelah selesai."
     },
     {
         id: "BK-2026-002",
         roomId: "r-teater",
-        roomName: "Ruang 1 - Teater Audio Visual",
+        roomName: "Ruang 1 - Teater Audio Visual (Auditorium)",
         userName: "Arrofi Zein",
         userRole: "siswa",
-        userClass: "XI SIJA",
+        userClass: "XI SIJA 1",
         userContact: "081299887766",
+        supervisorName: "Pak Amrul Khairullah, S.Kom",
+        equipment: ["Laser Pointer Presenter + Kabel HDMI 10m", "Kit Web Camera 1080p & Tripod"],
         reason: "Presentasi Final Project PKK Web Pemangan dan Uji Coba Sistem Terpadu",
         startDateTime: "2026-08-29T13:00",
         endDateTime: "2026-08-29T15:30",
         status: "approved",
         createdAt: "2026-08-28T10:15:00",
-        approvedBy: "Staf Sarpras & Tata Usaha",
+        approvedBy: "Staf Sarana & Prasarana SMKN 1",
         approvalDate: "2026-08-28T11:00:00",
-        feedback: "Disetujui. Koordinasikan kebutuhan operator sound system dan kabel proyektor teater."
+        feedback: "Disetujui. Koordinasikan kebutuhan operator sound system teater ke petugas piket audio visual."
     },
     {
         id: "BK-2026-003",
         roomId: "r-serbaguna",
-        roomName: "Ruang 2 - Gedung Serbaguna (GSG)",
+        roomName: "Ruang 2 - Gedung Serbaguna (Aula GSG)",
         userName: "Pak Amrul Khairullah, S.Kom",
         userRole: "guru",
         userClass: "Guru Produktif SIJA",
         userContact: "081311223344",
-        reason: "Briefing Akbar Koordinasi Pameran Karya Kreatif & Kewirausahaan (PKK) Kelas XI",
+        supervisorName: "Wakil Kepala Sekolah Bidang Sarpras",
+        equipment: ["Portable Sound System + Bluetooth", "Kursi Tambahan Lipat (20 Unit)"],
+        reason: "Briefing Akbar Koordinasi Pameran Karya Kreatif & Kewirausahaan (PKK) Kelas XI Seluruh Jurusan",
         startDateTime: "2026-08-30T09:00",
-        endDateTime: "2026-08-30T11:30",
+        endDateTime: "2026-08-30T12:00",
         status: "approved",
         createdAt: "2026-08-28T11:00:00",
         approvedBy: "Kepala Sekolah SMKN 1 Jakarta",
         approvalDate: "2026-08-28T11:30:00",
-        feedback: "Disetujui untuk seluruh kelas XI."
+        feedback: "Disetujui untuk seluruh dewan guru dan perwakilan kelas XI."
     },
     {
         id: "BK-2026-004",
@@ -212,9 +409,11 @@ const INITIAL_BOOKINGS = [
         roomName: "Ruang 403 - Lab Rekayasa Perangkat Lunak",
         userName: "Arrofi Zein",
         userRole: "siswa",
-        userClass: "XI SIJA",
+        userClass: "XI SIJA 1",
         userContact: "081299887766",
-        reason: "Workshop Git & GitHub Collaboration untuk Tim Proyek Sekolah",
+        supervisorName: "Pak Rian Firmansyah, M.Kom",
+        equipment: ["Laser Pointer Presenter + Kabel HDMI 10m"],
+        reason: "Workshop Git & GitHub Collaboration untuk Tim Pengembang Proyek Sekolah",
         startDateTime: "2026-08-31T14:00",
         endDateTime: "2026-08-31T16:30",
         status: "pending",
@@ -225,55 +424,156 @@ const INITIAL_BOOKINGS = [
     }
 ];
 
-// Storage Engine
+// 5. Storage Engine & Utility Service
 const StorageService = {
     init() {
-        if (!localStorage.getItem('pemangan_rooms')) {
-            localStorage.setItem('pemangan_rooms', JSON.stringify(ROOMS_DATA));
+        if (!localStorage.getItem('pemangan_rooms_v2')) {
+            localStorage.setItem('pemangan_rooms_v2', JSON.stringify(ROOMS_DATA));
         }
-        if (!localStorage.getItem('pemangan_bookings')) {
-            localStorage.setItem('pemangan_bookings', JSON.stringify(INITIAL_BOOKINGS));
+        if (!localStorage.getItem('pemangan_bookings_v2')) {
+            localStorage.setItem('pemangan_bookings_v2', JSON.stringify(INITIAL_BOOKINGS));
         }
-        if (!localStorage.getItem('pemangan_users')) {
-            localStorage.setItem('pemangan_users', JSON.stringify(INITIAL_USERS));
+        if (!localStorage.getItem('pemangan_users_v2')) {
+            localStorage.setItem('pemangan_users_v2', JSON.stringify(INITIAL_USERS));
         }
     },
     getRooms() {
-        return JSON.parse(localStorage.getItem('pemangan_rooms') || '[]');
+        return JSON.parse(localStorage.getItem('pemangan_rooms_v2') || JSON.stringify(ROOMS_DATA));
+    },
+    getRoomById(id) {
+        return this.getRooms().find(r => r.id === id) || null;
     },
     getBookings() {
-        return JSON.parse(localStorage.getItem('pemangan_bookings') || '[]');
+        return JSON.parse(localStorage.getItem('pemangan_bookings_v2') || JSON.stringify(INITIAL_BOOKINGS));
+    },
+    getBookingById(id) {
+        return this.getBookings().find(b => b.id.toLowerCase() === id.toLowerCase().trim()) || null;
     },
     saveBooking(bookingData) {
         const bookings = this.getBookings();
         bookings.unshift(bookingData);
-        localStorage.setItem('pemangan_bookings', JSON.stringify(bookings));
+        localStorage.setItem('pemangan_bookings_v2', JSON.stringify(bookings));
         return bookingData;
     },
-    updateBookingStatus(id, newStatus, feedback = '', approverName = 'Admin Sarpras') {
+    updateBookingStatus(id, newStatus, feedback = '', approverName = 'Sarpras SMKN 1') {
         const bookings = this.getBookings();
         const item = bookings.find(b => b.id === id);
         if (item) {
             item.status = newStatus;
-            item.feedback = feedback || (newStatus === 'approved' ? 'Disetujui oleh petugas Sarpras.' : 'Ditolak karena alasan jadwal / teknis.');
+            item.feedback = feedback || (newStatus === 'approved' ? 'Disetujui resmi oleh petugas Sarpras.' : 'Ditolak karena alasan jadwal / teknis kedinasan.');
             item.approvedBy = approverName;
             item.approvalDate = new Date().toISOString();
-            localStorage.setItem('pemangan_bookings', JSON.stringify(bookings));
+            localStorage.setItem('pemangan_bookings_v2', JSON.stringify(bookings));
         }
         return item;
     },
     deleteBooking(id) {
         let bookings = this.getBookings();
         bookings = bookings.filter(b => b.id !== id);
-        localStorage.setItem('pemangan_bookings', JSON.stringify(bookings));
+        localStorage.setItem('pemangan_bookings_v2', JSON.stringify(bookings));
+    },
+    checkConflict(roomId, startDateTime, endDateTime, excludeId = null) {
+        const currentBookings = this.getBookings();
+        const reqStart = new Date(startDateTime).getTime();
+        const reqEnd = new Date(endDateTime).getTime();
+
+        return currentBookings.some(b => {
+            if (excludeId && b.id === excludeId) return false;
+            if (b.roomId !== roomId || b.status === 'rejected') return false;
+
+            const bStart = new Date(b.startDateTime).getTime();
+            const bEnd = new Date(b.endDateTime).getTime();
+
+            return (reqStart < bEnd && reqEnd > bStart);
+        });
+    },
+    getHourlyMatrix(dateStr) {
+        // Generates occupancy grid from 07:00 to 17:00 for a given date YYYY-MM-DD
+        const rooms = this.getRooms();
+        const bookings = this.getBookings();
+        const hours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+        
+        return rooms.map(room => {
+            const row = {
+                room: room,
+                slots: hours.map(h => {
+                    const slotStart = new Date(`${dateStr}T${String(h).padStart(2, '0')}:00`).getTime();
+                    const slotEnd = new Date(`${dateStr}T${String(h + 1).padStart(2, '0')}:00`).getTime();
+
+                    const matchedBooking = bookings.find(b => {
+                        if (b.roomId !== room.id || b.status === 'rejected') return false;
+                        const bStart = new Date(b.startDateTime).getTime();
+                        const bEnd = new Date(b.endDateTime).getTime();
+                        return (slotStart < bEnd && slotEnd > bStart);
+                    });
+
+                    return {
+                        hour: h,
+                        label: `${String(h).padStart(2, '0')}:00`,
+                        isBooked: !!matchedBooking,
+                        booking: matchedBooking || null
+                    };
+                })
+            };
+            return row;
+        });
+    },
+    getAnalytics() {
+        const bookings = this.getBookings();
+        const rooms = this.getRooms();
+        
+        const total = bookings.length;
+        const approved = bookings.filter(b => b.status === 'approved').length;
+        const pending = bookings.filter(b => b.status === 'pending').length;
+        const rejected = bookings.filter(b => b.status === 'rejected').length;
+        
+        // Count room popularity
+        const roomCounts = {};
+        bookings.forEach(b => {
+            roomCounts[b.roomName] = (roomCounts[b.roomName] || 0) + 1;
+        });
+
+        const topRoomEntry = Object.entries(roomCounts).sort((a, b) => b[1] - a[1])[0] || ['Belum Ada', 0];
+
+        return {
+            total,
+            approved,
+            pending,
+            rejected,
+            approvalRate: total > 0 ? Math.round((approved / total) * 100) : 100,
+            topRoomName: topRoomEntry[0],
+            topRoomCount: topRoomEntry[1],
+            totalRooms: rooms.length
+        };
+    },
+    exportBookingsCSV() {
+        const bookings = this.getBookings();
+        const headers = ["ID Tiket", "Nama Ruangan", "Pemohon", "Peran", "Kelas/Unit", "Kontak", "Guru Pembimbing", "Keperluan", "Waktu Mulai", "Waktu Selesai", "Status", "Disetujui Oleh", "Tanggal"];
+        const rows = bookings.map(b => [
+            `"${b.id}"`,
+            `"${b.roomName}"`,
+            `"${b.userName}"`,
+            `"${b.userRole}"`,
+            `"${b.userClass || '-'}"`,
+            `"${b.userContact || '-'}"`,
+            `"${b.supervisorName || '-'}"`,
+            `"${(b.reason || '').replace(/"/g, '""')}"`,
+            `"${b.startDateTime}"`,
+            `"${b.endDateTime}"`,
+            `"${b.status}"`,
+            `"${b.approvedBy}"`,
+            `"${b.createdAt}"`
+        ]);
+
+        return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
     },
     getUsers() {
-        return JSON.parse(localStorage.getItem('pemangan_users') || '[]');
+        return JSON.parse(localStorage.getItem('pemangan_users_v2') || JSON.stringify(INITIAL_USERS));
     },
     addUser(user) {
         const users = this.getUsers();
         users.push(user);
-        localStorage.setItem('pemangan_users', JSON.stringify(users));
+        localStorage.setItem('pemangan_users_v2', JSON.stringify(users));
     },
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('pemangan_current_user') || 'null');
@@ -285,12 +585,13 @@ const StorageService = {
         localStorage.removeItem('pemangan_current_user');
     },
     resetDataToDefault() {
-        localStorage.setItem('pemangan_rooms', JSON.stringify(ROOMS_DATA));
-        localStorage.setItem('pemangan_bookings', JSON.stringify(INITIAL_BOOKINGS));
-        localStorage.setItem('pemangan_users', JSON.stringify(INITIAL_USERS));
+        localStorage.setItem('pemangan_rooms_v2', JSON.stringify(ROOMS_DATA));
+        localStorage.setItem('pemangan_bookings_v2', JSON.stringify(INITIAL_BOOKINGS));
+        localStorage.setItem('pemangan_users_v2', JSON.stringify(INITIAL_USERS));
     }
 };
 
 StorageService.init();
 window.StorageService = StorageService;
 window.ROOMS_DATA = ROOMS_DATA;
+window.EQUIPMENT_OPTIONS = EQUIPMENT_OPTIONS;

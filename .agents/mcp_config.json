@@ -1,0 +1,49 @@
+{
+  "mcpServers": {
+    "codebash": {
+      "command": "node",
+      "args": [
+        "/home/benn/.agents/mcp-servers/codebash/index.js"
+      ]
+    },
+    "codegraph": {
+      "command": "node",
+      "args": [
+        "/home/benn/.agents/mcp-servers/codegraph/index.js"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp",
+        "--headless",
+        "--no-sandbox"
+      ]
+    },
+    "camofox": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-camoufox"
+      ]
+    },
+    "doc-reader": {
+      "command": "node",
+      "args": [
+        "/home/benn/Project/Pemangan/.agents/mcp-servers/doc-reader/index.js"
+      ]
+    },
+    "codebase-memory": {
+      "command": "/home/benn/.local/bin/codebase-memory-mcp",
+      "args": []
+    }
+  }
+}
