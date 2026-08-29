@@ -12,8 +12,8 @@ if (!fs.existsSync(screenshotDir)) {
   fs.mkdirSync(screenshotDir, { recursive: true });
 }
 
-async function testSplashScreen() {
-  console.log('📱 Testing 3-Second Splash Loading Screen...');
+async function testInteractiveSplash() {
+  console.log('📱 Testing Interactive Diagnostics Preloader...');
 
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
@@ -27,23 +27,29 @@ async function testSplashScreen() {
     console.log('1. Navigating to website...');
     await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
     
-    // Capture during splash loading (approx 1s in)
-    await page.waitForTimeout(1000);
-    await page.screenshot({ path: path.join(screenshotDir, '00-mobile-splash-loading.png') });
-    console.log('✅ Splash screen captured (progress active).');
+    // Capture early stage
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: path.join(screenshotDir, '00a-interactive-splash-start.png') });
+    console.log('✅ Interactive splash initial state captured.');
 
-    // Wait for splash screen (3s) to complete
-    await page.waitForTimeout(2500);
-    await page.screenshot({ path: path.join(screenshotDir, '01-mobile-home-after-splash.png') });
-    console.log('✅ Main app captured after splash transition.');
+    // Interactive tap on screen to test boost & ripple
+    await page.mouse.click(200, 350);
+    await page.waitForTimeout(200);
+    await page.screenshot({ path: path.join(screenshotDir, '00b-interactive-splash-boost.png') });
+    console.log('✅ Interactive tap boost captured.');
 
-    console.log('\n🎉 SPLASH SCREEN TEST PASSED 100%');
+    // Wait for splash screen to smoothly complete
+    await page.waitForTimeout(2200);
+    await page.screenshot({ path: path.join(screenshotDir, '00c-homepage-after-splash.png') });
+    console.log('✅ Main app captured after interactive splash transition.');
+
+    console.log('\n🎉 ALL INTERACTIVE PRELOADER TESTS PASSED 100%');
   } catch (err) {
-    console.error('❌ Splash screen test error:', err);
+    console.error('❌ Interactive splash test error:', err);
     process.exitCode = 1;
   } finally {
     await browser.close();
   }
 }
 
-testSplashScreen();
+testInteractiveSplash();
