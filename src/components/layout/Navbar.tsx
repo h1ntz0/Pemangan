@@ -18,9 +18,9 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { to: '/', label: 'Beranda' },
     { to: '/rooms', label: 'Ruangan' },
-    { to: '/booking', label: 'Reservasi' },
+    { to: '/booking', label: 'Peminjaman' },
     { to: '/timetable', label: 'Jadwal' },
-    { to: '/tracking', label: 'Lacak Resi' },
+    { to: '/tracking', label: 'Lacak Status' },
     { to: '/admin', label: 'Sarpras' },
   ];
 
@@ -40,29 +40,24 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           
-          {/* Brand Logo & Title */}
+          {/* Brand Logo & Title (Clean, Without '2.0') */}
           <Link to="/" className="flex items-center gap-3">
             <img 
               src="/img/logo.png" 
-              alt="Logo SMKN 1 Jakarta" 
+              alt="Logo SMK Negeri 1 Jakarta" 
               className="h-8 sm:h-9 w-auto object-contain shrink-0"
             />
             <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none">
-                  PEMANGAN
-                </span>
-                <span className="px-1.5 py-0.2 text-[10px] font-semibold rounded bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-                  2.0
-                </span>
-              </div>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block">
+              <span className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none">
+                PEMANGAN
+              </span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block mt-0.5">
                 SMK Negeri 1 Jakarta
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links (Clean Text, No Icon Clutter) */}
+          {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((item) => (
               <NavLink
@@ -84,7 +79,7 @@ export const Navbar: React.FC = () => {
           {/* Right Action Controls: Theme Switcher & User Profile */}
           <div className="flex items-center gap-2 sm:gap-3">
             
-            {/* Theme Toggle Button (Clean Light/Dark Switcher) */}
+            {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
               type="button"
