@@ -23,6 +23,7 @@
 
 ## Daftar Isi
 - [Tentang Pemangan](#-tentang-pemangan)
+- [Pratinjau Antarmuka](#-pratinjau-antarmuka)
 - [Fitur Utama](#-fitur-utama)
 - [Arsitektur & Tech Stack](#-arsitektur--tech-stack)
 - [Struktur Halaman & Routing](#-struktur-halaman--routing)
@@ -37,6 +38,34 @@
 ## 📌 Tentang Pemangan
 
 **PEMANGAN** merupakan akronim dari **PEM**injaman ru**ANGAN**. Platform ini dikembangkan untuk mendigitalkan alur peminjaman fasilitas sekolah di SMK Negeri 1 Jakarta, menggantikan pencatatan manual berbasis buku dan formulir kertas dengan sistem terpusat, transparan, dan bebas bentrok jadwal (*conflict-free scheduling*).
+
+---
+
+## 📱 Pratinjau Antarmuka
+
+### 1. Tampilan Desktop (Web Browser)
+
+<div align="center">
+
+| Beranda Utama | Katalog Ruangan |
+|---|---|
+| <img src="docs/screenshots/desktop-beranda.png" width="450" alt="Beranda Desktop" /> | <img src="docs/screenshots/desktop-ruangan.png" width="450" alt="Katalog Ruangan Desktop" /> |
+
+| Jadwal Matriks Per-Jam | Lembar Surat Izin Resmi |
+|---|---|
+| <img src="docs/screenshots/desktop-jadwal.png" width="450" alt="Jadwal Matriks Desktop" /> | <img src="docs/screenshots/desktop-surat-izin.png" width="450" alt="Surat Izin Resmi Desktop" /> |
+
+</div>
+
+### 2. Tampilan Mobile (Smartphone / HP)
+
+<div align="center">
+
+| Splash Onboarding | Beranda Mobile | Wizard Peminjaman | Pelacakan Resi |
+|---|---|---|---|
+| <img src="docs/screenshots/mobile-splash.png" width="220" alt="Splash Screen Mobile" /> | <img src="docs/screenshots/mobile-beranda.png" width="220" alt="Beranda Mobile" /> | <img src="docs/screenshots/mobile-booking.png" width="220" alt="Wizard Booking Mobile" /> | <img src="docs/screenshots/mobile-tracking.png" width="220" alt="Tracking Mobile" /> |
+
+</div>
 
 ---
 
@@ -85,6 +114,8 @@
 
 ```text
 Pemangan/
+├── docs/
+│   └── screenshots/         # Tangkapan layar antarmuka desktop & mobile untuk README
 ├── public/
 │   └── img/                 # Aset logo resmi SMKN 1 Jakarta (transparan) & foto fasilitas
 ├── src/
@@ -102,7 +133,6 @@ Pemangan/
 │   ├── App.tsx              # Router mapping & layout wrapper
 │   ├── index.css            # Token 3-warna & dark mode variant
 │   └── main.tsx             # Entry point React
-├── testing/                 # Tangkapan layar hasil verifikasi Playwright
 ├── nginx.conf               # Konfigurasi Nginx virtual host
 └── package.json
 ```
@@ -192,7 +222,7 @@ Aplikasi menyediakan kredensial instan untuk menguji berbagai peran pengguna:
 
 ## 🧪 Pengujian Otomatis
 
-Suite pengujian otomatis berbasis Playwright mencakup verifikasi navigasi mobile, formulir wizard, pemilihan tema, dan pengecekan tampilan bebas dari layout breaking:
+Suite pengujian otomatis berbasis Playwright mencakup verifikasi navigasi mobile, formulir wizard, pemilihan tema, dan pengecekan tampilan:
 
 ```bash
 # Jalankan pengujian alur mobile & tema
