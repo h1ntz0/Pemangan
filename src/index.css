@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* 3-Color Strict Palette (Comfortable, Eye-Friendly, Non-AI-Slop) */
+    --color-primary: #1d4ed8;
+    --color-primary-hover: #1e40af;
+    
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f5f9;
+    --color-border: #e2e8f0;
+    
+    --color-text-main: #0f172a;
+    --color-text-muted: #64748b;
+  }
+
+  .dark, [data-theme="dark"] {
+    /* Comfortable Dark Mode (Deep Slate / Charcoal, Zero Eye Strain) */
+    --color-primary: #3b82f6;
+    --color-primary-hover: #60a5fa;
+    
+    --color-bg: #0b0f19;
+    --color-surface: #111827;
+    --color-surface-hover: #1e293b;
+    --color-border: #1e293b;
+    
+    --color-text-main: #f1f5f9;
+    --color-text-muted: #94a3b8;
+  }
+
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+/* Safe bottom padding for mobile navigation bar */
+@media (max-width: 1023px) {
+  main {
+    padding-bottom: 5rem !important;
+  }
+}
+
+/* Print Optimization for Official Permit Slip (A4 Standar Kedinasan) */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+  
+  nav, footer, .no-print, header, button, .bottom-nav {
+    display: none !important;
+  }
+  
+  .printable-area {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+}
