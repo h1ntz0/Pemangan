@@ -1,157 +1,219 @@
 ---
 name: qa-automatin-test
-description: "Universal QA & SIT Automated Testing Agent menggunakan Playwright. Menjalankan Happy Test, Negative Test, Boundary, Security Injection & Exploratory Monkey Test. Menghasilkan laporan Markdown dan Workbook Excel SIT Standar Perusahaan secara dinamis untuk web app apa pun."
+description: "Universal Headed & Ultra-Powerful Autonomous QA & SIT Automated Testing Agent menggunakan Playwright & Camofox. Wajib melakukan Interactive Requirement Intake sebelum pengujian, mengeksekusi browser secara Headed (GUI Visible), mengorkestrasi MCP & Skill ekosistem (codebash, codebase-memory, xlsx, docx, bug-bounty, sequential-thinking), serta merender laporan akhir berstandar human craftsmanship menggunakan skill humanizer."
 ---
 
-# QA Automatin Test (Universal SOP-Driven Testing)
+# Autonomous Headed QA & SIT Engine (Enterprise Universal Testing Framework)
 
-Skill ini dirancang untuk menjalankan pengujian **SIT (System Integration Testing), UAT, dan Bug Hunting** pada aplikasi web apa pun secara **dinamis, interaktif, dan terstandarisasi**.
-
----
-
-## 🎯 Aturan Wajib (Core Rules)
-1. **Dilarang langsung mulai test tanpa bertanya**: Agen WAJIB menjalankan wawancara requirement interaktif terlebih dahulu.
-2. **Result `X` untuk Bug**: Semua temuan ketidaksesuaian/bug bernilai `X` di Excel, bukan `V`.
-3. **Standarisasi SIT**: Kolom *Tipe Temuan* (Critical, Major, Minor, Trivia) dan *Keterangan* wajib terisi lengkap pada setiap temuan `X`.
-4. **Self-Healing Automation**: Jika script terhenti karena overlay atau controlled component, script wajib menerapkan *auto-recover* tanpa mematikan sesi.
+Skill ini adalah agen pengujian web otomatis berstandar enterprise dengan **Interactive Requirement Intake**, **Visual Headed Browser Execution**, **Autonomous State-Machine Looping**, **Deep Modal Traversal**, **Multi-Tool & MCP Orchestration**, dan **Humanizer-Powered Reporting**.
 
 ---
 
-## 🔄 Alur Kerja Lengkap (Step-by-Step)
+## 🧩 0. MCP & Skill Synergy Ecosystem
 
-### Step 0: Wawancara Requirement (Wajib Tanya ke User)
-Sebelum menulis script atau membuka browser, ajukan pertanyaan berikut secara terstruktur:
+Engine ini memanfaatkan kekuatan penuh dari MCP Server dan Skill pelengkap:
 
-```markdown
-Mohon lengkapi informasi berikut sebelum pengujian dimulai:
-
-1. 🌐 **Target URL**: Alamat web yang akan diuji (contoh: http://10.10.0.39:5007)
-2. 📄 **Dokumen Acuan**: Apakah ada file FSD, SRS, API docs, atau SOP Excel template?
-   *(Anda dapat langsung melampirkan file .pdf, .docx, atau .xlsx — sistem telah dilengkapi MCP Doc-Reader otomatis)*
-3. 🔐 **Akses Login & Role**:
-   - Akun Admin: [Username/NIK] & [Password]
-   - Akun User Biasa / Non-Admin: [Username/NIK] & [Password]
-4. 📋 **Form Data Tambahan**: Apakah ada master data khusus untuk isian form? (contoh: daftar NIK, Divisi, Kode Kantor)
-5. 🧪 **Cakupan Pengujian (Scope)**:
-   - [A] Happy Test Saja (Alur Positif)
-   - [B] Happy Test + Negative Test (Validasi, Error & Boundary)
-   - [C] Lengkap: Happy + Negative + Monkey Test (Security & Chaos)
-6. 🖥️ **Mode Browser**: Visible (Headless: false) atau Background (Headless: true)?
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                  QA AUTOMATION ORCHESTRATION ECOSYSTEM                      │
+├───────────────────────────────┬─────────────────────────────────────────────┤
+│ Tool / Skill                  │ Peran & Kapabilitas Utama                   │
+├───────────────────────────────┼─────────────────────────────────────────────┤
+│ 🎭 Playwright / Camofox MCP   │ Headed browser execution, DOM snapshot,     │
+│                               │ anti-bot bypass, visual action recording.   │
+├───────────────────────────────┼─────────────────────────────────────────────┤
+│ 💻 CodeBash MCP               │ Eksekusi test script, Playwright test       │
+│                               │ runner, bundling asset & capture artifacts. │
+├───────────────────────────────┼─────────────────────────────────────────────┤
+│ 🧠 Codebase Memory & Graph    │ Reverse-engineer source code target untuk   │
+│                               │ memetakan rute API, payload, & auth guard.  │
+├───────────────────────────────┼─────────────────────────────────────────────┤
+│ 📊 xlsx Skill                 │ Generate workbook Excel SIT 17-kolom SOP    │
+│                               │ lengkap dengan formula, conditional format. │
+├───────────────────────────────┼─────────────────────────────────────────────┤
+│ 📄 docx / pdf Skill           │ Ingest dokumen FSD, SRS, TSD, atau user     │
+│                               │ story secara instan sebagai basis skenario. │
+├───────────────────────────────┼─────────────────────────────────────────────┤
+│ 🛡️ bug-bounty & security      │ Payload injection (XSS, SQLi, BOLA/IDOR,    │
+│                               │ privilege escalation, unhandled exceptions).│
+├───────────────────────────────┼─────────────────────────────────────────────┤
+│ ✍️ humanizer Skill            │ Rewriting laporan akhir (REPORT.md & SIT    │
+│                               │ digest) agar natural, tajam, & bebas klise. │
+└───────────────────────────────┴─────────────────────────────────────────────┘
 ```
 
-#### 💡 Integrasi Pembacaan Dokumen Otomatis (MCP Doc-Reader):
-Sistem OpenCode secara otomatis terhubung dengan MCP **`doc-reader`**:
-- **PDF (.pdf)** ➔ Dibaca langsung via tool `read_pdf` (mengekstrak seluruh teks halaman).
-- **Word (.docx / .doc)** ➔ Dibaca langsung via tool `read_docx` (mengekstrak teks & struktur dokumen).
-- **Excel (.xlsx / .xls)** ➔ Dibaca langsung via tool `read_excel` (mengekstrak data per sheet jadi Markdown table / CSV).
-- **Universal** ➔ Tool `read_document` otomatis mendeteksi format file apa pun.
-
 ---
 
-### Step 1: Eksplorasi & Auto-Discovery Aplikasi
-Setelah user memberikan parameter:
-1. **Analisis Source Code / Dokumen**:
-   - Baca file FSD / TSD jika tersedia di workspace untuk memetakan business rules.
-   - Pindai struktur routing, komponen modal, dan form validation.
-2. **Auto-Discovery Menu (DOM Crawling)** via Playwright:
-   ```javascript
-   const menuTree = await page.evaluate(() => {
-     const navs = [];
-     document.querySelectorAll('aside button, aside a, nav button, nav a, [role="menuitem"]').forEach(el => {
-       const text = el.textContent.trim();
-       if (text && text.length < 50) navs.push({ label: text, tag: el.tagName });
-     });
-     return [...new Map(navs.map(i => [i.label, i])).values()];
-   });
-   ```
+## 🎯 1. Golden Rule: Interactive Requirement Intake (WAJIB DILAKUKAN PERTAMA)
 
----
+Sebelum menulis atau mengeksekusi skrip automation apa pun, agen **DILARANG** berasumsi atau langsung jalan sendiri jika parameter belum lengkap. Agen **WAJIB** menanyakan detail kebutuhan pengujian kepada pengguna:
 
-### Step 2: Penyusunan Infrastruktur Pengujian
-Buat direktori kerja di project pengguna:
-```
-testing/
-├── test-cases/          # Output Excel SIT
-├── reports/             # Output Markdown Report
-├── detailed-screenshots/# Bukti visual screenshot pengujian & bug
-test-scripts/
-├── helpers.js           # Reusable Playwright utilities
-└── test-final.js        # Script runnable suite
+### 📋 Checklist Pertanyaan Intake ke User:
+```text
+Halo! Sebelum kita mulai automation test, mohon konfirmasi beberapa detail berikut:
+
+1. 🌐 Target URL & Environment:
+   - URL Web App: (contoh: http://localhost:3000 atau https://staging.app.com)
+2. 🔑 Kredensial & Role Akses:
+   - Username/Email: 
+   - Password:
+   - Role yang ingin diuji: (Admin, User, Approver, Checker, dsb.)
+3. 📑 Dokumen Acuan (Opsional):
+   - Apakah ada file FSD (.docx/.pdf), SIT Matrix (.xlsx), atau User Story? (Lampirkan jika ada)
+4. 🎯 Ruang Lingkup & Skenario Pengujian:
+   - A. SIT/FSD-Driven (Strict sesuai nomor test case dokumen)
+   - B. Autonomous Self-Exploration (Explore & crawling semua menu/fitur secara mandiri)
+   - C. Custom Flow Spesifik (Tuliskan alur modul tertentu yang ingin dites)
+5. 🖥️ Mode Tampilan Browser:
+   - Default: HEADED (Browser terbuka & terlihat di layar, slowMo 150ms)
+   - Konfirmasi resolusi layar atau preferensi khusus.
 ```
 
-#### Komponen `helpers.js` Wajib:
-- `log(status, category, testName, detail)`: Log visual console (✅ PASS, ❌ FAIL, 🐛 BUG, ⚠️ WARN).
-- `shot(page, name)`: Capture fullpage screenshot bernomor urut otomatis.
-- `reportBug(page, code, title, cat, sev, expected, actual, ssName)`: Registrasi temuan otomatis.
-- `navSidebar(page, menuName)`: Navigasi presisi dengan regex exact-match.
-- `closeAllOverlays(page)`: Pembersihan `z-index` overlay transparan yang memblokir pointer event.
-- `setReactInput(page, selector, value)`: Bypass controlled React/Next.js input/select.
+---
+
+## 🖥️ 2. Headed Browser Execution Standard (Visual & Powerfully Synced)
+
+Setiap pengujian **WAJIB** dijalankan dalam mode **HEADED** (`headless: false`) agar pengguna dapat memantau jalannya automation secara langsung dan real-time di layar.
+
+### 🚀 Konfigurasi Wajib Playwright Launcher:
+```javascript
+const { chromium } = require('playwright');
+
+async function launchHeadedBrowser() {
+  const browser = await chromium.launch({
+    headless: false, // WAJIB HEADED
+    slowMo: 150,     // Delay per aksi agar pergerakan terlihat jelas & stabil
+    args: [
+      '--start-maximized',
+      '--disable-blink-features=AutomationControlled',
+      '--no-sandbox'
+    ]
+  });
+
+  const context = await browser.newContext({
+    viewport: null, // Mengikuti ukuran window maximized layar user
+    ignoreHTTPSErrors: true,
+    recordVideo: { dir: './test-results/videos/' } // Rekam video bukti otomatis
+  });
+
+  const page = await context.newPage();
+  return { browser, context, page };
+}
+```
 
 ---
 
-### Step 3: Matriks Kasus Uji (Test Scenarios)
+## 🏛️ 3. Tiga Mode Operasi Utama (Tri-Mode Engine)
 
-#### A. Happy Flow (Alur Positif)
-- **Otentikasi**: Login tiap role & verifikasi hak akses sidebar/menu.
-- **Navigasi**: Buka semua menu & submenu, pastikan halaman tidak blank.
-- **CRUD Operations**: Tambah data valid, edit data, filter/pencarian, export, dan hapus data.
-- **Kondisi Khusus**: Konfirmasi dialog (*confirm prompt*), perubahan status real-time.
-
-#### B. Negative Flow (Validasi & Error Handling)
-- **Form Kosong**: Submit form tanpa input (harus ditolak frontend/backend).
-- **Format Salah**: Waktu selesai lebih awal dari waktu mulai, angka negatif, karakter non-numerik.
-- **Bentrok Jadwal / Duplikasi**: Double booking pada resource yang sama.
-- **Akses Ilegal**: Non-admin mengakses URL/menu restricted.
-- **Sanitasi & Keamanan**: Input `<script>alert(1)</script>` dan `' OR 1=1--` (harus disanitasi).
-
-#### C. Monkey Testing (Eksplorasi & Chaos)
-- Klik cepat multi-menu secara acak.
-- Pengujian refresh browser (data persistence check).
-- Pemeriksaan log console browser untuk mendeteksi unhandled error/warning.
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       QA AUTOMATION MASTER ENGINE                           │
+├───────────────────────────────┬─────────────────────────────┬───────────────┤
+│    MODE A: SIT/FSD-DRIVEN     │   MODE B: AUTO-EXPLORATION  │    MODE C:    │
+│ (Strict Document Compliance)  │    (Autonomous Discovery)   │ PROMPT-DRIVEN │
+├───────────────────────────────┼─────────────────────────────┼───────────────┤
+│ • Baca file .xlsx/.docx/.pdf  │ • Tanpa dokumen acuan       │ • Sesuai teks │
+│ • Petakan setiap Test Case ID │ • Auto-crawl seluruh menu   │   bebas user  │
+│ • Validasi Expected vs Actual │ • Form auto-filling pintar  │ • Target test │
+│ • Isi workbook SIT persis SOP │ • Fuzzing & boundary test   │   spesifik    │
+└───────────────────────────────┴─────────────────────────────┴───────────────┘
+```
 
 ---
 
-### Step 4: Standarisasi Output Workbook Excel SIT
+## ⚡ 4. Powerful Interactive Traversal & Self-Healing Engine
 
-Format sheet wajib mengikuti struktur SOP SIT:
+### 🛠️ A. ASP.NET AJAX & Modern Framework Auto-Sync
+```javascript
+async function waitPageReady(page) {
+  await page.waitForLoadState('domcontentloaded');
+  await page.waitForLoadState('networkidle').catch(() => {});
+  
+  await page.evaluate(() => {
+    return new Promise(resolve => {
+      if (window.Sys && window.Sys.WebForms && window.Sys.WebForms.PageRequestManager) {
+        const prm = window.Sys.WebForms.PageRequestManager.getInstance();
+        if (!prm.get_isInAsyncPostBack()) return resolve();
+        prm.add_endRequest(function handler() {
+          prm.remove_endRequest(handler);
+          resolve();
+        });
+      } else {
+        resolve();
+      }
+    });
+  }).catch(() => {});
+  await page.waitForTimeout(200);
+}
+```
 
-#### 1. Header Information (Baris 1 - 7):
-- `PIC`: Tim QA Internal
-- `Project Name`: [Nama Project]
-- `Tester`: QA Automation Specialist
-- `Start/Finish Date`: [Tanggal]
-- `Version Control`: [Versi]
-- `Note`: [Catatan pengujian]
+### 🛠️ B. Resilient Element Interactor (Anti-Overlay & Smart Click)
+```javascript
+async function smartClick(page, selectorOrLocator, description = '') {
+  await waitPageReady(page);
+  const loc = typeof selectorOrLocator === 'string' ? page.locator(selectorOrLocator).first() : selectorOrLocator;
+  await loc.waitFor({ state: 'visible', timeout: 10000 });
+  await loc.scrollIntoViewIfNeeded();
+  
+  await page.evaluate(() => {
+    document.querySelectorAll('.modal-backdrop, .overlay, .loading-mask, [class*="backdrop"]').forEach(el => {
+      if (window.getComputedStyle(el).opacity === '0' || el.style.display === 'none') el.remove();
+    });
+  }).catch(() => {});
 
-#### 2. Kolom Definisi (Baris 9):
-1. **No**: Format `X,Y` (contoh: `1,1`, `1,2`)
-2. **Function**: Nama modul / skenario uji
-3. **Tipe Temuan**: Mandatory untuk temuan bug (`Critical` / `Major` / `Minor` / `Trivia`), kosongkan jika pass
-4. **Is Recurring**: `Ya` / `Tidak`
-5. **Script test**: Langkah pengujian berurutan (Step 1, 2, 3...)
-6. **Output expected**: Hasil yang diharapkan
-7. **Jumlah Data Test**: Kuantitas data uji
-8. **Detail Data Test**: Parameter isian uji
-9. **Screenshot**: Nama file screenshot acuan
-10. **Result**: `V` jika PASS, `X` jika FAIL / BUG
-11. **Keterangan**: Deskripsi detail error jika result = `X`
-12. **Respon PIC**
-13. **Dev Name**: `Frontend Dev` / `Backend Dev`
-14. **Start Date Testing**
-15. **Finish Date Testing**
-16. **Respone Dev**: `Open` / `In Progress` / `Fixed`
-17. **Status Dev**: `Open` / `Closed`
-
-#### 3. Styling & Pemisahan Sheet:
-- **Sheet 1: Happy Test** (Tab Hijau `#22C55E`, Header Kolom Biru Gelap `#1E3A5F`, Section Header Biru Muda `#E8F0FE`).
-- **Sheet 2: Negative Test** (Tab Merah `#EF4444`, Header Kolom Merah Gelap `#991B1B`, Section Header Merah Muda `#FEF2F2`).
-- **Deklarasi**: Di baris akhir sertakan pernyataan resmi pengujian SIT bertanda miring (*italic*).
+  try {
+    await loc.click({ timeout: 5000 });
+  } catch (err) {
+    await loc.dispatchEvent('click').catch(async () => {
+      await page.evaluate(el => el.click(), await loc.elementHandle());
+    });
+  }
+  await waitPageReady(page);
+}
+```
 
 ---
 
-### Step 5: Format Laporan Markdown (`REPORT.md`)
-Rangkum seluruh hasil pengujian dengan struktur:
-1. **Ringkasan Eksekutif** (Total Case, Pass Rate %, Bug Count).
-2. **Tabel Matriks Hasil Pengujian** per Modul.
-3. **Daftar Bug & Anomali** lengkap dengan Severity, Bukti Screenshot, Root Cause, dan Solusi Perbaikan.
-4. **Lampiran Bukti Screenshot**.
+## 🔬 5. Multi-Pass Test Execution Matrix (4-Layer Pyramid)
+
+1. **Layer 1: Happy Path Flow**: Otentikasi, CRUD lengkap, multi-grid assignment, validasi sukses.
+2. **Layer 2: Negative & Boundary**: Form submit kosong, tipe data mismatch, date range invalid, batas panjang karakter.
+3. **Layer 3: Security & Injection**: XSS payload, SQLi detection, BOLA/IDOR URL tampering, unhandled stacktrace exposure.
+4. **Layer 4: Monkey & Chaos Testing**: Rapid multi-click tombol submit, browser back/refresh, intercept console error logs.
+
+---
+
+## 📊 6. Output Workbook Excel SIT 17-Kolom (via `xlsx` skill)
+
+| No | Kolom | Standar Nilai |
+|:---|:---|:---|
+| 1 | **No** | Format `X,Y` (`1,1`, `1,2`, `2,1`) |
+| 2 | **Function** | Nama Modul / Sub-Modul |
+| 3 | **Tipe Temuan** | Wajib untuk Result `X`: `Critical`, `Major`, `Minor`, `Trivia` |
+| 4 | **Is Recurring** | `Ya` / `Tidak` |
+| 5 | **Script test** | Langkah operasional pengujian step-by-step |
+| 6 | **Output expected** | Hasil yang diharapkan |
+| 7 | **Jumlah Data Test** | Kuantitas variasi data |
+| 8 | **Detail Data Test** | Nilai input nyata |
+| 9 | **Screenshot** | Nama file screenshot bukti |
+| 10 | **Result** | `V` (PASS) atau `X` (FAIL/BUG) |
+| 11 | **Keterangan** | Detail pesan error / root cause |
+| 12 | **Respon PIC** | Evaluasi PIC QA |
+| 13 | **Dev Name** | `Frontend Dev` / `Backend Dev` |
+| 14 | **Start Date Testing** | Tanggal mulai (`YYYY-MM-DD`) |
+| 15 | **Finish Date Testing** | Tanggal selesai (`YYYY-MM-DD`) |
+| 16 | **Respone Dev** | `Open`, `In Progress`, `Fixed` |
+| 17 | **Status Dev** | `Open` / `Closed` |
+
+---
+
+## ✍️ 7. Humanizer-Powered Reporting Standard (`REPORT.md`)
+
+Seluruh narasi laporan akhir **WAJIB** diproses dengan prinsip skill **`humanizer`**:
+- **No AI Clichés**: Hindari kata klise seperti *"delve into"*, *"testament"*, *"tapestry"*, *"in conclusion"*, *"it is crucial to note"*.
+- **Direct & Grounded**: Gunakan bahasa teknis lugas, berbasis bukti nyata (HTTP status, selector, response time, payload, log console).
+- **Struktur Laporan**:
+  1. **Executive Scorecard**: Total test, Pass Rate %, rekap bug Critical/Major.
+  2. **Feature Health Matrix**: Status per modul.
+  3. **Actionable Bug & Security Register**: Steps to reproduce, screenshot link, saran kode perbaikan (frontend/backend).
+  4. **Network & Console Error Log Digest**.

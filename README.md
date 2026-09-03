@@ -51,19 +51,31 @@
 |---|---|
 | <img src="docs/screenshots/desktop-beranda.png" width="450" alt="Beranda Desktop" /> | <img src="docs/screenshots/desktop-ruangan.png" width="450" alt="Katalog Ruangan Desktop" /> |
 
-| Jadwal Matriks Per-Jam | Lembar Surat Izin Resmi |
+| Spesifikasi Detail Ruangan | Jadwal Matriks Per-Jam (07:00–17:00) |
 |---|---|
-| <img src="docs/screenshots/desktop-jadwal.png" width="450" alt="Jadwal Matriks Desktop" /> | <img src="docs/screenshots/desktop-surat-izin.png" width="450" alt="Surat Izin Resmi Desktop" /> |
+| <img src="docs/screenshots/desktop-detail-ruangan.png" width="450" alt="Detail Ruangan Desktop" /> | <img src="docs/screenshots/desktop-jadwal.png" width="450" alt="Jadwal Matriks Desktop" /> |
+
+| Formulir Wizard Peminjaman | Pelacakan Tiket Real-Time |
+|---|---|
+| <img src="docs/screenshots/desktop-booking.png" width="450" alt="Formulir Booking Desktop" /> | <img src="docs/screenshots/desktop-tracking.png" width="450" alt="Pelacakan Tiket Desktop" /> |
+
+| Panel Kelola Sarpras (Admin) | Surat Izin Resmi Standar Cetak A4 |
+|---|---|
+| <img src="docs/screenshots/desktop-admin.png" width="450" alt="Dashboard Sarpras Desktop" /> | <img src="docs/screenshots/desktop-surat-izin.png" width="450" alt="Surat Izin Resmi Desktop" /> |
 
 </div>
 
-### 2. Tampilan Mobile (Smartphone / HP)
+### 2. Tampilan Mobile (Smartphone)
 
 <div align="center">
 
-| Splash Onboarding | Beranda Mobile | Wizard Peminjaman | Pelacakan Resi |
-|---|---|---|---|
-| <img src="docs/screenshots/mobile-splash.png" width="220" alt="Splash Screen Mobile" /> | <img src="docs/screenshots/mobile-beranda.png" width="220" alt="Beranda Mobile" /> | <img src="docs/screenshots/mobile-booking.png" width="220" alt="Wizard Booking Mobile" /> | <img src="docs/screenshots/mobile-tracking.png" width="220" alt="Tracking Mobile" /> |
+| Beranda Mobile | Katalog Ruangan | Wizard Peminjaman |
+|---|---|---|
+| <img src="docs/screenshots/mobile-beranda.png" width="260" alt="Beranda Mobile" /> | <img src="docs/screenshots/mobile-ruangan.png" width="260" alt="Katalog Mobile" /> | <img src="docs/screenshots/mobile-booking.png" width="260" alt="Booking Wizard Mobile" /> |
+
+| Jadwal Matriks Mobile | Pelacakan Tiket | Panel Sarpras Mobile |
+|---|---|---|
+| <img src="docs/screenshots/mobile-jadwal.png" width="260" alt="Jadwal Mobile" /> | <img src="docs/screenshots/mobile-tracking.png" width="260" alt="Pelacakan Mobile" /> | <img src="docs/screenshots/mobile-admin.png" width="260" alt="Admin Sarpras Mobile" /> |
 
 </div>
 
@@ -94,10 +106,10 @@
    - Aksi persetujuan dan penolakan tiket disertai catatan resmi pengelola.
    - Ekspor rekapitulasi data peminjaman ke format CSV.
 
-6. **Desain 3-Warna & Akses Mobile-First**
-   - Menerapkan disiplin 3-Warna (Primary Blue, Neutral Canvas, Deep Slate) yang bersih tanpa ornamen berlebih.
+6. **Desain Bersih & Akses Mobile Ergonomis**
+   - Palet warna institusi yang tenang dan terbaca dengan nyaman di layar desktop maupun smartphone.
    - Dukungan penuh *Light Mode* dan *Eye-Friendly Dark Mode*.
-   - Dilengkapi *Bottom Navigation Bar* untuk kemudahan navigasi satu jempol pada layar smartphone.
+   - Navigasi responsif dengan menu mobile yang cepat dan otomatis kembali ke posisi atas halaman saat berpindah menu.
 
 ---
 
@@ -122,7 +134,7 @@ Pemangan/
 │   ├── components/
 │   │   ├── booking/         # Komponen wizard langkah 1–4
 │   │   ├── common/          # Badge, Modal, KopSurat, SplashScreen
-│   │   ├── layout/          # Navbar desktop & BottomNav mobile
+│   │   ├── layout/          # Navbar desktop & menu mobile responsif
 │   │   ├── rooms/           # RoomCard & RoomFilter
 │   │   ├── slip/            # OfficialSlipModal
 │   │   └── timetable/       # TimetableMatrix
@@ -131,7 +143,7 @@ Pemangan/
 │   ├── pages/               # 9 halaman terpisah (Home, Rooms, Booking, Timetable, dll.)
 │   ├── types/               # Definisi antarmuka TypeScript
 │   ├── App.tsx              # Router mapping & layout wrapper
-│   ├── index.css            # Token 3-warna & dark mode variant
+│   ├── index.css            # Token warna & dark mode variant
 │   └── main.tsx             # Entry point React
 ├── nginx.conf               # Konfigurasi Nginx virtual host
 └── package.json
@@ -143,7 +155,7 @@ Pemangan/
 
 | Jalur URL | Halaman | Deskripsi |
 |---|---|---|
-| `/` | `HomePage` | Ringkasan fasilitas unggulan, statistik sarpras, dan aktivitas pemohon |
+| `/` | `HomePage` | Ringkasan fasilitas unggulan, statistik sarpras, dan pencarian cepat |
 | `/rooms` | `RoomsPage` | Katalog lengkap 13 ruangan dengan filter pencarian instan |
 | `/rooms/:id` | `RoomDetailPage` | Detail spesifikasi perangkat, daya tampung, dan penanggung jawab lab |
 | `/booking` | `BookingPage` | Formulir wizard reservasi 4-langkah anti-bentrok |
@@ -222,14 +234,14 @@ Aplikasi menyediakan kredensial instan untuk menguji berbagai peran pengguna:
 
 ## 🧪 Pengujian Otomatis
 
-Suite pengujian otomatis berbasis Playwright mencakup verifikasi navigasi mobile, formulir wizard, pemilihan tema, dan pengecekan tampilan:
+Suite pengujian otomatis berbasis Playwright mencakup verifikasi alur pemesanan, pengecekan jadwal matriks, dan responsivitas tampilan mobile:
 
 ```bash
-# Jalankan pengujian alur mobile & tema
-node test-scripts/test-mobile-3color.js
+# Jalankan pengujian menyeluruh
+node test-scripts/test-modern-stack.js
 
-# Jalankan pengujian splash screen & onboarding
-node test-scripts/test-splash-screen.js
+# Tangkap ulang screenshot README resolusi tinggi
+node test-scripts/generate-readme-screenshots.js
 ```
 
 ---

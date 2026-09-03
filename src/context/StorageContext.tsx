@@ -166,6 +166,8 @@ export const StorageProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const approved = bookings.filter(b => b.status === 'approved').length;
     const pending = bookings.filter(b => b.status === 'pending').length;
     const rejected = bookings.filter(b => b.status === 'rejected').length;
+    const ongoing = bookings.filter(b => b.status === 'ongoing').length;
+    const completed = bookings.filter(b => b.status === 'completed').length;
 
     const roomCounts: Record<string, number> = {};
     bookings.forEach(b => {
@@ -180,7 +182,9 @@ export const StorageProvider: React.FC<{ children: React.ReactNode }> = ({ child
       approved,
       pending,
       rejected,
-      approvalRate: total > 0 ? Math.round((approved / total) * 100) : 100,
+      ongoing,
+      completed,
+      approvalRate: total > 0 ? Math.round(((approved + ongoing + completed) / total) * 100) : 100,
       topRoomName: topRoomEntry[0],
       topRoomCount: topRoomEntry[1],
       totalRooms: rooms.length

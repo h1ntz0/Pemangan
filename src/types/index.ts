@@ -1,10 +1,10 @@
-export type UserRole = 'siswa' | 'guru' | 'admin';
+export type UserRole = 'siswa' | 'guru' | 'admin' | 'sarpras';
 
 export type RoomCategory = 'Laboratorium' | 'Auditorium' | 'Aula Serbaguna' | 'Meeting Room' | 'Teori & Kelas' | 'Reguler';
 
 export type RoomStatus = 'available' | 'maintenance' | 'occupied';
 
-export type BookingStatus = 'pending' | 'approved' | 'rejected' | 'completed';
+export type BookingStatus = 'pending' | 'approved' | 'rejected' | 'ongoing' | 'completed';
 
 export interface Room {
   id: string;
@@ -76,6 +76,8 @@ export interface AnalyticsSummary {
   approved: number;
   pending: number;
   rejected: number;
+  ongoing: number;
+  completed: number;
   approvalRate: number;
   topRoomName: string;
   topRoomCount: number;

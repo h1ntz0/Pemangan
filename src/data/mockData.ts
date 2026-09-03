@@ -332,8 +332,18 @@ export const INITIAL_USERS: User[] = [
     role: "admin",
     password: "admin",
     email: "sarpras@smkn1jakarta.sch.id",
-    avatar: "SP",
+    avatar: "AD",
     phone: "0213813630"
+  },
+  {
+    nis: "sarpras",
+    name: "Pengelola Sarana & Prasarana",
+    class: "Seksi Pengelolaan Fasilitas",
+    role: "sarpras",
+    password: "123",
+    email: "sarpras.operasional@smkn1jakarta.sch.id",
+    avatar: "SP",
+    phone: "081122334455"
   }
 ];
 
@@ -351,7 +361,7 @@ export const INITIAL_BOOKINGS: Booking[] = [
     reason: "Simulasi Uji Kompetensi Jaringan Cloud & Server Linux SIJA",
     startDateTime: "2026-08-29T08:00",
     endDateTime: "2026-08-29T12:00",
-    status: "approved",
+    status: "ongoing",
     createdAt: "2026-08-28T09:30:00",
     approvedBy: "Pak Amrul Khairullah, S.Kom",
     approvalDate: "2026-08-28T10:00:00",
@@ -389,7 +399,7 @@ export const INITIAL_BOOKINGS: Booking[] = [
     reason: "Briefing Akbar Koordinasi Pameran Karya Kreatif & Kewirausahaan (PKK) Kelas XI Seluruh Jurusan",
     startDateTime: "2026-08-30T09:00",
     endDateTime: "2026-08-30T12:00",
-    status: "approved",
+    status: "completed",
     createdAt: "2026-08-28T11:00:00",
     approvedBy: "Kepala Sekolah SMKN 1 Jakarta",
     approvalDate: "2026-08-28T11:30:00",
@@ -413,5 +423,24 @@ export const INITIAL_BOOKINGS: Booking[] = [
     approvedBy: "-",
     approvalDate: "-",
     feedback: "Menunggu verifikasi ketersediaan jadwal lab dari Sarpras."
+  },
+  {
+    id: "BK-2026-005",
+    roomId: "r-podcast",
+    roomName: "Studio Podcast & Broadcasting SMKN 1",
+    userName: "Siti Rahmawati",
+    userRole: "siswa",
+    userClass: "XII DKV 2",
+    userContact: "085611223344",
+    supervisorName: "Pak Budi Hartono, S.Kom",
+    equipment: ["Kit Web Camera 1080p & Tripod"],
+    reason: "Perekaman Podcast Wawancara Alumni Berprestasi",
+    startDateTime: "2026-09-01T10:00",
+    endDateTime: "2026-09-01T12:00",
+    status: "rejected",
+    createdAt: "2026-08-28T14:00:00",
+    approvedBy: "Staf Sarana & Prasarana SMKN 1",
+    approvalDate: "2026-08-28T15:00:00",
+    feedback: "Jadwal bertabrakan dengan maintenance perangkat audio studio."
   }
 ];
