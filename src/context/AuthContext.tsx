@@ -81,7 +81,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const isAuthenticated = !!currentUser;
-  const isGuruOrAdmin = currentUser?.role === 'guru' || currentUser?.role === 'admin';
+  const isGuruOrAdmin = currentUser?.role === 'guru' || currentUser?.role === 'admin' || currentUser?.role === 'sarpras';
 
   return (
     <AuthContext.Provider

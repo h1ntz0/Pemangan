@@ -104,13 +104,13 @@ async function runTests() {
 
     console.log('--- 7. Testing Sarpras Command Center (/admin) ---');
     await page.goto(`${baseUrl}/admin`, { waitUntil: 'load' });
-    await page.waitForSelector('text=Sarpras Enterprise Command Center');
+    await page.waitForSelector('text=Dashboard Manajemen Sarpras');
     await page.screenshot({ path: path.join(screenshotDir, '11-admin-command-center.png'), fullPage: true });
     console.log('✅ Sarpras Command Center verified.');
 
     console.log('--- 8. Testing Login Portal (/login) ---');
     await page.goto(`${baseUrl}/login`, { waitUntil: 'load' });
-    await page.waitForSelector('text=Masuk ke Portal');
+    await page.waitForSelector('text=Portal Masuk Pengguna');
     await page.screenshot({ path: path.join(screenshotDir, '12-login-page.png') });
     console.log('✅ Login Portal verified.');
 
