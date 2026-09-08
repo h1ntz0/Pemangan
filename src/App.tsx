@@ -26,16 +26,34 @@ const ScrollToTop: React.FC = () => {
 
 export const App: React.FC = () => {
   const [showSplash, setShowSplash] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('nosplash') === '1') {
+        return false;
+      }
+      if (sessionStorage.getItem('pemangan_splash_seen') === 'true') {
+        return false;
+      }
+      if (window.location.pathname !== '/') {
+        return false;
+      }
+    }
     return true;
   });
+
+  const handleSplashComplete = () => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('pemangan_splash_seen', 'true');
+    }
+    setShowSplash(false);
+  };
 
   return (
     <>
       <ScrollToTop />
       {showSplash && (
-        <SplashScreen onComplete={() => setShowSplash(false)} durationMs={3000} />
+        <SplashScreen onComplete={handleSplashComplete} durationMs={3000} />
       )}
-
       <div className={`min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-150 ${showSplash ? 'hidden' : 'block animate-fadeIn'}`}>
         <Navbar />
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
