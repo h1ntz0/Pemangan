@@ -1,67 +1,130 @@
 <div align="center">
 
-<img src="public/img/logo.png" alt="Logo SMKN 1 Jakarta" width="96" height="96" />
+<img src="public/img/logo.png" alt="Logo SMKN 1 Jakarta" width="105" height="105" />
 
-# PEMANGAN
-### Sistem Informasi Peminjaman Ruangan & Laboratorium
-**SMK Negeri 1 Jakarta**
+# 🏛️ PEMANGAN
+### **Sistem Informasi Peminjaman Ruangan & Laboratorium Kejuruan**
+**SMK Negeri 1 Jakarta — Pusat Keunggulan (Center of Excellence)**
 
-[![React](https://img.shields.io/badge/React-19.0-2563eb?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.0-646cff?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Nginx](https://img.shields.io/badge/Nginx-Production_Ready-009639?style=flat-square&logo=nginx&logoColor=white)](https://nginx.org/)
-[![Playwright](https://img.shields.io/badge/Tested_with-Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white)](https://playwright.dev/)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-LIVE_DEMO-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://pemangan.vercel.app)
+[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript_5.7-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite_8-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Playwright](https://img.shields.io/badge/E2E_Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/)
 
-<p align="center">
-  Layanan terpadu pengelolaan dan reservasi fasilitas 13 laboratorium komputer kejuruan (SIJA & RPL), studio multimedia, ruang teori, aula serbaguna, dan auditorium di SMK Negeri 1 Jakarta.
-</p>
+<br />
+
+> **Solusi terintegrasi reservasi 13 fasilitas laboratorium komputer kejuruan, studio multimedia, aula serbaguna, dan ruang teori SMK Negeri 1 Jakarta dengan penjadwalan bebas bentrok (*zero-conflict*), pelacakan tiket instan, dan surat izin kedinasan ber-QR Code.**
+
+<br />
+
+[🌐 **Buka Aplikasi Live (Vercel)**](https://pemangan.vercel.app) &nbsp;•&nbsp;
+[📑 **Alur Peminjaman**](#-alur-kerja-sistem) &nbsp;•&nbsp;
+[🏢 **Katalog Ruangan**](#-katalog-fasilitas-ruangan-13-ruangan-aktif) &nbsp;•&nbsp;
+[🔑 **Akun Demo**](#-akun-demo-pengujian-instan) &nbsp;•&nbsp;
+[🚀 **Panduan Deploy**](#-panduan-instalasi--deployment)
 
 ---
 
 </div>
 
-## Daftar Isi
+## 📌 Daftar Isi
 - [Tentang Pemangan](#-tentang-pemangan)
-- [Pratinjau Antarmuka](#-pratinjau-antarmuka)
-- [Fitur Utama](#-fitur-utama)
+- [Fitur Unggulan](#-fitur-unggulan)
+- [Pratinjau Visual Antarmuka](#-pratinjau-visual-antarmuka)
+  - [1. Tampilan Desktop (Web Browser)](#1-tampilan-desktop-web-browser)
+  - [2. Tampilan Mobile (Smartphone)](#2-tampilan-mobile-smartphone)
+- [Alur Kerja Sistem](#-alur-kerja-sistem)
 - [Arsitektur & Tech Stack](#-arsitektur--tech-stack)
-- [Struktur Halaman & Routing](#-struktur-halaman--routing)
-- [Katalog Fasilitas Ruangan](#-katalog-fasilitas-ruangan)
-- [Panduan Instalasi & Menjalankan](#-panduan-instalasi--menjalankan)
-- [Akun Demo Pengujian](#-akun-demo-pengujian)
-- [Pengujian Otomatis](#-pengujian-otomatis)
+- [Katalog Fasilitas Ruangan (13 Ruangan Aktif)](#-katalog-fasilitas-ruangan-13-ruangan-aktif)
+- [Akun Demo Pengujian Instan](#-akun-demo-pengujian-instan)
+- [Struktur Direktori Proyek](#-struktur-direktori-proyek)
+- [Panduan Instalasi & Deployment](#-panduan-instalasi--deployment)
+  - [A. Deployment ke Vercel (Production)](#a-deployment-ke-vercel-production)
+  - [B. Menjalankan Lokal (Development)](#b-menjalankan-lokal-development)
+  - [C. Nginx Reverse Proxy (Server Fisik / Intranet Sekolah)](#c-nginx-reverse-proxy-server-fisik--intranet-sekolah)
+- [Pengujian Otomatis (Playwright E2E)](#-pengujian-otomatis-playwright-e2e)
+- [Standar Dokumen & Legalitas Cetak](#-standar-dokumen--legalitas-cetak)
 - [Tim Pengembang](#-tim-pengembang)
 
 ---
 
-## 📌 Tentang Pemangan
+## 💡 Tentang Pemangan
 
-**PEMANGAN** merupakan akronim dari **PEM**injaman ru**ANGAN**. Platform ini dikembangkan untuk mendigitalkan alur peminjaman fasilitas sekolah di SMK Negeri 1 Jakarta, menggantikan pencatatan manual berbasis buku dan formulir kertas dengan sistem terpusat, transparan, dan bebas bentrok jadwal (*conflict-free scheduling*).
+**PEMANGAN** (*Peminjaman Ruangan*) hadir untuk mentransformasi tata kelola sarana dan prasarana di **SMK Negeri 1 Jakarta**. Sebelum sistem ini diimplementasikan, proses peminjaman laboratorium kejuruan, aula serbaguna, dan ruang multimedia masih menggunakan formulir kertas dan buku agenda manual yang rentan terhadap:
+- **Jadwal Bentrok (*Double-Booking*)**: Dua kelas atau ekstrakurikuler menggunakan ruangan yang sama di jam yang sama.
+- **Birokrasi Lambat**: Verifikasi tanda tangan fisik guru dan koordinator sarpras memakan waktu berhari-hari.
+- **Ketiadaan Pelacakan**: Pemohon tidak mengetahui apakah permohonan sedang diverifikasi, ditolak, atau disetujui.
+
+Dengan **PEMANGAN**, seluruh alur didigitalkan secara transparan, akuntabel, dan dapat diakses dari peramban desktop maupun smartphone kapan saja.
 
 ---
 
-## 📱 Pratinjau Antarmuka
+## ⚡ Fitur Unggulan
+
+```text
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                             CORE VALUE PROPOSITION                               │
+├───────────────────────┬──────────────────────────┬───────────────────────────────┤
+│ 🛡️ Anti-Bentrok Waktu  │ 📄 Surat Izin Otomatis   │ 🔍 Self-Tracking Realtime    │
+│ Algoritma validasi    │ Output naskah dinas A4   │ Cukup masukkan ID Tiket       │
+│ rentang jam interaktif│ Pemprov DKI + QR Code    │ tanpa login wajib             │
+└───────────────────────┴──────────────────────────┴───────────────────────────────┘
+```
+
+1. **Jadwal Matriks Per-Jam Interaktif (`/timetable`)**
+   - Monitoring ketersediaan 13 ruangan dari pukul **07:00 hingga 17:00 WIB** secara visual.
+   - Pengecekan status instan: slot kosong dapat langsung diklik untuk memesan (*quick-booking*), sedangkan slot terisi menampilkan ringkasan agenda peminjam.
+
+2. **Wizard Peminjaman 4-Langkah Adaptif (`/booking`)**
+   - **Langkah 1 (Fasilitas & Alat):** Pemilihan 13 ruangan dengan filter kategori instan serta opsi peralatan tambahan (Mic Wireless, Sound Portable, Presenter HDMI, Switch LAN, Kursi Lipat, Web Cam Tripod) dengan batas kuantitas.
+   - **Langkah 2 (Jadwal & Waktu):** Pemilihan tanggal dengan pintasan cepat (*Hari Ini*, *Besok*, *Lusa*) serta jam dengan validasi bentrok realtime otomatis.
+   - **Langkah 3 (Identitas & Penjamin):** Input data pemohon, nomor WhatsApp, rekomendasi guru pembimbing kejuruan, dan template agenda KBM/UKK/Ekskul.
+   - **Langkah 4 (Review & SOP):** Lembar konfirmasi ringkasan, persetujuan regulasi Sarpras, efek selebrasi selebrasi confetti, dan generate nomor tiket unik (format `BK-2026-xxx`).
+
+3. **Surat Izin Resmi Ber-KOP Dinas & QR Code Verifikasi (`/slip/:id`)**
+   - Mengikuti standar **Tata Naskah Dinas Pemerintah Provinsi DKI Jakarta & Dinas Pendidikan**.
+   - Dilengkapi QR Code digital untuk validasi keaslian dokumen di lapangan oleh petugas keamanan / laboran.
+   - Layout responsif `@media print` terkalibrasi untuk cetak langsung ke kertas **A4 Portrait** atau ekspor ke PDF.
+
+4. **Pusat Pelacakan Resi Mandiri (`/tracking`)**
+   - Pemohon cukup memasukkan ID Tiket (contoh: `BK-2026-001`) untuk melihat progres 3 tahap: *Diajukan* &rarr; *Verifikasi Sarpras* &rarr; *Keputusan*.
+   - Menyertakan catatan evaluasi resmi dari tim sarpras dan tombol cetak izin bagi status *Approved*.
+
+5. **Sarpras Command Center (`/admin`)**
+   - Metrik statistik realtime: Total tiket, tiket tertunda, tiket disetujui, tiket berjalan, rasio persetujuan (*approval rate*), dan ruangan favorit.
+   - Aksi evaluasi tiket permohonan (Setujui / Tolak) dengan catatan resmi.
+   - Fitur *Batch Selection* (persetujuan massal), reset data demo, dan ekspor seluruh rekapitulasi data peminjaman ke file **CSV**.
+
+6. **Desain Institusional Ergonomis & Dark Mode**
+   - Dibangun dengan palet warna resmi biru institusi yang ramah mata.
+   - Dukungan penuh mode gelap (*Eye-Friendly Slate Dark Mode*) dan mode terang (*Clean Light Mode*).
+   - Menu navigasi mobile *floating glassmorphism* dengan indikator badge tiket yang tertunda.
+
+---
+
+## 📱 Pratinjau Visual Antarmuka
 
 ### 1. Tampilan Desktop (Web Browser)
 
 <div align="center">
 
-| Beranda Utama | Katalog Ruangan |
-|---|---|
-| <img src="docs/screenshots/desktop-beranda.png" width="450" alt="Beranda Desktop" /> | <img src="docs/screenshots/desktop-ruangan.png" width="450" alt="Katalog Ruangan Desktop" /> |
+| Beranda Utama & Quick Track | Katalog 13 Ruangan & Filter Kategori |
+|:---:|:---:|
+| <img src="docs/screenshots/desktop-beranda.png" width="460" alt="Beranda Utama Desktop" /> | <img src="docs/screenshots/desktop-ruangan.png" width="460" alt="Katalog Ruangan Desktop" /> |
 
-| Spesifikasi Detail Ruangan | Jadwal Matriks Per-Jam (07:00–17:00) |
-|---|---|
-| <img src="docs/screenshots/desktop-detail-ruangan.png" width="450" alt="Detail Ruangan Desktop" /> | <img src="docs/screenshots/desktop-jadwal.png" width="450" alt="Jadwal Matriks Desktop" /> |
+| Spesifikasi Ruangan & Inventaris Lab | Matriks Jadwal Per-Jam (07:00–17:00) |
+|:---:|:---:|
+| <img src="docs/screenshots/desktop-detail-ruangan.png" width="460" alt="Detail Ruangan Desktop" /> | <img src="docs/screenshots/desktop-jadwal.png" width="460" alt="Jadwal Matriks Desktop" /> |
 
-| Formulir Wizard Peminjaman | Pelacakan Tiket Real-Time |
-|---|---|
-| <img src="docs/screenshots/desktop-booking.png" width="450" alt="Formulir Booking Desktop" /> | <img src="docs/screenshots/desktop-tracking.png" width="450" alt="Pelacakan Tiket Desktop" /> |
+| Wizard Peminjaman 4-Langkah Terintegrasi | Pelacakan Tiket Mandiri Realtime |
+|:---:|:---:|
+| <img src="docs/screenshots/desktop-booking.png" width="460" alt="Formulir Booking Desktop" /> | <img src="docs/screenshots/desktop-tracking.png" width="460" alt="Pelacakan Tiket Desktop" /> |
 
-| Panel Kelola Sarpras (Admin) | Surat Izin Resmi Standar Cetak A4 |
-|---|---|
-| <img src="docs/screenshots/desktop-admin.png" width="450" alt="Dashboard Sarpras Desktop" /> | <img src="docs/screenshots/desktop-surat-izin.png" width="450" alt="Surat Izin Resmi Desktop" /> |
+| Command Center Pengelola Sarpras (Admin) | Surat Izin Resmi Standar Cetak A4 |
+|:---:|:---:|
+| <img src="docs/screenshots/desktop-admin.png" width="460" alt="Dashboard Sarpras Desktop" /> | <img src="docs/screenshots/desktop-surat-izin.png" width="460" alt="Surat Izin Resmi Cetak A4" /> |
 
 </div>
 
@@ -69,186 +132,304 @@
 
 <div align="center">
 
-| Beranda Mobile | Katalog Ruangan | Wizard Peminjaman |
-|---|---|---|
-| <img src="docs/screenshots/mobile-beranda.png" width="260" alt="Beranda Mobile" /> | <img src="docs/screenshots/mobile-ruangan.png" width="260" alt="Katalog Mobile" /> | <img src="docs/screenshots/mobile-booking.png" width="260" alt="Booking Wizard Mobile" /> |
+| Splash Screen Intro | Beranda Utama Mobile | Katalog Ruangan Mobile | Wizard Reservasi Mobile |
+|:---:|:---:|:---:|:---:|
+| <img src="docs/screenshots/mobile-splash.png" width="220" alt="Splash Screen" /> | <img src="docs/screenshots/mobile-beranda.png" width="220" alt="Beranda Mobile" /> | <img src="docs/screenshots/mobile-ruangan.png" width="220" alt="Katalog Mobile" /> | <img src="docs/screenshots/mobile-booking.png" width="220" alt="Booking Wizard Mobile" /> |
 
-| Jadwal Matriks Mobile | Pelacakan Tiket | Panel Sarpras Mobile |
-|---|---|---|
-| <img src="docs/screenshots/mobile-jadwal.png" width="260" alt="Jadwal Mobile" /> | <img src="docs/screenshots/mobile-tracking.png" width="260" alt="Pelacakan Mobile" /> | <img src="docs/screenshots/mobile-admin.png" width="260" alt="Admin Sarpras Mobile" /> |
+| Jadwal Matriks Mobile | Pelacakan Tiket Mobile | Command Center Mobile | Portal Autentikasi Mobile |
+|:---:|:---:|:---:|:---:|
+| <img src="docs/screenshots/mobile-jadwal.png" width="220" alt="Jadwal Mobile" /> | <img src="docs/screenshots/mobile-tracking.png" width="220" alt="Pelacakan Mobile" /> | <img src="docs/screenshots/mobile-admin.png" width="220" alt="Admin Mobile" /> | <img src="docs/screenshots/mobile-login.png" width="220" alt="Login Mobile" /> |
 
 </div>
 
 ---
 
-## ⚡ Fitur Utama
+## 🔄 Alur Kerja Sistem
 
-1. **Jadwal Matriks Per-Jam Interaktif (`/timetable`)**
-   - Pemantauan visual ketersediaan 13 ruangan sekolah dari pukul 07:00 hingga 17:00 WIB.
-   - Pengecekan status real-time dengan penanda visual instan (*Tersedia* vs *Terjadwal*).
-
-2. **Formulir Peminjaman 4-Langkah (`/booking`)**
-   - **Langkah 1:** Pemilihan fasilitas ruangan dan opsi peralatan tambahan (proyektor, kabel LAN, switch, sound system).
-   - **Langkah 2:** Penentuan tanggal & jam dengan validasi pencegahan jadwal bentrok otomatis.
-   - **Langkah 3:** Pengisian identitas pemohon dan guru penanggung jawab / pendamping.
-   - **Langkah 4:** Lembar konfirmasi ringkasan dan persetujuan SOP Sarpras.
-
-3. **Surat Izin Resmi Ber-KOP & QR Code (`/slip/:id`)**
-   - Mengikuti tata naskah dinas resmi Pemerintah Provinsi DKI Jakarta & Dinas Pendidikan.
-   - Verifikasi keaslian nomor tiket menggunakan kode QR digital.
-   - Tata letak cetak standar A4 yang dioptimalkan untuk ekspor PDF via `@media print`.
-
-4. **Pusat Pelacakan Resi Mandiri (`/tracking`)**
-   - Pengecekan progres permohonan secara instan cukup dengan memasukkan ID Tiket (misal: `BK-2026-001`) tanpa wajib login.
-
-5. **Panel Manajemen Sarpras (`/admin`)**
-   - Ringkasan metrik statistik: total tiket, permohonan tertunda, tiket disetujui, dan ruangan terfavorit.
-   - Aksi persetujuan dan penolakan tiket disertai catatan resmi pengelola.
-   - Ekspor rekapitulasi data peminjaman ke format CSV.
-
-6. **Desain Bersih & Akses Mobile Ergonomis**
-   - Palet warna institusi yang tenang dan terbaca dengan nyaman di layar desktop maupun smartphone.
-   - Dukungan penuh *Light Mode* dan *Eye-Friendly Dark Mode*.
-   - Navigasi responsif dengan menu mobile yang cepat dan otomatis kembali ke posisi atas halaman saat berpindah menu.
+```mermaid
+flowchart TD
+    A([Siswa / Guru Membuka Aplikasi]) --> B[Cek Matriks Jadwal /timetable]
+    B --> C{Ruangan Tersedia?}
+    C -- Tidak --> B
+    C -- Ya --> D[Pilih Ruangan & Alat Tambahan]
+    D --> E[Tentukan Tanggal & Jam Reservasi]
+    E --> F{Validasi Konflik Waktu}
+    F -- Bentrok Jadwal --> E
+    F -- Lolos Verifikasi --> G[Isi Identitas & Guru Penanggung Jawab]
+    G --> H[Konfirmasi Ringkasan & Setujui SOP]
+    H --> I[(Simpan Reservasi: ID BK-2026-xxx)]
+    I --> J[Status: PENDING]
+    J --> K[Pelacakan Mandiri via /tracking]
+    J --> L[Tim Sarpras / Admin Review di /admin]
+    L --> M{Keputusan Sarpras}
+    M -- Ditolak --> N[Status: REJECTED + Alasan Resmi]
+    M -- Disetujui --> O[Status: APPROVED]
+    O --> P[Generate Surat Izin Resmi Ber-KOP & QR Code]
+    P --> Q([Cetak / Simpan PDF A4 Siap Pakai])
+```
 
 ---
 
 ## 🛠 Arsitektur & Tech Stack
 
-| Layer | Teknologi | Deskripsi |
-|---|---|---|
-| **Frontend Framework** | React 19 + TypeScript | UI berbasis komponen modular dan type safety ketat |
-| **Routing** | React Router DOM v7 | Client-side Single Page Application (SPA) routing |
-| **Styling** | Tailwind CSS v4 | Utility-first styling dengan custom dark mode variant |
-| **Icons & Assets** | Lucide React | Ikon antarmuka minimalis dan fungsional |
-| **Web Server** | Nginx (Reverse Proxy & Static) | Melayani static bundle dengan SPA fallback (`try_files`) |
-| **Testing** | Playwright | Suite uji otomatis untuk alur bisnis dan tampilan mobile |
-
 ```text
-Pemangan/
-├── docs/
-│   └── screenshots/         # Tangkapan layar antarmuka desktop & mobile untuk README
-├── public/
-│   └── img/                 # Aset logo resmi SMKN 1 Jakarta (transparan) & foto fasilitas
-├── src/
-│   ├── components/
-│   │   ├── booking/         # Komponen wizard langkah 1–4
-│   │   ├── common/          # Badge, Modal, KopSurat, SplashScreen
-│   │   ├── layout/          # Navbar desktop & menu mobile responsif
-│   │   ├── rooms/           # RoomCard & RoomFilter
-│   │   ├── slip/            # OfficialSlipModal
-│   │   └── timetable/       # TimetableMatrix
-│   ├── context/             # AuthContext, StorageContext, ThemeContext
-│   ├── data/                # Dataset 13 ruangan, peralatan, dan riwayat demo
-│   ├── pages/               # 9 halaman terpisah (Home, Rooms, Booking, Timetable, dll.)
-│   ├── types/               # Definisi antarmuka TypeScript
-│   ├── App.tsx              # Router mapping & layout wrapper
-│   ├── index.css            # Token warna & dark mode variant
-│   └── main.tsx             # Entry point React
-├── nginx.conf               # Konfigurasi Nginx virtual host
-└── package.json
+┌────────────────────────────────────────────────────────────────────────┐
+│                          PRESENTATION LAYER                            │
+│  React 19  •  TypeScript 5.7/7.0  •  Tailwind CSS v4  •  Lucide Icons │
+├────────────────────────────────────────────────────────────────────────┤
+│                          APPLICATION LAYER                             │
+│  React Router DOM v7 (SPA)  •  Context API (Auth, Theme, Storage)      │
+│  Conflict Detection Engine  •  Dynamic QR Generator  •  Canvas Confetti│
+├────────────────────────────────────────────────────────────────────────┤
+│                          PERSISTENCE LAYER                             │
+│  LocalStorage Web Storage API (Auto-Sync & Seed Data Resetter)         │
+├────────────────────────────────────────────────────────────────────────┤
+│                          INFRASTRUCTURE LAYER                          │
+│  Vercel Edge Network (Active Live)  •  Nginx Reverse Proxy Ready       │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## 🗺 Struktur Halaman & Routing
-
-| Jalur URL | Halaman | Deskripsi |
-|---|---|---|
-| `/` | `HomePage` | Ringkasan fasilitas unggulan, statistik sarpras, dan pencarian cepat |
-| `/rooms` | `RoomsPage` | Katalog lengkap 13 ruangan dengan filter pencarian instan |
-| `/rooms/:id` | `RoomDetailPage` | Detail spesifikasi perangkat, daya tampung, dan penanggung jawab lab |
-| `/booking` | `BookingPage` | Formulir wizard reservasi 4-langkah anti-bentrok |
-| `/timetable` | `TimetablePage` | Jadwal visual per-jam penggunaan ruangan |
-| `/tracking` | `TrackingPage` | Pelacakan status nomor tiket permohonan |
-| `/admin` | `AdminPage` | Command Center pengelola sarpras (review, acc, tolak, ekspor data) |
-| `/login` | `LoginPage` | Autentikasi akun Siswa, Guru, dan Admin Sarpras |
-| `/slip/:id` | `SlipPrintPage` | Lembar Surat Izin Resmi format A4 siap cetak |
+| Modul | Pustaka / Alat | Versi | Peran & Implementasi |
+|---|---|---|---|
+| **Core Framework** | React | `^19.2.8` | Komponen UI reaktif, arsitektur hooks modern |
+| **Type Safety** | TypeScript | `^7.0.2` | Kontrak tipe data ketat, mencegah error saat runtime |
+| **Bundler & Dev** | Vite | `^8.2.2` | Lightning-fast HMR, kompilasi rollup aset produksi |
+| **Routing** | React Router DOM | `^7.18.3` | SPA client-side routing dengan penanganan scroll otomatis |
+| **Styling** | Tailwind CSS | `^4.3.3` | Utility-first CSS generasi terbaru dengan `@custom-variant dark` |
+| **Ikon Antarmuka** | Lucide React | `^1.37.0` | Ikonografi SVG resolusi tinggi dan ringan |
+| **Verifikasi Fisik** | QRCode | `^1.5.4` | Pembuatan QR Code dinamis untuk validasi surat izin |
+| **Micro-Interactions**| Canvas Confetti | `^1.9.4` | Feedback visual selebrasi saat reservasi berhasil diajukan |
+| **Automated Testing** | Playwright | `^1.62.1` | Suite uji E2E antarmuka, mobile viewport, dan alur bisnis |
+| **Hosting & CDN** | Vercel | Production | Global CDN dengan edge rewrites untuk React SPA |
 
 ---
 
 ## 🏢 Katalog Fasilitas Ruangan (13 Ruangan Aktif)
 
-| ID | Nama Fasilitas | Gedung | Kapasitas | Penanggung Jawab |
-|---|---|---|---|---|
-| `r-401` | Ruang 401 - Lab Komputer SIJA | Lantai 4 | 36 Siswa | Pak Amrul Khairullah, S.Kom |
-| `r-403` | Ruang 403 - Lab Rekayasa Perangkat Lunak | Lantai 4 | 36 Siswa | Pak Rian Firmansyah, M.Kom |
-| `r-405` | Ruang 405 - Lab Cyber Security & Fiber Optic | Lantai 4 | 32 Siswa | Ibu Nurhayati, M.Pd |
-| `r-teater` | Ruang 1 - Teater Audio Visual (Auditorium) | Gedung Utama Lt 3 | 120 Orang | Ibu Dra. Endang Lestari |
-| `r-serbaguna` | Ruang 2 - Gedung Serbaguna (Aula GSG) | Gedung GSG Lt 1 | 350 Orang | Waka Bidang Sarpras |
-| `r-guru` | Ruang Guru & Konferensi Pimpinan | Gedung Utama Lt 1 | 45 Orang | Koordinator Tata Usaha |
-| `r-podcast` | Studio Podcast & Broadcasting | Gedung Utama Lt 3 | 15 Orang | Pak Budi Hartono, S.Kom |
-| `r-22` | Ruang 22 - Gedung Baru (Kelas Teori) | Gedung Baru Lt 2 | 36 Siswa | Pak Sukirman, S.Pd |
-| `r-23` | Ruang 23 - Gedung Baru (Kelas Teori) | Gedung Baru Lt 2 | 36 Siswa | Ibu Nurhayati, M.Pd |
-| `r-24` | Ruang 24 - Gedung Baru (Smart TV 65") | Gedung Baru Lt 2 | 40 Siswa | Pak Budi Hartono, S.Kom |
-| `r-25` | Ruang 25 - Gedung Baru (Hybrid LAN) | Gedung Baru Lt 2 | 36 Siswa | Pak Dedi Prasetyo, S.T |
-| `r-15` | Ruang 15 - Gedung Lama (Kelas Asri) | Gedung Lama Lt 1 | 32 Siswa | Ibu Sri Wahyuni, S.Pd |
-| `r-16` | Ruang 16 - Gedung Lama (Organisasi Kesiswaan) | Gedung Lama Lt 1 | 32 Siswa | Pak Hendra Gunawan, S.Pd |
+SMK Negeri 1 Jakarta mengelola 13 ruangan dan laboratorium kejuruan yang siap dipinjam melalui platform:
+
+| ID Ruangan | Nama Fasilitas | Lokasi Gedung | Kapasitas | Penanggung Jawab Lab / PIC | Fasilitas Kunci |
+|:---:|:---|:---|:---:|:---|:---|
+| `r-401` | **Lab Komputer SIJA** | Lantai 4 | 36 Siswa | Pak Amrul Khairullah, S.Kom | 36 PC Core i7, Mikrotik Router, Server Rack |
+| `r-403` | **Lab Rekayasa Perangkat Lunak** | Lantai 4 | 36 Siswa | Pak Rian Firmansyah, M.Kom | 36 PC Core i5, Dual Monitor, Smart Board |
+| `r-405` | **Lab Cyber Security & Fiber Optic**| Lantai 4 | 32 Siswa | Ibu Nurhayati, M.Pd | Splicer Fiber Optic, OTDR, Cisco Switch |
+| `r-teater` | **Ruang 1 - Teater Audio Visual** | Gedung Utama Lt 3 | 120 Kursi | Ibu Dra. Endang Lestari | Proyektor Laser 5000 Lumens, Sound Cinema |
+| `r-serbaguna` | **Ruang 2 - Gedung Serbaguna (Aula)**| Gedung GSG Lt 1 | 350 Orang | Waka Bidang Sarpras | Panggung Utama, Sound System Gantung, AC Sentral |
+| `r-guru` | **Ruang Konferensi & Rapat Pimpinan**| Gedung Utama Lt 1 | 45 Orang | Koordinator Tata Usaha | Meja Konferensi Oval, Video Conference Polycom |
+| `r-podcast` | **Studio Podcast & Multimedia** | Gedung Utama Lt 3 | 15 Orang | Pak Budi Hartono, S.Kom | Mic Condenser Rode, Audio Mixer, Green Screen |
+| `r-22` | **Ruang 22 - Kelas Teori Kejuruan** | Gedung Baru Lt 2 | 36 Siswa | Pak Sukirman, S.Pd | Whiteboard Kaca, Proyektor Fixed, AC Split |
+| `r-23` | **Ruang 23 - Kelas Teori Reguler** | Gedung Baru Lt 2 | 36 Siswa | Ibu Nurhayati, M.Pd | Meja Siswa Standar Ergonomis, Audio Speaker |
+| `r-24` | **Ruang 24 - Smart Classroom** | Gedung Baru Lt 2 | 40 Siswa | Pak Budi Hartono, S.Kom | Smart TV Interactive 65", Wireless Display |
+| `r-25` | **Ruang 25 - Hybrid Network Class** | Gedung Baru Lt 2 | 36 Siswa | Pak Dedi Prasetyo, S.T | 36 Port Gigabit LAN, Gigabit Wi-Fi 6 AP |
+| `r-15` | **Ruang 15 - Gedung Lama (Kelas Asri)**| Gedung Lama Lt 1 | 32 Siswa | Ibu Sri Wahyuni, S.Pd | Sirkulasi Udara Alami, Display Mading Kelas |
+| `r-16` | **Ruang 16 - Ruang Organisasi (OSIS)**| Gedung Lama Lt 1 | 32 Siswa | Pak Hendra Gunawan, S.Pd | Meja Diskusi Rapat, Lemari Arsip Organisasi |
 
 ---
 
-## 🚀 Panduan Instalasi & Menjalankan
+## 🔑 Akun Demo Pengujian Instan
 
-### 1. Kebutuhan Sistem
-- **Node.js**: versi 18.x atau lebih baru
-- **npm** atau **pnpm**
-- **Nginx** (opsional untuk production serving di jaringan lokal Wi-Fi)
+Aplikasi menyediakan tombol **Bypass / Quick-Login** pada halaman `/login` untuk pengujian cepat berbagai hak akses:
 
-### 2. Langkah Instalasi
+```text
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 KREDENSIAL PENGUJIAN                                   │
+├────────────┬──────────────────┬─────────────┬──────────────────────────────────────────┤
+│ Peran      │ Username / NIP   │ Kata Sandi  │ Hak Akses & Privilese                    │
+├────────────┼──────────────────┼─────────────┼──────────────────────────────────────────┤
+│ 👨‍🎓 Siswa   │ 102144           │ 123         │ Reservasi 4 langkah, tracking, print slip│
+│ 👨‍🏫 Guru    │ 19800101         │ 123         │ Pengajuan prioritas, pembimbing kegiatan │
+│ 🛡️ Admin   │ admin            │ admin123    │ Full Control Sarpras: ACC/Tolak, CSV, KPI│
+│ 🏢 Sarpras │ sarpras          │ sarpras123  │ Validasi teknis ketersediaan fasilitas   │
+└────────────┴──────────────────┴─────────────┴──────────────────────────────────────────┘
+```
+
+---
+
+## 📂 Struktur Direktori Proyek
+
+```text
+Pemangan/
+├── docs/
+│   └── screenshots/              # Aset visual dokumentasi antarmuka
+├── public/
+│   ├── img/                      # Logo resmi SMKN 1 Jakarta & foto fasilitas
+│   ├── favicon.ico
+│   └── robots.txt
+├── src/
+│   ├── components/
+│   │   ├── booking/              # Wizard reservasi 4-langkah
+│   │   │   ├── StepRoomEquipment.tsx
+│   │   │   ├── StepDateTime.tsx
+│   │   │   ├── StepIdentity.tsx
+│   │   │   └── StepSummary.tsx
+│   │   ├── common/               # Komponen atomik UI (Badge, Modal, KopSurat, Splash)
+│   │   ├── layout/               # Navigasi atas, mobile bottom bar, dan footer
+│   │   ├── rooms/                # Komponen kartu & filter pencarian ruangan
+│   │   ├── slip/                 # Modal surat izin resmi ber-QR Code
+│   │   └── timetable/            # Matriks horizontal jadwal per-jam (07:00–17:00)
+│   ├── context/
+│   │   ├── AuthContext.tsx       # State otentikasi & sesi pengguna
+│   │   ├── StorageContext.tsx    # Engine reservasi, anti-bentrok, & analytics
+│   │   └── ThemeContext.tsx      # Pengatur preferensi dark/light mode
+│   ├── data/
+│   │   └── mockData.ts           # Dataset awal 13 ruangan, peralatan, & peminjaman
+│   ├── pages/
+│   │   ├── HomePage.tsx          # Beranda utama & pelacak kilat
+│   │   ├── RoomsPage.tsx         # Katalog lengkap fasilitas sekolah
+│   │   ├── RoomDetailPage.tsx    # Detail spesifikasi ruangan tunggal
+│   │   ├── BookingPage.tsx       # Wizard formulir pengajuan reservasi
+│   │   ├── TimetablePage.tsx     # Monitoring jadwal harian sekolah
+│   │   ├── TrackingPage.tsx      # Pusat lacak status tiket mandiri
+│   │   ├── AdminPage.tsx         # Command Center Sarpras & ekspor CSV
+│   │   ├── LoginPage.tsx         # Portal masuk multi-role & showcase lab
+│   │   └── SlipPrintPage.tsx     # Dokumen dinas A4 siap cetak / PDF
+│   ├── types/
+│   │   └── index.ts              # Definisi interface & tipe data TypeScript
+│   ├── App.tsx                   # Central router & frame layout
+│   ├── index.css                 # Konfigurasi Tailwind v4 & style cetak A4
+│   └── main.tsx                  # Entry point React 19
+├── test-scripts/                 # Suite skrip pengujian otomatis Playwright
+│   ├── test-modern-stack.js      # Uji 9 alur utama secara headless
+│   ├── test-mobile-3color.js     # Uji viewport iPhone & theme toggle
+│   └── generate-readme-screenshots.js # Regenerasi screenshot beresolusi tinggi
+├── vercel.json                   # Konfigurasi rewrite SPA untuk Vercel
+├── vite.config.ts                # Konfigurasi bundler Vite & alias path
+├── tsconfig.json                 # Konfigurasi kompilasi TypeScript
+└── package.json                  # Definisi dependensi & skrip NPM
+```
+
+---
+
+## 🚀 Panduan Instalasi & Deployment
+
+### A. Deployment ke Vercel (Production)
+
+Aplikasi telah dikonfigurasi untuk siap jalan di **Vercel** dengan rewrite SPA pada file `vercel.json`:
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+Deploy instan menggunakan Vercel CLI:
 ```bash
-# Clone repositori
+# 1. Login atau gunakan token Vercel
+npx vercel --token <TOKEN_VERCEL> --prod --yes
+```
+Aplikasi langsung aktif pada domain: **`https://pemangan.vercel.app`**.
+
+---
+
+### B. Menjalankan Lokal (Development)
+
+#### Kebutuhan Sistem:
+- **Node.js**: versi 18.x, 20.x, atau 22.x LTS
+- **npm** atau **pnpm**
+
+#### Langkah-langkah:
+```bash
+# 1. Clone repositori dari GitHub
 git clone https://github.com/h1ntz0/Pemangan.git
 cd Pemangan
 
-# Instal dependensi
+# 2. Instal seluruh dependensi proyek
 npm install
 
-# Jalankan development server lokal
+# 3. Jalankan server pengembangan Vite lokal
 npm run dev
 ```
+Buka peramban dan akses alamat `http://localhost:3000`.
 
-Akses browser pada `http://localhost:3000`.
-
-### 3. Kompilasi Produksi & Nginx
+#### Build Produksi Lokal:
 ```bash
-# Build bundle produksi
+# Kompilasi TypeScript dan bundel Vite
 npm run build
 
-# Muat ulang Nginx (jika dikonfigurasikan)
-sudo service nginx reload
+# Pratinjau hasil build secara lokal (port 4173)
+npm run preview
 ```
 
 ---
 
-## 🔑 Akun Demo Pengujian
+### C. Nginx Reverse Proxy (Server Fisik / Intranet Sekolah)
 
-Aplikasi menyediakan kredensial instan untuk menguji berbagai peran pengguna:
+Jika di-hosting pada server lokal SMK Negeri 1 Jakarta menggunakan Nginx:
 
-| Peran | NIS / NIP / Username | Kata Sandi | Hak Akses |
-|---|---|---|---|
-| **Siswa** | `102144` | `123` | Mengajukan reservasi 4-langkah, melacak tiket, dan mencetak surat izin |
-| **Guru** | `19800101` | `123` | Pengajuan prioritas jadwal dan verifikasi pendampingan kelas |
-| **Admin** | `admin` | `admin123` | Akses penuh Sarpras (menyetujui, menolak tiket, reset demo, dan ekspor CSV) |
+```nginx
+server {
+    listen 80;
+    server_name pemangan.smkn1jakarta.sch.id;
+    root /var/www/pemangan/dist;
+    index index.html;
+
+    # Caching aset build Vite
+    location /assets/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # SPA Fallback routing (React Router v7)
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Penanganan gambar publik
+    location /img/ {
+        try_files $uri =404;
+    }
+}
+```
 
 ---
 
-## 🧪 Pengujian Otomatis
+## 🧪 Pengujian Otomatis (Playwright E2E)
 
-Suite pengujian otomatis berbasis Playwright mencakup verifikasi alur pemesanan, pengecekan jadwal matriks, dan responsivitas tampilan mobile:
+Suite pengujian otomatis disertakan untuk memvalidasi alur bisnis, pencegahan bentrok jadwal, dan responsivitas tampilan perangkat:
 
 ```bash
-# Jalankan pengujian menyeluruh
+# 1. Menjalankan verifikasi headless 9 alur utama (Vite Preview)
 node test-scripts/test-modern-stack.js
 
-# Tangkap ulang screenshot README resolusi tinggi
+# 2. Menjalankan verifikasi mobile viewport (iPhone 14) & switch tema
+node test-scripts/test-mobile-3color.js
+
+# 3. Mengambil ulang screenshot dokumentasi secara otomatis
 node test-scripts/generate-readme-screenshots.js
 ```
 
 ---
 
+## 📜 Standar Dokumen & Legalitas Cetak
+
+Surat Izin Peminjaman yang diterbitkan melalui `/slip/:id` dirancang sesuai dengan:
+1. **KOP Surat Resmi**: Mengacu pada Tata Naskah Dinas Pendidikan Provinsi DKI Jakarta.
+2. **Klausul Pertanggungjawaban**: Klausul kepatuhan inventaris, kebersihan, dan keselamatan ruangan yang ditandatangani oleh pemohon dan guru pendamping.
+3. **Validasi QR Code**: Menautkan langsung ke data verifikasi online untuk mencegah pemalsuan tanda tangan fisik.
+4. **Optimasi CSS Print**: Bebas elemen navigasi (`navbar`, `footer`, `buttons`), margin terstandarisasi `12mm 15mm`, dan kontras tajam untuk printer laser hitam-putih maupun warna.
+
+---
+
 ## 👨‍💻 Tim Pengembang
 
-- **Pengembang:** Arrofi Zein & Rasya Aryasatya (XI SIJA 1 — SMK Negeri 1 Jakarta)
+Platform ini dikembangkan dalam rangka **Proyek Kreatif & Kewirausahaan (PKK)** Bidang Keahlian **Sistem Informatika, Jaringan & Aplikasi (SIJA)** di SMK Negeri 1 Jakarta:
+
+| Nama Pengembang | Peran & Kontribusi | Kelas & Jurusan |
+|---|---|---|
+| **Arrofi Zein** | Lead Frontend & UI/UX Engineer | XI SIJA 1 — SMKN 1 Jakarta |
+| **Rasya Aryasatya** | System Architecture & Testing Engineer | XI SIJA 1 — SMKN 1 Jakarta |
+
 - **Guru Pembimbing:** Pak Amrul Khairullah, S.Kom
-- **Program:** Proyek Kreatif & Kewirausahaan (PKK) Bidang Keahlian Sistem Informatika, Jaringan & Aplikasi (SIJA)
-- **Institusi:** SMK Negeri 1 Jakarta Pusat
+- **Institusi:** SMK Negeri 1 Jakarta Pusat  
+  *Jl. Budi Utomo No. 7, Pasar Baru, Sawah Besar, Jakarta Pusat 10710*
+
+---
+
+<div align="center">
+
+**SMK BISA — SMK HEBAT — SIJA UNGGUL**  
+*Mewujudkan Digitalisasi Sarana & Prasarana Sekolah Berkelanjutan*
+
+© 2026 **PEMANGAN**. Dikelola oleh Tim SIJA & Sarpras SMK Negeri 1 Jakarta.
+
+</div>
