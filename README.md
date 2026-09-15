@@ -106,25 +106,18 @@ Dengan **PEMANGAN**, seluruh alur didigitalkan secara transparan, akuntabel, dan
 
 ## 📱 Pratinjau Visual Antarmuka
 
+> **Catatan privasi.** Tangkapan layar yang memperlihatkan nama siswa/guru, NIS/NIP, nomor
+> WhatsApp, atau email pribadi telah dihapus dari repositori ini beserta riwayatnya. Semua
+> identitas pada data demo sudah diganti dengan data sintetis. Tangkapan layar dapat dibuat
+> ulang dengan `test-scripts/generate-readme-screenshots.js`.
+
 ### 1. Tampilan Desktop (Web Browser)
 
 <div align="center">
 
-| Beranda Utama & Quick Track | Katalog 13 Ruangan & Filter Kategori |
-|:---:|:---:|
-| <img src="docs/screenshots/desktop-beranda.png" width="460" alt="Beranda Utama Desktop" /> | <img src="docs/screenshots/desktop-ruangan.png" width="460" alt="Katalog Ruangan Desktop" /> |
-
-| Spesifikasi Ruangan & Inventaris Lab | Matriks Jadwal Per-Jam (07:00–17:00) |
-|:---:|:---:|
-| <img src="docs/screenshots/desktop-detail-ruangan.png" width="460" alt="Detail Ruangan Desktop" /> | <img src="docs/screenshots/desktop-jadwal.png" width="460" alt="Jadwal Matriks Desktop" /> |
-
-| Wizard Peminjaman 4-Langkah Terintegrasi | Pelacakan Tiket Mandiri Realtime |
-|:---:|:---:|
-| <img src="docs/screenshots/desktop-booking.png" width="460" alt="Formulir Booking Desktop" /> | <img src="docs/screenshots/desktop-tracking.png" width="460" alt="Pelacakan Tiket Desktop" /> |
-
-| Command Center Pengelola Sarpras (Admin) | Surat Izin Resmi Standar Cetak A4 |
-|:---:|:---:|
-| <img src="docs/screenshots/desktop-admin.png" width="460" alt="Dashboard Sarpras Desktop" /> | <img src="docs/screenshots/desktop-surat-izin.png" width="460" alt="Surat Izin Resmi Cetak A4" /> |
+| Beranda Utama & Quick Track |
+|:---:|
+| <img src="docs/screenshots/01-beranda-desktop.png" width="640" alt="Beranda Utama Desktop" /> |
 
 </div>
 
@@ -136,9 +129,9 @@ Dengan **PEMANGAN**, seluruh alur didigitalkan secara transparan, akuntabel, dan
 |:---:|:---:|:---:|:---:|
 | <img src="docs/screenshots/mobile-splash.png" width="220" alt="Splash Screen" /> | <img src="docs/screenshots/mobile-beranda.png" width="220" alt="Beranda Mobile" /> | <img src="docs/screenshots/mobile-ruangan.png" width="220" alt="Katalog Mobile" /> | <img src="docs/screenshots/mobile-booking.png" width="220" alt="Booking Wizard Mobile" /> |
 
-| Jadwal Matriks Mobile | Pelacakan Tiket Mobile | Command Center Mobile | Portal Autentikasi Mobile |
+| Jadwal Matriks Mobile | Pelacakan Tiket Mobile | Command Center Mobile | Tampilan Mobile Umum |
 |:---:|:---:|:---:|:---:|
-| <img src="docs/screenshots/mobile-jadwal.png" width="220" alt="Jadwal Mobile" /> | <img src="docs/screenshots/mobile-tracking.png" width="220" alt="Pelacakan Mobile" /> | <img src="docs/screenshots/mobile-admin.png" width="220" alt="Admin Mobile" /> | <img src="docs/screenshots/mobile-login.png" width="220" alt="Login Mobile" /> |
+| <img src="docs/screenshots/mobile-jadwal.png" width="220" alt="Jadwal Mobile" /> | <img src="docs/screenshots/mobile-tracking.png" width="220" alt="Pelacakan Mobile" /> | <img src="docs/screenshots/mobile-admin.png" width="220" alt="Admin Mobile" /> | <img src="docs/screenshots/03-mobile-view.png" width="220" alt="Tampilan Mobile" /> |
 
 </div>
 
