@@ -5,7 +5,7 @@ const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio
 const { CallToolRequestSchema, ListToolsRequestSchema } = require("@modelcontextprotocol/sdk/types.js");
 const fs = require("fs");
 const path = require("path");
-const pdfParse = require("pdf-parse");
+const { PDFParse } = require("pdf-parse");
 const mammoth = require("mammoth");
 const ExcelJS = require("exceljs");
 
@@ -112,15 +112,21 @@ async function parsePdfFile(filePath, maxPages) {
     throw new Error(`File tidak ditemukan: ${resolved}`);
   }
   const dataBuffer = fs.readFileSync(resolved);
-  const options = {};
-  if (maxPages && typeof maxPages === "number") {
-    options.max = maxPages;
+  const parser = new PDFParse({ data: dataBuffer });
+  try {
+    const options = {};
+    if (maxPages && typeof maxPages === "number") {
+      options.first = maxPages;
+    }
+    const info = await parser.getInfo();
+    const data = await parser.getText(options);
+    return `### PDF Document: ${path.basename(resolved)}\n` +
+           `- **Jumlah Halaman**: ${info.total}\n` +
+           `- **Info**: ${JSON.stringify(info.info || {})}\n\n` +
+           `#### Isi Dokumen:\n\n${data.text}`;
+  } finally {
+    await parser.destroy();
   }
-  const data = await pdfParse(dataBuffer, options);
-  return `### PDF Document: ${path.basename(resolved)}\n` +
-         `- **Jumlah Halaman**: ${data.numpages}\n` +
-         `- **Info**: ${JSON.stringify(data.info || {})}\n\n` +
-         `#### Isi Dokumen:\n\n${data.text}`;
 }
 
 async function parseDocxFile(filePath, format = "markdown") {
@@ -258,7 +264,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     if (name === "read_document") {
       const ext = path.extname(args.filePath).toLowerCase();
       if (ext === ".pdf") {
-        const res = await parsePdfFile(args.filePath);
+        const res = await parsePdfFile(args.filePath, args.maxPages);
         return { content: [{ type: "text", text: res }] };
       } else if (ext === ".docx" || ext === ".doc") {
         const res = await parseDocxFile(args.filePath);
