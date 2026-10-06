@@ -118,8 +118,8 @@ async function parsePdfFile(filePath, maxPages) {
     if (maxPages && typeof maxPages === "number") {
       options.first = maxPages;
     }
-    const data = await parser.getText(options);
     const info = await parser.getInfo();
+    const data = await parser.getText(options);
     return `### PDF Document: ${path.basename(resolved)}\n` +
            `- **Jumlah Halaman**: ${info.total}\n` +
            `- **Info**: ${JSON.stringify(info.info || {})}\n\n` +
